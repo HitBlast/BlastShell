@@ -91,7 +91,7 @@ while True:
 
     elif user_command == "listdir":
         list_dir = str(os.listdir()).replace("[", "").replace("]", "").replace("'", "")
-        print("\n\n\u001b[33m" + list_dir + "\n\n")
+        print("\n\n\u001b[33m" + list_dir + "\n")
 
     elif user_command == "shutdown":
         shutdown_confirm = input("\u001b[0mConfirm device shutdown? (Yes/No) <> ").lower().replace(" ", "")

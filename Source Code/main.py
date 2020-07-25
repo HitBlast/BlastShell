@@ -5,7 +5,7 @@ print("This will take a few moments...")
 # Program authorship variables.
 __author__ = "Anindya Shiddhartha"
 __copyright__ = "Copyright 2020 Anindya Shiddhartha"
-__version__ = "1.0"
+__version__ = "1.01"
 __license__ = "MIT"
 
 # Mathematical memory variable.
@@ -857,7 +857,7 @@ while True:
             print("\n\nVIDEO    Refreshes the screen.")
             print("AUDIO    Assigns file type as directory.")
             print("DOC      Assigns file type as document.")
-            print("EXIT     Returns to home.\n\n")
+            print("EXIT     Returns to home.\n")
 
         elif vidformat == "video":
 

@@ -5,7 +5,7 @@ print("This will take a few moments...")
 # Program authorship variables.
 __author__ = "Anindya Shiddhartha"
 __copyright__ = "Copyright 2020 Anindya Shiddhartha"
-__version__ = "1.01"
+__version__ = "1.02"
 __license__ = "MIT"
 
 # Mathematical memory variable.
@@ -94,7 +94,7 @@ while True:
         print("\n\n\u001b[33m" + list_dir + "\n")
 
     elif user_command == "shutdown":
-        shutdown_confirm = input("\u001b[0mConfirm device shutdown? (Yes/No) <> ").lower().replace(" ", "")
+        shutdown_confirm = input("\u001b[0mConfirm device shutdown? (Yes / No) <> ").lower().replace(" ", "")
 
         if shutdown_confirm == "yes":
             print("\u001b[32mShutting down...\u001b[0m")
@@ -107,7 +107,7 @@ while True:
             print("\u001b[31mCommand not found! Try either 'Yes' or 'No'.\u001b[0m")
 
     elif user_command == "restart":
-        restart_confirm = input("\u001b[0mConfirm device restart? (Yes/No) <> ").lower().replace(" ", "")
+        restart_confirm = input("\u001b[0mConfirm device restart? (Yes / No) <> ").lower().replace(" ", "")
 
         if restart_confirm == "yes":
             print("\u001b[32mRestarting...\u001b[0m")
@@ -223,6 +223,7 @@ while True:
                 print("MEM        Shows values stored in math memory.")
                 print("MULTI      Multiplies one number with another.")
                 print("NUMFRAQ    Converts a decimal number to a fraction.")
+                print("NUMSORT    Sorts a list of numbers into ascending or descending order.")
                 print("PI         Adds the value of pi to memory.")
                 print("PROFLOSS   Detects profit or loss by using purchase and selling value.")
                 print("MEMCLS     Clears application maemory.")
@@ -232,6 +233,46 @@ while True:
 
             elif math_command == "exit":
                 break
+
+            elif math_command == "memcls":
+                math_mem -= math_mem
+                print("\u001b[32mCleared math memory!\u001b[0m")
+
+            elif math_command == "cls":
+                windowcls()
+
+            elif math_command == "numsort":
+                value_num = 0
+                list_num = [] 
+
+                try:
+                    value_qty = int(input("Value Quantity <> "))
+                    print()
+
+                    for i in range(0, value_qty): 
+                        value_num += 1
+                        values = int(input("Value " + str(value_num) + " <> ")) 
+                        list_num.append(values)
+
+                except OverflowError:
+                    print("\u001b[31mValue(s) too big to be calculated!\u001b[0m")
+
+                except ValueError:
+                    print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
+
+                else:
+                    sort_type = input("Sort Order (Ascending / Descending) <> ").lower().replace(" ", "")
+
+                    if sort_type == "ascending":
+                        list_res = sorted(list_num)
+                        print("\nResult (Ascending Order) = \u001b[32m" + str(list_res).replace("[", "").replace("]", "") + "\u001b[0m")
+
+                    elif sort_type == "descending":
+                        list_res = sorted(list_num, reverse=True)
+                        print("\nResult (Descending Order) = \u001b[32m" + str(list_res).replace("[", "").replace("]", "") + "\u001b[0m")
+
+                    else:
+                        print("\u001b[31mSort order invalid! Try either 'Ascending' or 'Descending'.")
 
             elif math_command == "ageconv":
         
@@ -243,10 +284,10 @@ while True:
                     math_user_age_inminutes = math_user_age_inhours * 60
 
                 except OverflowError:
-                    print("\u001b[31mAge too big to calculate!\u001b[0m")
+                    print("\u001b[31mAge too big to be calculated!\u001b[0m")
 
                 except ValueError:
-                    print("\u001b[31mInvalid age! Try again with a valid number.\u001b[0m")
+                    print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
 
                 else:
                     print("\n\nHere's what your age is in...\n")
@@ -262,13 +303,13 @@ while True:
                     gen_res = random.randint(gen_minvalue, gen_maxvalue)
                 
                 except OverflowError:
-                    print("\u001b[31mValue too large to solve!\u001b[0m")
+                    print("\u001b[31mValue too big to be calculated!\u001b[0m")
 
                 except ValueError:
-                    print("\u001b[31mInvalid number! Try again with a valid number.\u001b[0m")
+                    print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
 
                 else:
-                    addtomem = input("Add to memory? (Yes/No) <> ").lower().replace(" ", "")
+                    addtomem = input("Add to memory? (Yes / No) <> ").lower().replace(" ", "")
 
                     if addtomem == "yes":
                         math_mem += gen_res
@@ -302,17 +343,17 @@ while True:
                         output_type = ("None \u001b[32m")
 
                 except ValueError:
-                    print("\u001b[31mValue invalid! Try again with a valid number.\u001b[0m")
+                    print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
 
                 except OverflowError:
-                    print("\u001b[31mValue too large to solve!\u001b[0m")
+                    print("\u001b[31mValue too big to be calculated!\u001b[0m")
 
                 else:
-                    addtomem = input("Add to memory? (Yes/No) <> ").lower().replace(" ", "")
+                    addtomem = input("Add to memory? (Yes / No) <> ").lower().replace(" ", "")
 
                     if addtomem == "yes":
                         math_mem += profloss_value
-                        print("Result = " + output_type + "(" + str(profloss_value) + "%) \u001b[0m [Added to memory]")
+                        print("Result = " + output_type + "(" + str(profloss_value) + "%) \u001b[0m[Added to memory]")
 
                     elif addtomem == "no":
                         print("Result = " + output_type + "(" + str(profloss_value) + "%) \u001b[0m")
@@ -328,7 +369,7 @@ while True:
                     print("Pi = \u001b[32m" + str(pi_value) + "\u001b[0m [Added to memory]")
 
                 else:
-                    print("Using previous memory results for main value.")
+                    print("Using previous memory result for main value.")
                     pi_action = input("Action (add/sub/div/multi) <> ").lower().replace(" ", "")
 
                     if pi_action == "add":
@@ -337,7 +378,7 @@ while True:
                             math_mem += pi_value
 
                         except OverflowError:
-                            print("\u001b[31mMemory overload!\u001b[0m")
+                            print("\u001b[31mResult can't be added to memory, value overflow!\u001b[0m")
 
                         else:
                             print("Result = \u001b[32m" + str(math_mem) + "\u001b[0m [Refreshed memory]")
@@ -348,7 +389,7 @@ while True:
                             math_mem -= pi_value
 
                         except OverflowError:
-                            print("\u001b[31mMemory overload!\u001b[0m")
+                            print("\u001b[31mResult can't be added to memory, value overflow!\u001b[0m")
 
                         else:
                             print("Result = \u001b[32m" + str(math_mem) + "\u001b[0m [Refreshed memory]")
@@ -359,7 +400,7 @@ while True:
                             math_mem /= pi_value
 
                         except OverflowError:
-                            print("\u001b[31mMemory overload!\u001b[0m")
+                            print("\u001b[31mResult can't be added to memory, value overflow!\u001b[0m")
 
                         else:
                             print("Result = \u001b[32m" + str(math_mem) + "\u001b[0m [Refreshed memory]")
@@ -370,7 +411,7 @@ while True:
                             math_mem *= pi_value
 
                         except OverflowError:
-                            print("\u001b[31mMemory overload!\u001b[0m")
+                            print("\u001b[31mResult can't be added to memory, value overflow!\u001b[0m")
 
                         else:
                             print("Result = \u001b[32m" + str(math_mem) + "\u001b[0m [Refreshed memory]")
@@ -381,21 +422,19 @@ while True:
             elif math_command == "numfraq":
 
                 if math_mem == 0:
-
                     try:
                         convfraq_num = float(input("Value <> "))
 
                     except OverflowError:
-                        print("\u001b[31mValue too large to solve!\u001b[0m")
+                        print("\u001b[31mValue too big to be calculated!\u001b[0m")
 
                     except ValueError:
-                        print("\u001b[31mValue invalid! Try again with a valid number.\u001b[0m")
+                        print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
 
                     else:
                         print("Fraction = \u001b[32m" + str(Fraction(convfraq_num)) + "\u001b[0m")
 
                 else:
-                    
                     try:
                         print("Using previous memory result for main value.")
                         convfraq_num = Fraction(math_mem)
@@ -412,34 +451,32 @@ while True:
                     return x ** y
                 
                 if math_mem == 0:
-
                     try:
                         xq_num1 = float(input("Primary Value <> "))
                         xq_num2 = float(input("To-The-Power Value <> "))
                         sum = xq(xq_num1, xq_num2)
 
                     except OverflowError:
-                        print("\u001b[31mValue too large to solve!\u001b[0m")
+                        print("\u001b[31mValue too big to be calculated!\u001b[0m")
 
                     except ValueError:
-                        print("\u001b[31mValue invalid! Try again with a valid number.\u001b[0m")
+                        print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
 
                     else:
                         math_mem += sum
                         print("Result = \u001b[32m" + str(sum) + "\u001b[0m [Added to memory]")
 
                 else:
-
                     try:
                         print("Using previous memory result for main value.")
                         xq_num2 = float(input("To-The-Power Value <> "))
                         sum = xq(math_mem, xq_num2)
 
                     except OverflowError:
-                        print("\u001b[31mValue too large to solve!\u001b[0m")
+                        print("\u001b[31mValue too big to be calculated!\u001b[0m")
 
                     except ValueError:
-                        print("\u001b[31mValue invalid! Try again with a valid number.\u001b[0m")
+                        print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
 
                     else:
                         math_mem -= math_mem
@@ -452,29 +489,27 @@ while True:
                     return x ** 3
                 
                 if math_mem == 0:
-
                     try:
                         cube_input = float(input("Value <> "))
                         sum = cube(cube_input)
 
                     except OverflowError:
-                        print("\u001b[31mValue too large to solve!\u001b[0m")
+                        print("\u001b[31mValue too big to be calculated!\u001b[0m")
 
                     except ValueError:
-                        print("\u001b[31mValue invalid! Try again with a valid number.\u001b[0m")
+                        print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
 
                     else:
                         math_mem += sum
                         print("Result = \u001b[32m" + str(sum) + "\u001b[0m [Added to memory]")
 
                 else:
-
                     try:
                         print("Using previous memory result for main value.")
                         sum = cube(math_mem)
 
                     except OverflowError:
-                        print("\u001b[31mValue too large to solve!\u001b[0m")
+                        print("\u001b[31mValue too big to be calculated!\u001b[0m")
 
                     else:
                         math_mem -= math_mem
@@ -487,29 +522,27 @@ while True:
                     return x ** 2
                 
                 if math_mem == 0:
-
                     try:
                         sq_input = float(input("Value <> "))
                         sum = sq(sq_input)
 
                     except OverflowError:
-                        print("\u001b[31mValue too large to solve!\u001b[0m")
+                        print("\u001b[31mValue too big to be calculated!\u001b[0m")
 
                     except ValueError:
-                        print("\u001b[31mValue invalid! Try again with a valid number.\u001b[0m")
+                        print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
 
                     else:
                         math_mem += sum
                         print("Result = \u001b[32m" + str(sum) + "\u001b[0m [Added to memory]")
 
                 else:
-
                     try:
                         print("Using previous memory result for main value.")
                         sum = sq(math_mem)
 
                     except OverflowError:
-                        print("\u001b[31mValue too large to solve!\u001b[0m")
+                        print("\u001b[31mValue too big to be calculated!\u001b[0m")
 
                     else:
                         math_mem -= math_mem
@@ -524,37 +557,28 @@ while True:
                 else:
                     print("Stored value = \u001b[32m" + str(math_mem) + "\u001b[0m")
 
-            elif math_command == "memcls":
-                math_mem -= math_mem
-                print("\u001b[32mCleared math memory!\u001b[0m")
-
-            elif math_command == "cls":
-                windowcls()
-
             elif math_command == "add":
 
                 def add(x, y):
                     return x + y
 
                 if math_mem == 0:
-
                     try:
                         num1 = float(input("Value 1 <> "))
                         num2 = float(input("Value 2 <> "))
                         sum = add(num1, num2)
 
                     except OverflowError:
-                        print("\u001b[31mValue too large to solve!\u001b[0m")
+                        print("\u001b[31mValue too big to be calculated!\u001b[0m")
 
                     except ValueError:
-                        print("\u001b[31mValue invalid! Try again with a valid number.\u001b[0m")
+                        print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
 
                     else:
                         math_mem += sum
                         print("Result = \u001b[32m" + str(sum) + "\u001b[0m [Added to memory]")
 
                 else:
-
                     try:
                         print("Using previous memory result for main value.")
                         num1 = float(input("Value <> "))
@@ -562,10 +586,10 @@ while True:
                         
 
                     except OverflowError:
-                        print("\u001b[31mValue too large to solve!\u001b[0m")
+                        print("\u001b[31mValue too big to be calculated!\u001b[0m")
 
                     except ValueError:
-                        print("\u001b[31mValue invalid! Try again with a valid number.\u001b[0m")
+                        print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
 
                     else:
                         math_mem -= math_mem
@@ -578,34 +602,32 @@ while True:
                     return x - y
 
                 if math_mem == 0:
-
                     try:
                         num1 = float(input("Value 1 <> "))
                         num2 = float(input("Value 2 <> "))
                         sum = sub(num1, num2)
 
                     except OverflowError:
-                        print("\u001b[31mValue too large to solve!\u001b[0m")
+                        print("\u001b[31mValue too big to be calculated!\u001b[0m")
 
                     except ValueError:
-                        print("\u001b[31mValue invalid! Try again with a valid number.\u001b[0m")
+                        print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
 
                     else:
                         math_mem += sum
                         print("Result = \u001b[32m" + str(sum) + "\u001b[0m [Added to memory]")
 
                 else:
-
                     try:
                         print("Using previous memory result for main value.")
                         num1 = float(input("Value <> "))
                         sum = sub(math_mem, num1)
 
                     except OverflowError:
-                        print("\u001b[31mValue too large to solve!\u001b[0m")
+                        print("\u001b[31mValue too big to be calculated!\u001b[0m")
 
                     except ValueError:
-                        print("\u001b[31mValue invalid! Try again with a valid number.\u001b[0m")
+                        print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
 
                     else:
                         math_mem -= math_mem
@@ -618,34 +640,32 @@ while True:
                     return x / y
 
                 if math_mem == 0:
-
                     try:
                         num1 = float(input("Value 1 <> "))
                         num2 = float(input("Value 2 <> "))
                         sum = div(num1, num2)
 
                     except OverflowError:
-                        print("\u001b[31mValue too large to solve!\u001b[0m")
+                        print("\u001b[31mValue too big to be calculated!\u001b[0m")
 
                     except ValueError:
-                        print("\u001b[31mValue invalid! Try again with a valid number.\u001b[0m")
+                        print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
 
                     else:
                         math_mem += sum
                         print("Result = \u001b[32m" + str(sum) + "\u001b[0m [Added to memory]")
 
                 else:
-
                     try:
                         print("Using previous memory result for main value.")
                         num1 = float(input("Value <> "))
                         sum = div(math_mem, num1)
 
                     except OverflowError:
-                        print("\u001b[31mValue too large to solve!\u001b[0m")
+                        print("\u001b[31mValue too big to be calculated!\u001b[0m")
 
                     except ValueError:
-                        print("\u001b[31mValue invalid! Try again with a valid number.\u001b[0m")
+                        print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
 
                     else:
                         math_mem -= math_mem
@@ -658,34 +678,32 @@ while True:
                     return x * y
 
                 if math_mem == 0:
-
                     try:
                         num1 = float(input("Value 1 <> "))
                         num2 = float(input("Value 2 <> "))
                         sum = multi(num1, num2)
 
                     except OverflowError:
-                        print("\u001b[31mValue too large to solve!\u001b[0m")
+                        print("\u001b[31mValue too big to be calculated!\u001b[0m")
 
                     except ValueError:
-                        print("\u001b[31mValue invalid! Try again with a valid number.\u001b[0m")
+                        print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
 
                     else:
                         math_mem += sum
                         print("Result = \u001b[32m" + str(sum) + "\u001b[0m [Added to memory]")
 
                 else:
-
                     try:
                         print("Using previous memory result for main value.")
                         num1 = float(input("Value <> "))
                         sum = multi(math_mem, num1)
 
                     except OverflowError:
-                        print("\u001b[31mValue too large to solve!\u001b[0m")
+                        print("\u001b[31mValue too big to be calculated!\u001b[0m")
 
                     except ValueError:
-                        print("\u001b[31mValue invalid! Try again with a valid number.\u001b[0m")
+                        print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
 
                     else:
                         math_mem -= math_mem

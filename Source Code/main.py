@@ -343,7 +343,7 @@ while True:
                     print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
 
                 else:
-                    addtomem = input("Add to memory? (Yes / No) <> ").lower().replace(" ", "")
+                    addtomem = input("\nAdd to memory? (Yes / No) <> ").lower().replace(" ", "")
 
                     if addtomem == "yes":
                         math_mem += gen_res
@@ -362,21 +362,21 @@ while True:
                     sell_value = float(input("Selling Value <> "))
 
                     if buy_value < sell_value:
+                        profloss_value_money = sell_value - buy_value
                         sell_value -= buy_value
                         profloss_value_percentage = sell_value / buy_value * 100
-                        profloss_value_money = sell_value - buy_value
                         output_type = ("Profit \u001b[32m")
 
                     elif buy_value > sell_value:
+                        profloss_value_money = buy_value - sell_value
                         buy_value -= sell_value
                         profloss_value_percentage = buy_value / sell_value * 100
-                        profloss_value_money = buy_value - sell_value
                         output_type = ("Loss \u001b[31m")
 
                     else:
+                        profloss_value_money = buy_value - sell_value
                         buy_value -= sell_value
                         profloss_value_percentage = buy_value / sell_value * 100
-                        profloss_value_money = buy_value - sell_value
                         output_type = ("None \u001b[32m")
 
                 except ValueError:
@@ -386,7 +386,7 @@ while True:
                     print("\u001b[31mValue(s) too big to be calculated!\u001b[0m")
 
                 else:
-                    addtomem = input("Add to memory? (Yes / No) <> ").lower().replace(" ", "")
+                    addtomem = input("\nAdd to memory? (Yes / No) <> ").lower().replace(" ", "")
 
                     if addtomem == "yes":
                         math_mem += profloss_value_money

@@ -5,7 +5,7 @@ print("This will take a few moments...")
 # Program authorship variables.
 __author__ = "Anindya Shiddhartha"
 __copyright__ = "Copyright 2020 Anindya Shiddhartha"
-__version__ = "1.02"
+__version__ = "1.03"
 __license__ = "MIT"
 
 # Mathematical memory variable.
@@ -117,7 +117,7 @@ while True:
             print("\u001b[32mRestart aborted!\u001b[0m")
 
         else:
-            print("\u001b[31mCommand not found! Try either 'Yes' or 'No'.")
+            print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
 
     elif user_command == "cd":
         print("\u001b[0mCurrent Path: \u001b[33m" + dir_path)
@@ -213,26 +213,38 @@ while True:
             math_command = input("\nMath> ").lower().replace(" ", "")
 
             if math_command == "help":
-                print("\n\nADD        Adds two numbers.")
-                print("AGECONV    Converts age from traditional 'years' format to days, hours and minutes.")
+                print("\n\nADD        Adds value(s) together.")
+                print("AGECONV    Converts age from traditional 'years' format to days, hours and")
+                print("           minutes.")
                 print("CLS        Refreshes the screen.")
                 print("CUBE       Cubes a number.")
-                print("DIV        Divides one number with another.")
+                print("DIV        Divides value(s) with each other.")
                 print("EXIT       Quits mathematical console.")
                 print("GENNUM     Generates a value within given minimum and maximum value.")
                 print("MEM        Shows values stored in math memory.")
-                print("MULTI      Multiplies one number with another.")
+                print("MULTI      Multiplies value(s) with each other.")
+                print("NUMCENT    Converts numbers to percentage based on the given main and the")
+                print("           secondary value.")
                 print("NUMFRAQ    Converts a decimal number to a fraction.")
                 print("NUMSORT    Sorts a list of numbers into ascending or descending order.")
                 print("PI         Adds the value of pi to memory.")
-                print("PROFLOSS   Detects profit or loss by using purchase and selling value.")
+                print("PROFLOSS   Detects profit or loss by using purchase and selling value(s) of")
+                print("           an object or product.")
                 print("MEMCLS     Clears application maemory.")
                 print("SQ         Squares a given value.")
-                print("SUB        Subtracts one number with another.")
+                print("SUB        Subtracts value(s) from other one(s).")
                 print("XQ         Modify a number with a to-the-power value.\n")
 
             elif math_command == "exit":
                 break
+
+            elif math_command == "mem":
+                
+                if math_mem == 0:
+                    print("Stored value = \u001b[32m" + str(math_mem) + "\u001b[0m [Empty]")
+
+                else:
+                    print("Stored value = \u001b[32m" + str(math_mem) + "\u001b[0m")
 
             elif math_command == "memcls":
                 math_mem -= math_mem
@@ -240,6 +252,28 @@ while True:
 
             elif math_command == "cls":
                 windowcls()
+
+            elif math_command == "numcent":
+
+                def numcent(num1, num2):
+                    num1 = float(num1)
+                    num2 = float(num2)
+                    percentage = '{0:.2f}'.format((num1 / num2 * 100))
+                    return percentage
+
+                try:
+                    num1 = int(input("Value 1 <> "))
+                    num2 = int(input("Value 2 <> "))
+                    sum = numcent(num1, num2)
+
+                except OverflowError:
+                    print("\u001b[31mValue(s) too big to be calculated!\u001b[0m")
+
+                except ValueError:
+                    print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
+
+                else:
+                    print("Result = \u001b[32m" + str(sum) + "%\u001b[0m")
 
             elif math_command == "numsort":
                 value_num = 0
@@ -261,15 +295,15 @@ while True:
                     print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
 
                 else:
-                    sort_type = input("Sort Order (Ascending / Descending) <> ").lower().replace(" ", "")
+                    sort_type = input("\nSort Order (Ascending / Descending) <> ").lower().replace(" ", "")
 
                     if sort_type == "ascending":
                         list_res = sorted(list_num)
-                        print("\nResult (Ascending Order) = \u001b[32m" + str(list_res).replace("[", "").replace("]", "") + "\u001b[0m")
+                        print("Result (Ascending Order) = \u001b[32m" + str(list_res).replace("[", "").replace("]", "") + "\u001b[0m")
 
                     elif sort_type == "descending":
                         list_res = sorted(list_num, reverse=True)
-                        print("\nResult (Descending Order) = \u001b[32m" + str(list_res).replace("[", "").replace("]", "") + "\u001b[0m")
+                        print("Result (Descending Order) = \u001b[32m" + str(list_res).replace("[", "").replace("]", "") + "\u001b[0m")
 
                     else:
                         print("\u001b[31mSort order invalid! Try either 'Ascending' or 'Descending'.")
@@ -303,7 +337,7 @@ while True:
                     gen_res = random.randint(gen_minvalue, gen_maxvalue)
                 
                 except OverflowError:
-                    print("\u001b[31mValue too big to be calculated!\u001b[0m")
+                    print("\u001b[31mValue(s) too big to be calculated!\u001b[0m")
 
                 except ValueError:
                     print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
@@ -313,13 +347,13 @@ while True:
 
                     if addtomem == "yes":
                         math_mem += gen_res
-                        print("Generated Value = \u001b[32m" + str(gen_res) + "\u001b[0m [Added to memory]")
+                        print("Generated Value = \u001b[32m" + str(gen_res) + "\u001b[0m [Added To Memory]")
 
                     elif addtomem == "no":
                         print("Generated Value = \u001b[32m" + str(gen_res) + "\u001b[0m")
 
                     else:
-                        print("\u001b[31mCommand not found! Try either 'Yes' or 'No'.")
+                        print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
 
             elif math_command == "profloss":
 
@@ -329,386 +363,427 @@ while True:
 
                     if buy_value < sell_value:
                         sell_value -= buy_value
-                        profloss_value = sell_value / buy_value * 100
+                        profloss_value_percentage = sell_value / buy_value * 100
+                        profloss_value_money = sell_value - buy_value
                         output_type = ("Profit \u001b[32m")
 
                     elif buy_value > sell_value:
                         buy_value -= sell_value
-                        profloss_value = buy_value / sell_value * 100
+                        profloss_value_percentage = buy_value / sell_value * 100
+                        profloss_value_money = buy_value - sell_value
                         output_type = ("Loss \u001b[31m")
 
                     else:
                         buy_value -= sell_value
-                        profloss_value = buy_value / sell_value * 100
+                        profloss_value_percentage = buy_value / sell_value * 100
+                        profloss_value_money = buy_value - sell_value
                         output_type = ("None \u001b[32m")
 
                 except ValueError:
                     print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
 
                 except OverflowError:
-                    print("\u001b[31mValue too big to be calculated!\u001b[0m")
+                    print("\u001b[31mValue(s) too big to be calculated!\u001b[0m")
 
                 else:
                     addtomem = input("Add to memory? (Yes / No) <> ").lower().replace(" ", "")
 
                     if addtomem == "yes":
-                        math_mem += profloss_value
-                        print("Result = " + output_type + "(" + str(profloss_value) + "%) \u001b[0m[Added to memory]")
+                        math_mem += profloss_value_money
+                        print("Result = " + output_type + "(" + str(profloss_value_percentage) + "%) \u001b[0m| Money = \u001b[32m" + str(profloss_value_money) + " \u001b[0m[Added To Memory]")
 
                     elif addtomem == "no":
-                        print("Result = " + output_type + "(" + str(profloss_value) + "%) \u001b[0m")
+                        print("Result = " + output_type + "(" + str(profloss_value_percentage) + "%) \u001b[0m| Money = \u001b[32m" + str(profloss_value_money) + " \u001b[0m")
 
                     else:
-                        print("\u001b[31mCommand not found! Try either 'Yes' or 'No'.")
+                        print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
 
             elif math_command == "pi":
                 pi_value = 3.1415926535897932384626433832
 
                 if math_mem == 0:
-                    math_mem += pi_value
-                    print("Pi = \u001b[32m" + str(pi_value) + "\u001b[0m [Added to memory]")
+                    print("Pi = \u001b[32m" + str(pi_value) + "\u001b[0m")
+                    value_addtomem = input("Add to / refresh memory? (Yes / No) <> ").lower().replace(" ", "")
+
+                    if value_addtomem == "yes":
+                        math_mem += pi_value
+                        print("Memory = \u001b[32m" + str(math_mem) + "\u001b[0m [Added To Memory]")
+
+                    elif value_addtomem == "no":
+                        print("Skipped memory addition.")
+
+                    else:
+                        print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
 
                 else:
+                    print("Pi = \u001b[32m" + str(pi_value) + "\u001b[0m")
                     print("Using previous memory result for main value.")
                     pi_action = input("Action (add/sub/div/multi) <> ").lower().replace(" ", "")
 
                     if pi_action == "add":
 
                         try:
-                            math_mem += pi_value
+                            sum = math_mem + pi_value
 
                         except OverflowError:
                             print("\u001b[31mResult can't be added to memory, value overflow!\u001b[0m")
 
                         else:
-                            print("Result = \u001b[32m" + str(math_mem) + "\u001b[0m [Refreshed memory]")
+                            value_addtomem = input("\nAdd to / refresh memory? (Yes / No) <> ").lower().replace(" ", "")
+
+                            if value_addtomem == "yes":
+                                math_mem -= math_mem
+                                math_mem += sum
+                                print("Memory = \u001b[32m" + str(math_mem) + "\u001b[0m [Refreshed Memory]")
+
+                            elif value_addtomem == "no":
+                                print("Result = \u001b[32m" + str(sum) + "\u001b[0m")
+
+                            else:
+                                print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
 
                     elif pi_action == "sub":
                         
                         try:
-                            math_mem -= pi_value
+                            sum = math_mem - pi_value
 
                         except OverflowError:
                             print("\u001b[31mResult can't be added to memory, value overflow!\u001b[0m")
 
                         else:
-                            print("Result = \u001b[32m" + str(math_mem) + "\u001b[0m [Refreshed memory]")
+                            value_addtomem = input("\nAdd to / refresh memory? (Yes / No) <> ").lower().replace(" ", "")
+
+                            if value_addtomem == "yes":
+                                math_mem -= math_mem
+                                math_mem += sum
+                                print("Memory = \u001b[32m" + str(math_mem) + "\u001b[0m [Refreshed Memory]")
+
+                            elif value_addtomem == "no":
+                                print("Result = \u001b[32m" + str(sum) + "\u001b[0m")
+
+                            else:
+                                print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
 
                     elif pi_action == "div":
                         
                         try:
-                            math_mem /= pi_value
+                            sum = math_mem / pi_value
 
                         except OverflowError:
                             print("\u001b[31mResult can't be added to memory, value overflow!\u001b[0m")
 
                         else:
-                            print("Result = \u001b[32m" + str(math_mem) + "\u001b[0m [Refreshed memory]")
+                            value_addtomem = input("\nAdd to / refresh memory? (Yes / No) <> ").lower().replace(" ", "")
+
+                            if value_addtomem == "yes":
+                                math_mem -= math_mem
+                                math_mem += sum
+                                print("Memory = \u001b[32m" + str(math_mem) + "\u001b[0m [Refreshed Memory]")
+
+                            elif value_addtomem == "no":
+                                print("Result = \u001b[32m" + str(sum) + "\u001b[0m")
+
+                            else:
+                                print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
 
                     elif pi_action == "multi":
                         
                         try:
-                            math_mem *= pi_value
+                            sum = math_mem * pi_value
 
                         except OverflowError:
                             print("\u001b[31mResult can't be added to memory, value overflow!\u001b[0m")
 
                         else:
-                            print("Result = \u001b[32m" + str(math_mem) + "\u001b[0m [Refreshed memory]")
+                            value_addtomem = input("\nAdd to / refresh memory? (Yes / No) <> ").lower().replace(" ", "")
+
+                            if value_addtomem == "yes":
+                                math_mem -= math_mem
+                                math_mem += sum
+                                print("Memory = \u001b[32m" + str(math_mem) + " \u001b[0m[Refreshed Memory]")
+
+                            elif value_addtomem == "no":
+                                print("Result = \u001b[32m" + str(sum) + "\u001b[0m")
+
+                            else:
+                                print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
 
                     else:
-                        print("\u001b[31mAction not found! Try something else.\u001b[0m")
+                        print("\u001b[31mAction not found! Try something predefined.\u001b[0m")
 
             elif math_command == "numfraq":
 
-                if math_mem == 0:
-                    try:
-                        convfraq_num = float(input("Value <> "))
+                try:
+                    convfraq_num = float(input("Value <> "))
 
-                    except OverflowError:
-                        print("\u001b[31mValue too big to be calculated!\u001b[0m")
+                except OverflowError:
+                    print("\u001b[31mValue(s) too big to be calculated!\u001b[0m")
 
-                    except ValueError:
-                        print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
-
-                    else:
-                        print("Fraction = \u001b[32m" + str(Fraction(convfraq_num)) + "\u001b[0m")
+                except ValueError:
+                    print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
 
                 else:
-                    try:
-                        print("Using previous memory result for main value.")
-                        convfraq_num = Fraction(math_mem)
-
-                    except OverflowError:
-                        print("\u001b[31mUnexpected value error occured!\u001b[0m")
-
-                    else:
-                        print("Fraction = \u001b[32m" + str(convfraq_num) + "\u001b[0m")
+                    print("Fraction = \u001b[32m" + str(Fraction(convfraq_num)) + "\u001b[0m")
 
             elif math_command == "xq":
 
                 def xq(x, y):
                     return x ** y
                 
-                if math_mem == 0:
-                    try:
-                        xq_num1 = float(input("Primary Value <> "))
-                        xq_num2 = float(input("To-The-Power Value <> "))
-                        sum = xq(xq_num1, xq_num2)
+                try:
+                    xq_num1 = float(input("Primary Value <> "))
+                    xq_num2 = float(input("To-The-Power Value <> "))
+                    sum = xq(xq_num1, xq_num2)
 
-                    except OverflowError:
-                        print("\u001b[31mValue too big to be calculated!\u001b[0m")
+                except OverflowError:
+                    print("\u001b[31mValue(s) too big to be calculated!\u001b[0m")
 
-                    except ValueError:
-                        print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
-
-                    else:
-                        math_mem += sum
-                        print("Result = \u001b[32m" + str(sum) + "\u001b[0m [Added to memory]")
+                except ValueError:
+                    print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
 
                 else:
-                    try:
-                        print("Using previous memory result for main value.")
-                        xq_num2 = float(input("To-The-Power Value <> "))
-                        sum = xq(math_mem, xq_num2)
+                    value_addtomem = input("\nAdd to / refresh memory? (Yes / No) <> ").lower().replace(" ", "")
 
-                    except OverflowError:
-                        print("\u001b[31mValue too big to be calculated!\u001b[0m")
+                    if value_addtomem == "yes":
+                        math_mem += sum
 
-                    except ValueError:
-                        print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
+                        if math_mem == 0:
+                            print("Memory = \u001b[32m" + str(math_mem) + "\u001b[0m [Added To Memory]")
+
+                        else:
+                            print("Memory = \u001b[32m" + str(math_mem) + "\u001b[0m [Refreshed Memory]")
+
+                    elif value_addtomem == "no":
+                        print("Result = \u001b[32m" + str(sum) + "\u001b[0m")
 
                     else:
-                        math_mem -= math_mem
-                        math_mem += sum
-                        print("Result = \u001b[32m" + str(sum) + "\u001b[0m [Refreshed memory]")
+                        print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
 
             elif math_command == "cube":
 
                 def cube(x):
                     return x ** 3
                 
-                if math_mem == 0:
-                    try:
-                        cube_input = float(input("Value <> "))
-                        sum = cube(cube_input)
+                try:
+                    cube_input = float(input("Value <> "))
+                    sum = cube(cube_input)
 
-                    except OverflowError:
-                        print("\u001b[31mValue too big to be calculated!\u001b[0m")
+                except OverflowError:
+                    print("\u001b[31mValue(s) too big to be calculated!\u001b[0m")
 
-                    except ValueError:
-                        print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
-
-                    else:
-                        math_mem += sum
-                        print("Result = \u001b[32m" + str(sum) + "\u001b[0m [Added to memory]")
+                except ValueError:
+                    print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
 
                 else:
-                    try:
-                        print("Using previous memory result for main value.")
-                        sum = cube(math_mem)
+                    value_addtomem = input("\nAdd to / refresh memory? (Yes / No) <> ").lower().replace(" ", "")
 
-                    except OverflowError:
-                        print("\u001b[31mValue too big to be calculated!\u001b[0m")
+                    if value_addtomem == "yes":
+                        math_mem += sum
+
+                        if math_mem == 0:
+                            print("Memory = \u001b[32m" + str(math_mem) + "\u001b[0m [Added To Memory]")
+
+                        else:
+                            print("Memory = \u001b[32m" + str(math_mem) + "\u001b[0m [Refreshed Memory]")
+
+                    elif value_addtomem == "no":
+                        print("Result = \u001b[32m" + str(sum) + "\u001b[0m")
 
                     else:
-                        math_mem -= math_mem
-                        math_mem += sum
-                        print("Result = \u001b[32m" + str(sum) + "\u001b[0m [Refreshed memory]")
+                        print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
 
             elif math_command == "sq":
 
                 def sq(x):
                     return x ** 2
                 
-                if math_mem == 0:
-                    try:
-                        sq_input = float(input("Value <> "))
-                        sum = sq(sq_input)
+                try:
+                    sq_input = float(input("Value <> "))
+                    sum = sq(sq_input)
 
-                    except OverflowError:
-                        print("\u001b[31mValue too big to be calculated!\u001b[0m")
+                except OverflowError:
+                    print("\u001b[31mValue(s) too big to be calculated!\u001b[0m")
 
-                    except ValueError:
-                        print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
-
-                    else:
-                        math_mem += sum
-                        print("Result = \u001b[32m" + str(sum) + "\u001b[0m [Added to memory]")
+                except ValueError:
+                    print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
 
                 else:
-                    try:
-                        print("Using previous memory result for main value.")
-                        sum = sq(math_mem)
+                    value_addtomem = input("\nAdd to / refresh memory? (Yes / No) <> ").lower().replace(" ", "")
 
-                    except OverflowError:
-                        print("\u001b[31mValue too big to be calculated!\u001b[0m")
+                    if value_addtomem == "yes":
+                        math_mem += sum
+
+                        if math_mem == 0:
+                            print("Memory = \u001b[32m" + str(math_mem) + "\u001b[0m [Added To Memory]")
+
+                        else:
+                            print("Memory = \u001b[32m" + str(math_mem) + "\u001b[0m [Refreshed Memory]")
+
+                    elif value_addtomem == "no":
+                        print("Result = \u001b[32m" + str(sum) + "\u001b[0m")
 
                     else:
-                        math_mem -= math_mem
-                        math_mem += sum
-                        print("Result = \u001b[32m" + str(sum) + "\u001b[0m [Refreshed memory]")
-
-            elif math_command == "mem":
-                
-                if math_mem == 0:
-                    print("\u001b[32mMathematical memory is empty!\u001b[0m")
-
-                else:
-                    print("Stored value = \u001b[32m" + str(math_mem) + "\u001b[0m")
+                        print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
 
             elif math_command == "add":
+                value_name = ""
+                value_namenum = 0
+                sum = 0
+                num = 0
 
-                def add(x, y):
-                    return x + y
+                try:
+                    value_qty = int(input("Value Quantity <> "))
 
-                if math_mem == 0:
-                    try:
-                        num1 = float(input("Value 1 <> "))
-                        num2 = float(input("Value 2 <> "))
-                        sum = add(num1, num2)
+                    for i in range(0, value_qty):
+                        value_namenum += 1
+                        value_name = "Value " + str(value_namenum) + " <> "
+                        num = int(input(value_name))
+                        sum += num
 
-                    except OverflowError:
-                        print("\u001b[31mValue too big to be calculated!\u001b[0m")
+                except OverflowError:
+                    print("\u001b[31mValue(s) too big to be calculated!\u001b[0m")
 
-                    except ValueError:
-                        print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
-
-                    else:
-                        math_mem += sum
-                        print("Result = \u001b[32m" + str(sum) + "\u001b[0m [Added to memory]")
+                except ValueError:
+                    print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
 
                 else:
-                    try:
-                        print("Using previous memory result for main value.")
-                        num1 = float(input("Value <> "))
-                        sum = add(math_mem, num1)
+                    value_addtomem = input("\nAdd to / refresh memory? (Yes / No) <> ").lower().replace(" ", "")
+
+                    if value_addtomem == "yes":
                         
+                        if math_mem == 0:
+                            math_mem += sum
+                            print("Memory = \u001b[32m" + str(math_mem) + "\u001b[0m [Added To Memory]")
 
-                    except OverflowError:
-                        print("\u001b[31mValue too big to be calculated!\u001b[0m")
+                        else:
+                            math_mem += sum
+                            print("Memory = \u001b[32m" + str(math_mem) + "\u001b[0m [Refreshed Memory]")
 
-                    except ValueError:
-                        print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
+                    elif value_addtomem == "no":
+                        print("Result = \u001b[32m" + str(sum) + "\u001b[0m")
 
                     else:
-                        math_mem -= math_mem
-                        math_mem += sum
-                        print("Result = \u001b[32m" + str(sum) + "\u001b[0m [Refreshed memory]")
+                        print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
 
             elif math_command == "sub":
+                value_name = ""
+                value_namenum = 0
+                sum = 0
+                num = 0
 
-                def sub(x, y):
-                    return x - y
+                try:
+                    value_qty = int(input("Value Quantity <> "))
 
-                if math_mem == 0:
-                    try:
-                        num1 = float(input("Value 1 <> "))
-                        num2 = float(input("Value 2 <> "))
-                        sum = sub(num1, num2)
+                    for i in range(0, value_qty):
+                        value_namenum += 1
+                        value_name = "Value " + str(value_namenum) + " <> "
+                        num = int(input(value_name))
+                        sum -= num
 
-                    except OverflowError:
-                        print("\u001b[31mValue too big to be calculated!\u001b[0m")
+                except OverflowError:
+                    print("\u001b[31mValue(s) too big to be calculated!\u001b[0m")
 
-                    except ValueError:
-                        print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
-
-                    else:
-                        math_mem += sum
-                        print("Result = \u001b[32m" + str(sum) + "\u001b[0m [Added to memory]")
+                except ValueError:
+                    print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
 
                 else:
-                    try:
-                        print("Using previous memory result for main value.")
-                        num1 = float(input("Value <> "))
-                        sum = sub(math_mem, num1)
+                    value_addtomem = input("\nAdd to / refresh memory? (Yes / No) <> ").lower().replace(" ", "")
 
-                    except OverflowError:
-                        print("\u001b[31mValue too big to be calculated!\u001b[0m")
+                    if value_addtomem == "yes":
 
-                    except ValueError:
-                        print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
+                        if math_mem == 0:
+                            math_mem += sum
+                            print("Memory = \u001b[32m" + str(math_mem) + "\u001b[0m [Added To Memory]")
+
+                        else:
+                            math_mem += sum
+                            print("Memory = \u001b[32m" + str(math_mem) + "\u001b[0m [Refreshed Memory]")
+
+                    elif value_addtomem == "no":
+                        print("Result = \u001b[32m" + str(sum) + "\u001b[0m")
 
                     else:
-                        math_mem -= math_mem
-                        math_mem += sum
-                        print("Result = \u001b[32m" + str(sum) + "\u001b[0m [Refreshed memory]")
+                        print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
 
             elif math_command == "div":
+                value_name = ""
+                value_namenum = 0
+                num = 0
 
-                def div(x, y):
-                    return x / y
+                try:
+                    sum = int(input("Primary Value <> "))
+                    value_qty = int(input("Secondary Value Quantity <> "))
 
-                if math_mem == 0:
-                    try:
-                        num1 = float(input("Value 1 <> "))
-                        num2 = float(input("Value 2 <> "))
-                        sum = div(num1, num2)
+                    for i in range(0, value_qty):
+                        value_namenum += 1
+                        value_name = "Secondary Value " + str(value_namenum) + " <> "
+                        num = int(input(value_name))
+                        sum /= num
 
-                    except OverflowError:
-                        print("\u001b[31mValue too big to be calculated!\u001b[0m")
+                except OverflowError:
+                    print("\u001b[31mValue(s) too big to be calculated!\u001b[0m")
 
-                    except ValueError:
-                        print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
-
-                    else:
-                        math_mem += sum
-                        print("Result = \u001b[32m" + str(sum) + "\u001b[0m [Added to memory]")
+                except ValueError:
+                    print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
 
                 else:
-                    try:
-                        print("Using previous memory result for main value.")
-                        num1 = float(input("Value <> "))
-                        sum = div(math_mem, num1)
+                    value_addtomem = input("\nAdd to / refresh memory? (Yes / No) <> ").lower().replace(" ", "")
 
-                    except OverflowError:
-                        print("\u001b[31mValue too big to be calculated!\u001b[0m")
+                    if value_addtomem == "yes":
 
-                    except ValueError:
-                        print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
+                        if math_mem == 0:
+                            math_mem += sum
+                            print("Memory = \u001b[32m" + str(math_mem) + "\u001b[0m [Added To Memory]")
+
+                        else:
+                            math_mem += sum
+                            print("Memory = \u001b[32m" + str(math_mem) + "\u001b[0m [Refreshed Memory]")
+
+                    elif value_addtomem == "no":
+                        print("Result = \u001b[32m" + str(sum) + "\u001b[0m")
 
                     else:
-                        math_mem -= math_mem
-                        math_mem += sum
-                        print("Result = \u001b[32m" + str(sum) + "\u001b[0m [Refreshed memory]")
+                        print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
 
             elif math_command == "multi":
+                value_name = ""
+                value_namenum = 0
+                num = 0
 
-                def multi(x, y):
-                    return x * y
+                try:
+                    sum = int(input("Primary Value <> "))
+                    value_qty = int(input("Secondary Value Quantity <> "))
 
-                if math_mem == 0:
-                    try:
-                        num1 = float(input("Value 1 <> "))
-                        num2 = float(input("Value 2 <> "))
-                        sum = multi(num1, num2)
+                    for i in range(0, value_qty):
+                        value_namenum += 1
+                        value_name = "Secondary Value " + str(value_namenum) + " <> "
+                        num = int(input(value_name))
+                        sum *= num
 
-                    except OverflowError:
-                        print("\u001b[31mValue too big to be calculated!\u001b[0m")
+                except OverflowError:
+                    print("\u001b[31mValue(s) too big to be calculated!\u001b[0m")
 
-                    except ValueError:
-                        print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
-
-                    else:
-                        math_mem += sum
-                        print("Result = \u001b[32m" + str(sum) + "\u001b[0m [Added to memory]")
+                except ValueError:
+                    print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
 
                 else:
-                    try:
-                        print("Using previous memory result for main value.")
-                        num1 = float(input("Value <> "))
-                        sum = multi(math_mem, num1)
+                    value_addtomem = input("\nAdd to / refresh memory? (Yes / No) <> ").lower().replace(" ", "")
 
-                    except OverflowError:
-                        print("\u001b[31mValue too big to be calculated!\u001b[0m")
+                    if value_addtomem == "yes":
 
-                    except ValueError:
-                        print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
+                        if math_mem == 0:
+                            math_mem += sum
+                            print("Memory = \u001b[32m" + str(math_mem) + "\u001b[0m [Added To Memory]")
+
+                        else:
+                            math_mem += sum
+                            print("Memory = \u001b[32m" + str(math_mem) + "\u001b[0m [Refreshed Memory]")
+
+                    elif value_addtomem == "no":
+                        print("Result = \u001b[32m" + str(sum) + "\u001b[0m")
 
                     else:
-                        math_mem -= math_mem
-                        math_mem += sum
-                        print("Result = \u001b[32m" + str(sum) + "\u001b[0m [Refreshed memory]")
+                        print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
 
             else:
                 print("\u001b[31mWhoa! Command not found. Type 'help' to show executable commands.\u001b[0m")

@@ -220,9 +220,10 @@ while True:
                 print("CUBE       Cubes a number.")
                 print("DIV        Divides value(s) with each other.")
                 print("EXIT       Quits mathematical console.")
-                print("GENNUM     Generates a value within given minimum and maximum value.")
                 print("MEM        Shows values stored in math memory.")
                 print("MULTI      Multiplies value(s) with each other.")
+                print("MEMCLS     Clears application maemory.")
+                print("NUMGEN     Generates a value within given minimum and maximum value.")
                 print("NUMCENT    Converts numbers to percentage based on the given main and the")
                 print("           secondary value.")
                 print("NUMFRAQ    Converts a decimal number to a fraction.")
@@ -230,7 +231,6 @@ while True:
                 print("PI         Adds the value of pi to memory.")
                 print("PROFLOSS   Detects profit or loss by using purchase and selling value(s) of")
                 print("           an object or product.")
-                print("MEMCLS     Clears application maemory.")
                 print("SQ         Squares a given value.")
                 print("SUB        Subtracts value(s) from other one(s).")
                 print("XQ         Modify a number with a to-the-power value.\n")
@@ -329,7 +329,7 @@ while True:
                     print("Hours   : \u001b[32m" + str(math_user_age_inhours) + "\u001b[0m hours.")
                     print("Minutes : \u001b[32m" + str(math_user_age_inminutes) + "\u001b[0m minutes.\n")
 
-            elif math_command == "gennum":
+            elif math_command == "numgen":
 
                 try:
                     gen_minvalue = float(input("Minimum Value <> "))

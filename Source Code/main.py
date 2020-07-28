@@ -5,7 +5,7 @@ print("This will take a few moments...")
 # Program authorship variables.
 __author__ = "Anindya Shiddhartha"
 __copyright__ = "Copyright 2020 Anindya Shiddhartha"
-__version__ = "1.03"
+__version__ = "1.04"
 __license__ = "MIT"
 
 # Mathematical memory variable.

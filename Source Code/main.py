@@ -5,7 +5,7 @@ print("This will take a few moments...")
 # Program authorship variables.
 __author__ = "Anindya Shiddhartha"
 __copyright__ = "Copyright 2020 Anindya Shiddhartha"
-__version__ = "1.04"
+__version__ = "1.05"
 __license__ = "MIT"
 
 # Mathematical memory variable.
@@ -53,7 +53,7 @@ while True:
     user_command = input("\u001b[0m\n" + host_name + " <--> \u001b[36m").lower().replace(" ", "")
 
     if user_command == "about":
-        print("\n\n\033[1;34mBlastShell\u001b[0m | Version: " + __version__)
+        print("\n\n\n\u001b[34mBlastShell\u001b[0m | Version: " + __version__)
         print("Licensed under " + __license__ + " | " + __copyright__)
         print("\nAn easy-to-use interactive command line interface / shell developed mainly")
         print("for solving complex mathematical problems and for accomplishing day-to-day")
@@ -62,7 +62,7 @@ while True:
         print("connection.")
         print("\nBlastShell gets updated frequently in order to maintain stable experience,")
         print("and also to introduce new commands and features to the users of it.")
-        print("\nReach / Support: hitblastofficial@gmail.com\n")
+        print("\nReach / Support: hitblastofficial@gmail.com\n\n")
 
     elif user_command == "help":
         print("\u001b[0m\n\nCD         Displays current working directory and changes it.")
@@ -940,56 +940,60 @@ while True:
 
     elif user_command == "vdl":
 
-        def dwl_vid():
-            with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-                ydl.download([vidmain])
+        while True:
 
-        vidformat = input("\u001b[0mDownload As ('help' to see formats) <> ").lower().replace(" ", "")
+            def dwl_vid():
+                with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+                    ydl.download([vidmain])
 
-        if vidformat == "help":
-            print("\n\nVIDEO    Refreshes the screen.")
-            print("AUDIO    Assigns file type as directory.")
-            print("DOC      Assigns file type as document.")
-            print("EXIT     Returns to home.\n")
+            vidformat = input("\u001b[0mDownload As ('help' to see formats) <> ").lower().replace(" ", "")
 
-        elif vidformat == "video":
+            if vidformat == "help":
+                print("\n\nVIDEO    Sets download format to video.")
+                print("AUDIO    Sets download format to audio.\n\n")
 
-            try:
-                ydl_opts = {}
-                vidlink = input("Video link / URL <> ")
-                vidmain = vidlink.strip()
-                dwl_vid()
+            elif vidformat == "video":
 
-            except:
-                print("\u001b[31mUnexpected error occured! Try again after ensuring stable internet connection and a valid video link.\u001b[0m")
+                try:
+                    ydl_opts = {}
+                    vidlink = input("Video link / URL <> ")
+                    vidmain = vidlink.strip()
+                    dwl_vid()
+
+                except:
+                    print("\u001b[31mUnexpected error occured! Try again after ensuring stable internet connection and a valid video link.\u001b[0m")
+                    break
+
+                else:
+                    print("\u001b[32mVideo downloaded successfully!\u001b[0m")
+                    break
+
+            elif vidformat == "audio":
+
+                try:
+                    ydl_opts = {
+                        'format': 'bestaudio/best',
+                        'postprocessors': [{
+                            'key': 'FFmpegExtractAudio',
+                            'preferredcodec': 'mp3',
+                            'preferredquality': '192',
+                        }],
+                    }
+
+                    vidlink = input("Video link / URL <> ")
+                    vidmain = vidlink.strip()
+                    dwl_vid()
+                    
+                except:
+                    print("\u001b[31mUnexpected error occured! Try again after ensuring stable internet connection and a valid video link.\u001b[0m")
+                    break
+
+                else:
+                    print("\u001b[32mVideo successfully downloaded as audio.\u001b[0m")
+                    break
 
             else:
-                print("\u001b[32mVideo downloaded successfully!\u001b[0m")
-
-        elif vidformat == "audio":
-
-            try:
-                ydl_opts = {
-                    'format': 'bestaudio/best',
-                    'postprocessors': [{
-                        'key': 'FFmpegExtractAudio',
-                        'preferredcodec': 'mp3',
-                        'preferredquality': '192',
-                    }],
-                }
-
-                vidlink = input("Video link / URL <> ")
-                vidmain = vidlink.strip()
-                dwl_vid()
-                
-            except:
-                print("\u001b[31mUnexpected error occured! Try again after ensuring stable internet connection and a valid video link.\u001b[0m")
-
-            else:
-                print("\u001b[32mVideo successfully downloaded as audio.\u001b[0m")
-
-        else:
-            print("\u001b[31mFormat not recognised! Type either video or audio for format selection.\u001b[0m")
+                print("\u001b[31mFormat not recognised! Type either video or audio for format selection.\u001b[0m\n")
 
     else:
         print("\u001b[31mWhoa! Command not found. Type 'help' to show executable commands.\u001b[0m")

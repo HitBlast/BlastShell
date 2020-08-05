@@ -5,7 +5,7 @@ print("This will take a few moments...")
 # Program authorship variables.
 __author__ = "Anindya Shiddhartha"
 __copyright__ = "Copyright 2020 Anindya Shiddhartha"
-__version__ = "1.05"
+__version__ = "1.06"
 __license__ = "MIT"
 
 # Mathematical memory variable.
@@ -227,7 +227,7 @@ while True:
                 print("NUMCENT    Converts numbers to percentage based on the given main and the")
                 print("           secondary value.")
                 print("NUMFRAQ    Converts a decimal number to a fraction.")
-                print("NUMSORT    Sorts a list of numbers into ascending or descending order.")
+                print("NUMSORT    Sorts a list of numbers into multiple orders.")
                 print("PI         Adds the value of pi to memory.")
                 print("PROFLOSS   Detects profit or loss by using purchase and selling value(s) of")
                 print("           an object or product.")
@@ -281,7 +281,6 @@ while True:
 
                 try:
                     value_qty = int(input("Value Quantity <> "))
-                    print()
 
                     for i in range(0, value_qty): 
                         value_num += 1
@@ -295,7 +294,7 @@ while True:
                     print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
 
                 else:
-                    sort_type = input("\nSort Order (Ascending / Descending) <> ").lower().replace(" ", "")
+                    sort_type = input("\nSort Order (Ascending / Descending / Even / Odd) <> ").lower().replace(" ", "")
 
                     if sort_type == "ascending":
                         list_res = sorted(list_num)
@@ -304,6 +303,24 @@ while True:
                     elif sort_type == "descending":
                         list_res = sorted(list_num, reverse=True)
                         print("Result (Descending Order) = \u001b[32m" + str(list_res).replace("[", "").replace("]", "") + "\u001b[0m")
+
+                    elif sort_type == "even":
+                        only_even = [] 
+  
+                        for num in list_num:
+                            if num % 2 == 0:  
+                                only_even.append(num) 
+
+                        print("Result (Only Even) = \u001b[32m" + str(only_even).replace("[", "").replace("]", "") + "\u001b[0m")
+
+                    elif sort_type == "odd":
+                        only_odd = []
+
+                        for num in list_num:
+                            if num %2 != 0:
+                                only_odd.append(num)
+
+                        print("Result (Only Odd) = \u001b[32m" + str(only_odd).replace("[", "").replace("]", "") + "\u001b[0m")
 
                     else:
                         print("\u001b[31mSort order invalid! Try either 'Ascending' or 'Descending'.")

@@ -1,11 +1,12 @@
 # Please read README.md and LICENSE for more information.
+# Loading text.
 
 print("This will take a few moments...")
 
 # Program authorship variables.
 __author__ = "Anindya Shiddhartha"
 __copyright__ = "Copyright 2020 Anindya Shiddhartha"
-__version__ = "1.06"
+__version__ = "1.07"
 __license__ = "MIT"
 
 # Mathematical memory variable.
@@ -29,12 +30,18 @@ from datetime import datetime
 from fractions import Fraction
 import webbrowser
 import shutil
-
-from win32com.client import Dispatch
-S = Dispatch("SAPI.SpVoice")
+import platform
 
 import youtube_dl
-import platform
+from playsound import playsound
+
+from gtts import gTTS
+def speak(text):
+    tts_filename = "blastshell-speak-" + str(random.randint(1, 100)) + ".mp3"
+    tts = gTTS(text)
+    tts.save(tts_filename)
+    playsound(tts_filename)
+    os.remove(tts_filename)
 
 # Fetching device specs.
 device_platform = platform.machine()
@@ -807,7 +814,7 @@ while True:
 
     elif user_command == "speak":
         speech_text = input("\u001b[0mText to speak <> ")
-        S.Speak(speech_text)
+        speak(speech_text)
 
     elif user_command == "clock":
         now = datetime.now()

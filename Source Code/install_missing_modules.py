@@ -4,7 +4,6 @@
 # Run it before executing main.py in the 'Source Code' folder.
 
 import subprocess
-
 import time
 
 while True:
@@ -13,18 +12,25 @@ while True:
     print()
 
     if user_command == "yes":
-        print("Upgrading PIP if available...")
-        subprocess.run("python -m pip install --upgrade pip", shell=True, check=True)
-        print()
 
-        print("Installing missing modules...")
-        subprocess.run("python -m pip install pywin32", shell=True, check=True)
-        subprocess.run("python -m pip install youtube-dl", shell=True, check=True)
-        print()
-        
-        print("Process finished! Exiting window...")
-        time.sleep(1)
-        break
+        try:
+            print("Upgrading PIP if available...")
+            subprocess.run("python -m pip install --upgrade pip", shell=True, check=True)
+
+            print("\nInstalling missing modules...")
+            subprocess.run("python -m pip install playsound", shell=True, check=True)
+            subprocess.run("python -m pip install youtube-dl", shell=True, check=True)
+            subprocess.run("python -m pip install gTTS", shell=True, check=True)
+
+        except:
+            print("\u001b[31mUnexpected error occured during code execution...\u001b[0m")
+            print("Closing in 3 seconds...")
+            time.sleep(3)
+
+        else:
+            print("\u001b[32m\nProcess finished! Exiting window...\u001b[0m")
+            time.sleep(1)
+            break
 
     elif user_command == "no":
         

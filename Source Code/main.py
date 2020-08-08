@@ -4,7 +4,7 @@ print("This will take a few moments...")
 # Program authorship variables.
 __author__ = "Anindya Shiddhartha"
 __copyright__ = "Copyright 2020 Anindya Shiddhartha"
-__version__ = "1.07"
+__version__ = "1.08"
 __license__ = "MIT"
 
 # Mathematical memory variable.
@@ -66,7 +66,9 @@ while True:
         print("connection.")
         print("\nBlastShell gets updated frequently in order to maintain stable experience,")
         print("and also to introduce new commands and features to the users of it.")
-        print("\nReach / Support: hitblastofficial@gmail.com\n\n")
+        print("\n\nPersonal Website  [] shiddharth.github.io")
+        print("Facebook          [] www.facebook.com/hitblast.official")
+        print("GitHub            [] www.github.com/shiddharth\n\n")
 
     elif user_command == "help":
         print("\u001b[0m\n\nCD         Displays current working directory and changes it.")
@@ -81,6 +83,7 @@ while True:
         print("LISTDIR    Displays all subdirectories in current working directory.")
         print("MAIL       Sends a mail with message from and to given email addresses.")
         print("MATH       Executes mathematics console.")
+        print("REPO       Opens the GitHub repository of BlastShell in a browser window.")
         print("RESTART    Restarts device.")
         print("SYS        Displays device specifications in detail.")
         print("SPEAK      Speaks a text given by user.")
@@ -93,6 +96,10 @@ while True:
     elif user_command == "exit":
         print("\u001b[0mClosing shell...")
         break
+
+    elif user_command == "repo":
+        webbrowser.open('www.github.com/shiddharth/BlastShell', new=2)
+        print("\u001b[32mGitHub repository opened successfully!\u001b[0m")
 
     elif user_command == "listdir":
         list_dir = str(os.listdir()).replace("[", "").replace("]", "").replace("'", "")
@@ -860,6 +867,7 @@ while True:
                 print("4  Google")
                 print("5  LinkedIn")
                 print("6  GitHub\n\n")
+                print("7  Amazon")
 
                 sites_execute = input("Site Name <> ").lower().replace(" ", "")
 
@@ -890,6 +898,11 @@ while True:
 
                 elif sites_execute == "github":
                     webbrowser.open('www.github.com', new=2)
+                    print("\u001b[32mWeb page opened successfully!\u001b[0m")
+                    break
+
+                elif sites_execute == "amazon":
+                    webbrowser.open('www.amazon.com', new=2)
                     print("\u001b[32mWeb page opened successfully!\u001b[0m")
                     break
 

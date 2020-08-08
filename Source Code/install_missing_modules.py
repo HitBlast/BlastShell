@@ -7,14 +7,12 @@ import subprocess
 import time
 
 while True:
-    print()
-    user_command = input("Start process? (yes or no): ")
-    print()
+    user_command = input("\nStart process? (yes or no): ")
 
     if user_command == "yes":
 
         try:
-            print("Upgrading PIP if available...")
+            print("\nUpgrading PIP if available...")
             subprocess.run("python -m pip install --upgrade pip", shell=True, check=True)
 
             print("\nInstalling missing modules...")

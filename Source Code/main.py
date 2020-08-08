@@ -1,6 +1,4 @@
 # Please read README.md and LICENSE for more information.
-# Loading text.
-
 print("This will take a few moments...")
 
 # Program authorship variables.
@@ -30,10 +28,12 @@ from datetime import datetime
 from fractions import Fraction
 import webbrowser
 import shutil
-import platform
 
-import youtube_dl
-from playsound import playsound
+import platform
+device_platform = platform.machine()
+processor = platform.processor()
+operating_system = platform.system()
+build = platform.version()
 
 from gtts import gTTS
 def speak(text):
@@ -43,11 +43,8 @@ def speak(text):
     playsound(tts_filename)
     os.remove(tts_filename)
 
-# Fetching device specs.
-device_platform = platform.machine()
-processor = platform.processor()
-operating_system = platform.system()
-build = platform.version()
+import youtube_dl
+from playsound import playsound
 
 
 # Main interface.
@@ -82,6 +79,7 @@ while True:
         print("EXIT       Terminates the shell.")
         print("IPCONF     Displays device's hostname and IP address.")
         print("LISTDIR    Displays all subdirectories in current working directory.")
+        print("MAIL       Sends a mail with message from and to given email addresses.")
         print("MATH       Executes mathematics console.")
         print("RESTART    Restarts device.")
         print("SYS        Displays device specifications in detail.")
@@ -131,7 +129,7 @@ while True:
         dir_path = input("\u001b[0mNew Path <> ")
 
         if dir_path == "":
-            print("\u001b[31mPath field empty! Reverting back to previous working directory.")
+            print("\u001b[31mPath field empty! Reverting back to previous working directory.\u001b[0m")
             get_current_path()
 
         else:
@@ -970,27 +968,12 @@ while True:
                 with youtube_dl.YoutubeDL(ydl_opts) as ydl:
                     ydl.download([vidmain])
 
-            vidformat = input("\u001b[0mDownload As ('help' to see formats) <> ").lower().replace(" ", "")
+            vidformat = input("\u001b[0mDownload As ('help' for commands) <> ").lower().replace(" ", "")
 
             if vidformat == "help":
-                print("\n\nVIDEO    Sets download format to video.")
-                print("AUDIO    Sets download format to audio.\n\n")
-
-            elif vidformat == "video":
-
-                try:
-                    ydl_opts = {}
-                    vidlink = input("Video link / URL <> ")
-                    vidmain = vidlink.strip()
-                    dwl_vid()
-
-                except:
-                    print("\u001b[31mUnexpected error occured! Try again after ensuring stable internet connection and a valid video link.\u001b[0m")
-                    break
-
-                else:
-                    print("\u001b[32mVideo downloaded successfully!\u001b[0m")
-                    break
+                print("AUDIO    Sets download format to audio.")
+                print("EXIT     Returns to home.")
+                print("VIDEO    Sets download format to video.")
 
             elif vidformat == "audio":
 
@@ -1014,6 +997,25 @@ while True:
 
                 else:
                     print("\u001b[32mVideo successfully downloaded as audio.\u001b[0m")
+                    break
+   
+            elif vidformat == "exit":
+                break
+
+            elif vidformat == "video":
+
+                try:
+                    ydl_opts = {}
+                    vidlink = input("Video link / URL <> ")
+                    vidmain = vidlink.strip()
+                    dwl_vid()
+
+                except:
+                    print("\u001b[31mUnexpected error occured! Try again after ensuring stable internet connection and a valid video link.\u001b[0m")
+                    break
+
+                else:
+                    print("\u001b[32mVideo downloaded successfully!\u001b[0m")
                     break
 
             else:

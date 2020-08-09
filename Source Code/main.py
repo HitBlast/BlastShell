@@ -71,8 +71,7 @@ while True:
         print("GitHub            [] www.github.com/shiddharth\n\n")
 
     elif user_command == "help":
-        print("\u001b[0m\n\nCD         Displays current working directory and changes it.")
-        print("CLS        Refreshes the screen.")
+        print("\u001b[0m\n\nCLS        Refreshes the screen.")
         print("CLOCK      Displays current date and time.")
         print("CRDIR      Creates a directory.")
         print("CTEXT      Executes text file builder which enables user to create & modify")
@@ -81,8 +80,8 @@ while True:
         print("EXIT       Terminates the shell.")
         print("IPCONF     Displays device's hostname and IP address.")
         print("LISTDIR    Displays all subdirectories in current working directory.")
-        print("MAIL       Sends a mail with message from and to given email addresses.")
         print("MATH       Executes mathematics console.")
+        print("PATH       Displays current working directory and changes it.")
         print("REPO       Opens the GitHub repository of BlastShell in a browser window.")
         print("RESTART    Restarts device.")
         print("SYS        Displays device specifications in detail.")
@@ -131,7 +130,7 @@ while True:
         else:
             print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
 
-    elif user_command == "cd":
+    elif user_command == "path":
         print("\u001b[0mCurrent Path: \u001b[33m" + dir_path)
         dir_path = input("\u001b[0mNew Path <> ")
 
@@ -181,7 +180,7 @@ while True:
             elif ctext_command == "crt":
                 file_name_mainword = input("File Name <> ")
                 file_name = file_name_mainword + ".txt"
-                my_file = open(file_name,"w+")
+                file_main = open(file_name,"w+")
                 print("\u001b[32mSuccessfully created file.\u001b[0m")
                 break
 
@@ -191,9 +190,9 @@ while True:
                     file_name_mainword = input("File Name <> ")
                     file_name_extension = input("File Extension <> ")
                     file_name = file_name_mainword + "." + file_name_extension
-                    my_file = open(file_name,"w+")
-                    my_file.write(input("Text <> "))
-                    my_file = open(file_name,"w+")
+                    file_main = open(file_name,"w+")
+                    file_main.write(input("Text <> "))
+                    file_main = open(file_name,"w+")
                     print("\u001b[32mSuccessfully created file with text in custom extension.\u001b[0m")
                     break
 
@@ -206,9 +205,9 @@ while True:
             elif ctext_command == "mod":
                 file_name_mainword = input("File Name <> ")
                 file_name = file_name_mainword + ".txt"
-                my_file = open(file_name,"w+")
-                my_file.write(input("Text <> "))
-                my_file = open(file_name,"w+")
+                file_main = open(file_name,"w+")
+                file_main.write(input("Text <> "))
+                file_main = open(file_name,"w+")
                 print("\u001b[32mSuccessfully created file with text.\u001b[0m")
                 break
 

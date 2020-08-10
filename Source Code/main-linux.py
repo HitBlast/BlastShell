@@ -1039,4 +1039,4 @@ while True:
                 print("\u001b[31mFormat not recognised! Type either video or audio for format selection.\u001b[0m\n")
 
     else:
-        print("\u001b[31mWhoa! Command not found. Type 'help' to show executable commands.\u001b[0m")
+       print("\u001b[31mWhoa! Command not found. Type 'help' to show executable commands.\u001b[0m") 

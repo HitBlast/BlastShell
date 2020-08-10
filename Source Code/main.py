@@ -4,22 +4,13 @@ print("This will take a few moments...")
 # Program authorship variables.
 __author__ = "Anindya Shiddhartha"
 __copyright__ = "Copyright 2020 Anindya Shiddhartha"
-__version__ = "1.08"
+__version__ = "1.08CP"
 __license__ = "MIT"
 
 # Mathematical memory variable.
 math_mem = 0
 
 # Modules to import.
-import os
-dir_path = os.getcwd()
-
-def windowcls():
-    os.system('cls')
-
-def get_current_path():
-    os.getcwd()
-
 import socket
 host_name = socket.gethostname()
 
@@ -45,6 +36,20 @@ def speak(text):
 
 import youtube_dl
 from playsound import playsound
+
+import os
+dir_path = os.getcwd()
+
+def windowcls():
+
+    if operating_system == "Linux":
+        os.system('clear')
+
+    else:
+        os.system('cls')
+
+def get_current_path():
+    os.getcwd()
 
 
 # Main interface.

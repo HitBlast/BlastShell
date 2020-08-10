@@ -5,20 +5,34 @@
 
 import subprocess
 import time
+import platform
+
+operating_system = platform.system()
 
 while True:
-    user_command = input("\nStart process? (yes or no): ")
+    user_command = input("\nStart process? (Yes / No): ").lower()
 
     if user_command == "yes":
 
         try:
-            print("\nUpgrading PIP if available...")
-            subprocess.run("python -m pip install --upgrade pip", shell=True, check=True)
 
-            print("\nInstalling missing modules...")
-            subprocess.run("python -m pip install playsound", shell=True, check=True)
-            subprocess.run("python -m pip install youtube-dl", shell=True, check=True)
-            subprocess.run("python -m pip install gTTS", shell=True, check=True)
+            if operating_system == "Linux":
+                print("\nUpgrading PIP if available...")
+                subprocess.run("pip3 install --upgrade pip", shell=True, check=True)
+
+                print("\nInstalling missing modules...")
+                subprocess.run("pip3 install playsound", shell=True, check=True)
+                subprocess.run("pip3 install youtube-dl", shell=True, check=True)
+                subprocess.run("pip3 install gTTS", shell=True, check=True)
+
+            else:
+                print("\nUpgrading PIP if available...")
+                subprocess.run("python -m pip install --upgrade pip", shell=True, check=True)
+
+                print("\nInstalling missing modules...")
+                subprocess.run("python -m pip install playsound", shell=True, check=True)
+                subprocess.run("python -m pip youtube-dl", shell=True, check=True)
+                subprocess.run("python -m pip install gTTS", shell=True, check=True)
 
         except:
             print("\u001b[31mUnexpected error occured during code execution...\u001b[0m")
@@ -37,5 +51,5 @@ while True:
         break
 
     else:
-        print("Command not found!")
+        print("Command not found! Try typing 'Yes' or 'No'.")
 

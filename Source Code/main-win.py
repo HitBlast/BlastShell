@@ -4,7 +4,7 @@ print("This will take a few moments...")
 # Program authorship variables.
 __author__ = "Anindya Shiddhartha"
 __copyright__ = "Copyright 2020 Anindya Shiddhartha"
-__version__ = "1.08"
+__version__ = "1.09"
 __license__ = "MIT"
 
 # Mathematical memory variable.
@@ -134,20 +134,15 @@ while True:
         print("\u001b[0mCurrent Path: \u001b[33m" + dir_path)
         dir_path = input("\u001b[0mNew Path <> ")
 
-        if dir_path == "":
-            print("\u001b[31mPath field empty! Reverting back to previous working directory.\u001b[0m")
+        try:
+            os.chdir(dir_path)
+
+        except:
+            print("\u001b[31mPath not found! Reverting back to previous working directory.\u001b[0m")
             get_current_path()
 
         else:
-            try:
-                os.chdir(dir_path)
-
-            except:
-                print("\u001b[31mPath not found! Reverting back to previous working directory.\u001b[0m")
-                get_current_path()
-
-            else:
-                print("\u001b[32mPath set as current working directory.\u001b[0m")
+            print("\u001b[32mPath set as current working directory.\u001b[0m")
 
     elif user_command == "ipconf":
 

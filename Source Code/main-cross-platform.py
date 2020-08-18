@@ -3,7 +3,7 @@
 # Program authorship variables.
 __author__ = "Anindya Shiddhartha"
 __copyright__ = "Copyright 2020 Anindya Shiddhartha"
-__version__ = "1.1"
+__version__ = "1.1Pre1"
 __license__ = "MIT"
 
 # Mathematical memory variable.
@@ -24,9 +24,6 @@ device_platform = platform.machine()
 processor = platform.processor()
 operating_system = platform.system()
 build = platform.version()
-
-from pyfiglet import Figlet
-fig = Figlet(font='slant')
 
 from gtts import gTTS
 def speak(text):
@@ -56,7 +53,12 @@ def get_current_path():
 
 # Main interface.
 windowcls()
-print(fig.renderText("BlastShell"))
+print("    ____  __           __  _____ __         ____")
+print("   / __ )/ /___ ______/ /_/ ___// /_  ___  / / /")
+print("  / __  / / __ `/ ___/ __/\__ \/ __ \/ _ \/ / / ")
+print(" / /_/ / / /_/ (__  ) /_ ___/ / / / /  __/ / /  ")
+print("/_____/_/\__,_/____/\__//____/_/ /_/\___/_/_/   \n\n")
+
 print("Type 'help' or 'about' for more information.")
 print(__copyright__)
 

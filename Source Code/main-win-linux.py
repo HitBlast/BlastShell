@@ -1,10 +1,9 @@
 # Please read README.md and LICENSE for more information.
-print("This will take a few moments...")
 
 # Program authorship variables.
 __author__ = "Anindya Shiddhartha"
 __copyright__ = "Copyright 2020 Anindya Shiddhartha"
-__version__ = "1.09CP"
+__version__ = "1.1"
 __license__ = "MIT"
 
 # Mathematical memory variable.
@@ -25,6 +24,9 @@ device_platform = platform.machine()
 processor = platform.processor()
 operating_system = platform.system()
 build = platform.version()
+
+from pyfiglet import Figlet
+fig = Figlet(font='slant')
 
 from gtts import gTTS
 def speak(text):
@@ -54,16 +56,17 @@ def get_current_path():
 
 # Main interface.
 windowcls()
-print("BlastShell | Type 'help' or 'about' for more information.")
+print(fig.renderText("BlastShell"))
+print("Type 'help' or 'about' for more information.")
 print(__copyright__)
 
 while True:
 
-    user_command = input("\u001b[0m\n" + host_name + " <--> \u001b[36m").lower().replace(" ", "")
+    user_command = input(f"\u001b[0m\n{host_name} <--> \u001b[36m").lower().replace(" ", "")
 
     if user_command == "about":
-        print("\n\n\n\u001b[34mBlastShell\u001b[0m | Version: " + __version__)
-        print("Licensed under " + __license__ + " | " + __copyright__)
+        print(f"\n\n\n\u001b[34mBlastShell\u001b[0m | Version: {__version__}")
+        print(f"Licensed under {__license__} | {__copyright__}")
         print("\nAn easy-to-use interactive command line interface / shell developed mainly")
         print("for solving complex mathematical problems and for accomplishing day-to-day")
         print("tasks. BlastShell has a handful of useful commands available inside it, so")
@@ -81,12 +84,13 @@ while True:
         print("CRDIR      Creates a directory.")
         print("CTEXT      Executes text file builder which enables user to create & modify")
         print("           text files.")
+        print("CHPATH     Displays current working directory and changes it.")
         print("DEL        Removes a file or directory.")
         print("EXIT       Terminates the shell.")
         print("IPCONF     Displays device's hostname and IP address.")
         print("LISTDIR    Displays all subdirectories in current working directory.")
         print("MATH       Executes mathematics console.")
-        print("PATH       Displays current working directory and changes it.")
+        print("PATH       Displays current working directory.")
         print("REPO       Opens the GitHub repository of BlastShell in a browser window.")
         print("RESTART    Restarts device.")
         print("SYS        Displays device specifications in detail.")
@@ -107,7 +111,7 @@ while True:
 
     elif user_command == "listdir":
         list_dir = str(os.listdir()).replace("[", "").replace("]", "").replace("'", "")
-        print("\n\n\u001b[33m" + list_dir + "\n")
+        print(f"\n\n\u001b[33m{list_dir}n")
 
     elif user_command == "shutdown":
         shutdown_confirm = input("\u001b[0mConfirm device shutdown? (Yes / No) <> ").lower().replace(" ", "")
@@ -136,8 +140,11 @@ while True:
             print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
 
     elif user_command == "path":
-        print("\u001b[0mCurrent Path: \u001b[33m" + dir_path)
-        dir_path = input("\u001b[0mNew Path <> ")
+        print(f"\u001b[0mCurrent Path: \u001b[33m{dir_path}\u001b[0m")
+
+    elif user_command == "chpath":
+        print(f"\u001b[0mCurrent Path: \u001b[33m{dir_path}\u001b[0m")
+        dir_path = input("New Path <> ")
 
         try:
             os.chdir(dir_path)
@@ -159,11 +166,11 @@ while True:
             print("\u001b[31mUnable to get hostname and IP address! Try again later.\u001b[0m")
 
         else:
-            print("\u001b[0m\n\nHostname   : \u001b[32m" + host_name + "\u001b[0m") 
-            print("IP Address : \u001b[32m" + host_ip + "\u001b[0m\n") 
+            print(f"\u001b[0m\n\nHostname   : \u001b[32m{host_name}\u001b[0m") 
+            print(f"IP Address : \u001b[32m{host_ip}\u001b[0m\n") 
 
     elif user_command == "ctext":
-        print("\u001b[0mExecuted text file builder. Type 'help' to show executable commands.")
+        print("\u001b[0mText file builder enabled! Type 'help' to show executable commands.")
 
         while True:
             ctext_command = input("\nText Builder> ").lower().replace(" ", "")
@@ -211,14 +218,14 @@ while True:
                 print("\u001b[32mSuccessfully created file with text.\u001b[0m")
                 break
 
-            elif ctext_command == "exit":
+            elif user_command == "exit":
                 break
 
             else:
                 print("\u001b[31mWhoa! Command not found. Type 'help' to show executable commands.\u001b[0m")
 
     elif user_command == "math":
-        print("\u001b[0mMathematics console enabled. Type 'help' to show executable commands.")
+        print("\u001b[0mMathematics console enabled! Type 'help' to show executable commands.")
 
         while True:
             math_command = input("\nMath> ").lower().replace(" ", "")
@@ -252,14 +259,16 @@ while True:
             elif math_command == "mem":
                 
                 if math_mem == 0:
-                    print("Stored value = \u001b[32m" + str(math_mem) + "\u001b[0m [Empty]")
+                    math_mem_status = "[Empty]"
 
                 else:
-                    print("Stored value = \u001b[32m" + str(math_mem) + "\u001b[0m")
+                    math_mem_status = "[Used]"
+
+                print(f"Stored value = \u001b[33m{math_mem}\u001b[0m {math_mem_status}")
 
             elif math_command == "memcls":
                 math_mem -= math_mem
-                print("\u001b[32mCleared math memory!\u001b[0m")
+                print("Cleared math memory!")
 
             elif math_command == "cls":
                 windowcls()
@@ -284,7 +293,7 @@ while True:
                     print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
 
                 else:
-                    print("Result = \u001b[32m" + str(sum) + "%\u001b[0m")
+                    print(f"Result = \u001b[32m{sum}%\u001b[0m")
 
             elif math_command == "numsort":
                 value_num = 0
@@ -295,8 +304,8 @@ while True:
 
                     for i in range(0, value_qty): 
                         value_num += 1
-                        values = int(input("Value " + str(value_num) + " <> ")) 
-                        list_num.append(values)
+                        value = int(input(f"Value {value_num} <> ")) 
+                        list_num.append(value)
 
                 except OverflowError:
                     print("\u001b[31mValue(s) too big to be calculated!\u001b[0m")
@@ -353,9 +362,9 @@ while True:
 
                 else:
                     print("\n\nHere's what your age is in...\n")
-                    print("Days    : \u001b[32m" + str(math_user_age_indays) + "\u001b[0m days.")
-                    print("Hours   : \u001b[32m" + str(math_user_age_inhours) + "\u001b[0m hours.")
-                    print("Minutes : \u001b[32m" + str(math_user_age_inminutes) + "\u001b[0m minutes.\n")
+                    print(f"Days    : \u001b[32m{math_user_age_indays}\u001b[0m days.")
+                    print(f"Hours   : \u001b[32m{math_user_age_inhours}\u001b[0m hours.")
+                    print(f"Minutes : \u001b[32m{math_user_age_inminutes}\u001b[0m minutes.\n")
 
             elif math_command == "numgen":
 
@@ -371,14 +380,16 @@ while True:
                     print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
 
                 else:
-                    addtomem = input("\nAdd to memory? (Yes / No) <> ").lower().replace(" ", "")
+                    print(f"\nGenerated Value = \u001b[32m{gen_res}\u001b[0m")
+                    value_addtomem = input("Add to memory? (Yes / No) <> ").lower().replace(" ", "")
 
-                    if addtomem == "yes":
+                    if value_addtomem == "yes":
                         math_mem += gen_res
-                        print("Generated Value = \u001b[32m" + str(gen_res) + "\u001b[0m [Added To Memory]")
+                        print("Result added to memory.")
+                        print(f"Memory = \u001b[33m{math_mem}\u001b[0m")
 
-                    elif addtomem == "no":
-                        print("Generated Value = \u001b[32m" + str(gen_res) + "\u001b[0m")
+                    elif value_addtomem == "no":
+                        print("Skipped memory addition.")
 
                     else:
                         print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
@@ -414,14 +425,16 @@ while True:
                     print("\u001b[31mValue(s) too big to be calculated!\u001b[0m")
 
                 else:
-                    addtomem = input("\nAdd to memory? (Yes / No) <> ").lower().replace(" ", "")
+                    print(f"\nResult = {output_type}({profloss_value_percentage}%) \u001b[0m| Money = \u001b[32m{profloss_value_money}\u001b[0m")
+                    value_addtomem = input("Add to memory? (Yes / No) <> ").lower().replace(" ", "")
 
-                    if addtomem == "yes":
+                    if value_addtomem == "yes":
                         math_mem += profloss_value_money
-                        print("Result = " + output_type + "(" + str(profloss_value_percentage) + "%) \u001b[0m| Money = \u001b[32m" + str(profloss_value_money) + " \u001b[0m[Added To Memory]")
+                        print("Result added to memory.")
+                        print(f"Memory = \u001b[33m{math_mem}\u001b[0m")
 
-                    elif addtomem == "no":
-                        print("Result = " + output_type + "(" + str(profloss_value_percentage) + "%) \u001b[0m| Money = \u001b[32m" + str(profloss_value_money) + " \u001b[0m")
+                    elif value_addtomem == "no":
+                        print("Skipped memory addition.")
 
                     else:
                         print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
@@ -430,12 +443,13 @@ while True:
                 pi_value = 3.1415926535897932384626433832
 
                 if math_mem == 0:
-                    print("Pi = \u001b[32m" + str(pi_value) + "\u001b[0m")
+                    print(f"Pi = \u001b[32m{pi_value}\u001b[0m")
                     value_addtomem = input("Add to / refresh memory? (Yes / No) <> ").lower().replace(" ", "")
 
                     if value_addtomem == "yes":
                         math_mem += pi_value
-                        print("Memory = \u001b[32m" + str(math_mem) + "\u001b[0m [Added To Memory]")
+                        print("Result added to memory.")
+                        print(f"Memory = \u001b[33m{math_mem}\u001b[0m")
 
                     elif value_addtomem == "no":
                         print("Skipped memory addition.")
@@ -444,7 +458,7 @@ while True:
                         print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
 
                 else:
-                    print("Pi = \u001b[32m" + str(pi_value) + "\u001b[0m")
+                    print(f"Pi = \u001b[32m{pi_value}\u001b[0m")
                     print("Using previous memory result for main value.")
                     pi_action = input("Action (add/sub/div/multi) <> ").lower().replace(" ", "")
 
@@ -462,10 +476,11 @@ while True:
                             if value_addtomem == "yes":
                                 math_mem -= math_mem
                                 math_mem += sum
-                                print("Memory = \u001b[32m" + str(math_mem) + "\u001b[0m [Refreshed Memory]")
+                                print("Result added to memory.")
+                                print(f"Memory = \u001b[33m{math_mem}\u001b[0m")
 
                             elif value_addtomem == "no":
-                                print("Result = \u001b[32m" + str(sum) + "\u001b[0m")
+                                print("Skipped memory addition.")
 
                             else:
                                 print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
@@ -484,11 +499,12 @@ while True:
                             if value_addtomem == "yes":
                                 math_mem -= math_mem
                                 math_mem += sum
-                                print("Memory = \u001b[32m" + str(math_mem) + "\u001b[0m [Refreshed Memory]")
+                                print("Result added to memory.")
+                                print(f"Memory = \u001b[33m{math_mem}\u001b[0m")
 
                             elif value_addtomem == "no":
-                                print("Result = \u001b[32m" + str(sum) + "\u001b[0m")
-
+                                print("Skipped memory addition.")
+                                
                             else:
                                 print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
 
@@ -506,15 +522,16 @@ while True:
                             if value_addtomem == "yes":
                                 math_mem -= math_mem
                                 math_mem += sum
-                                print("Memory = \u001b[32m" + str(math_mem) + "\u001b[0m [Refreshed Memory]")
+                                print("Result added to memory.")
+                                print(f"Memory = \u001b[33m{math_mem}\u001b[0m")
 
                             elif value_addtomem == "no":
-                                print("Result = \u001b[32m" + str(sum) + "\u001b[0m")
-
+                                print("Skipped memory addition.")
+                                
                             else:
                                 print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
 
-                    elif pi_action == "multi":
+                    elif pi_action == "multi": 
                         
                         try:
                             sum = math_mem * pi_value
@@ -528,11 +545,12 @@ while True:
                             if value_addtomem == "yes":
                                 math_mem -= math_mem
                                 math_mem += sum
-                                print("Memory = \u001b[32m" + str(math_mem) + " \u001b[0m[Refreshed Memory]")
+                                print("Result added to memory.")
+                                print(f"Memory = \u001b[33m{math_mem}\u001b[0m")
 
                             elif value_addtomem == "no":
-                                print("Result = \u001b[32m" + str(sum) + "\u001b[0m")
-
+                                print("Skipped memory addition.")
+                                
                             else:
                                 print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
 
@@ -551,7 +569,7 @@ while True:
                     print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
 
                 else:
-                    print("Fraction = \u001b[32m" + str(Fraction(convfraq_num)) + "\u001b[0m")
+                    print(f"Fraction = \u001b[32m{Fraction(convfraq_num)}\u001b[0m")
 
             elif math_command == "xq":
 
@@ -570,19 +588,16 @@ while True:
                     print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
 
                 else:
-                    value_addtomem = input("\nAdd to / refresh memory? (Yes / No) <> ").lower().replace(" ", "")
+                    print(f"\nResult = \u001b[32m{sum}\u001b[0m")
+                    value_addtomem = input("Add to / refresh memory? (Yes / No) <> ").lower().replace(" ", "")
 
                     if value_addtomem == "yes":
                         math_mem += sum
-
-                        if math_mem == 0:
-                            print("Memory = \u001b[32m" + str(math_mem) + "\u001b[0m [Added To Memory]")
-
-                        else:
-                            print("Memory = \u001b[32m" + str(math_mem) + "\u001b[0m [Refreshed Memory]")
+                        print("Result added to memory.")
+                        print(f"Memory = \u001b[33m{math_mem}\u001b[0m")
 
                     elif value_addtomem == "no":
-                        print("Result = \u001b[32m" + str(sum) + "\u001b[0m")
+                        print(f"Skipped memory addition.")
 
                     else:
                         print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
@@ -603,19 +618,16 @@ while True:
                     print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
 
                 else:
-                    value_addtomem = input("\nAdd to / refresh memory? (Yes / No) <> ").lower().replace(" ", "")
+                    print(f"\nResult = \u001b[32m{sum}\u001b[0m")
+                    value_addtomem = input("Add to / refresh memory? (Yes / No) <> ").lower().replace(" ", "")
 
                     if value_addtomem == "yes":
                         math_mem += sum
-
-                        if math_mem == 0:
-                            print("Memory = \u001b[32m" + str(math_mem) + "\u001b[0m [Added To Memory]")
-
-                        else:
-                            print("Memory = \u001b[32m" + str(math_mem) + "\u001b[0m [Refreshed Memory]")
+                        print("Result added to memory.")
+                        print(f"Memory = \u001b[33m{math_mem}\u001b[0m")
 
                     elif value_addtomem == "no":
-                        print("Result = \u001b[32m" + str(sum) + "\u001b[0m")
+                        print(f"Skipped memory addition.")
 
                     else:
                         print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
@@ -636,25 +648,21 @@ while True:
                     print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
 
                 else:
-                    value_addtomem = input("\nAdd to / refresh memory? (Yes / No) <> ").lower().replace(" ", "")
+                    print(f"\nResult = \u001b[32m{sum}\u001b[0m")
+                    value_addtomem = input("Add to / refresh memory? (Yes / No) <> ").lower().replace(" ", "")
 
                     if value_addtomem == "yes":
                         math_mem += sum
-
-                        if math_mem == 0:
-                            print("Memory = \u001b[32m" + str(math_mem) + "\u001b[0m [Added To Memory]")
-
-                        else:
-                            print("Memory = \u001b[32m" + str(math_mem) + "\u001b[0m [Refreshed Memory]")
+                        print("Result added to memory.")
+                        print(f"Memory = \u001b[33m{math_mem}\u001b[0m")
 
                     elif value_addtomem == "no":
-                        print("Result = \u001b[32m" + str(sum) + "\u001b[0m")
+                        print(f"Skipped memory addition.")
 
                     else:
                         print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
 
             elif math_command == "add":
-                value_name = ""
                 value_namenum = 0
                 sum = 0
                 num = 0
@@ -675,26 +683,21 @@ while True:
                     print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
 
                 else:
-                    value_addtomem = input("\nAdd to / refresh memory? (Yes / No) <> ").lower().replace(" ", "")
+                    print(f"\nResult = \u001b[32m{sum}\u001b[0m")
+                    value_addtomem = input("Add to / refresh memory? (Yes / No) <> ").lower().replace(" ", "")
 
                     if value_addtomem == "yes":
-                        
-                        if math_mem == 0:
-                            math_mem += sum
-                            print("Memory = \u001b[32m" + str(math_mem) + "\u001b[0m [Added To Memory]")
-
-                        else:
-                            math_mem += sum
-                            print("Memory = \u001b[32m" + str(math_mem) + "\u001b[0m [Refreshed Memory]")
+                        math_mem += sum
+                        print("Result added to memory.")
+                        print(f"Memory = \u001b[33m{math_mem}\u001b[0m")
 
                     elif value_addtomem == "no":
-                        print("Result = \u001b[32m" + str(sum) + "\u001b[0m")
+                        print(f"Skipped memory addition.")
 
                     else:
                         print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
 
             elif math_command == "sub":
-                value_name = ""
                 value_namenum = 0
                 sum = 0
                 num = 0
@@ -715,28 +718,24 @@ while True:
                     print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
 
                 else:
-                    value_addtomem = input("\nAdd to / refresh memory? (Yes / No) <> ").lower().replace(" ", "")
+                    print(f"\nResult = \u001b[32m{sum}\u001b[0m")
+                    value_addtomem = input("Add to / refresh memory? (Yes / No) <> ").lower().replace(" ", "")
 
                     if value_addtomem == "yes":
-
-                        if math_mem == 0:
-                            math_mem += sum
-                            print("Memory = \u001b[32m" + str(math_mem) + "\u001b[0m [Added To Memory]")
-
-                        else:
-                            math_mem += sum
-                            print("Memory = \u001b[32m" + str(math_mem) + "\u001b[0m [Refreshed Memory]")
+                        math_mem += sum
+                        print("Result added to memory.")
+                        print(f"Memory = \u001b[33m{math_mem}\u001b[0m")
 
                     elif value_addtomem == "no":
-                        print("Result = \u001b[32m" + str(sum) + "\u001b[0m")
+                        print(f"Skipped memory addition.")
 
                     else:
                         print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
 
             elif math_command == "div":
-                value_name = ""
                 value_namenum = 0
                 num = 0
+                sum = 0
 
                 try:
                     sum = int(input("Primary Value <> "))
@@ -755,28 +754,24 @@ while True:
                     print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
 
                 else:
-                    value_addtomem = input("\nAdd to / refresh memory? (Yes / No) <> ").lower().replace(" ", "")
+                    print(f"\nResult = \u001b[32m{sum}\u001b[0m")
+                    value_addtomem = input("Add to / refresh memory? (Yes / No) <> ").lower().replace(" ", "")
 
                     if value_addtomem == "yes":
-
-                        if math_mem == 0:
-                            math_mem += sum
-                            print("Memory = \u001b[32m" + str(math_mem) + "\u001b[0m [Added To Memory]")
-
-                        else:
-                            math_mem += sum
-                            print("Memory = \u001b[32m" + str(math_mem) + "\u001b[0m [Refreshed Memory]")
+                        math_mem += sum
+                        print("Result added to memory.")
+                        print(f"Memory = \u001b[33m{math_mem}\u001b[0m")
 
                     elif value_addtomem == "no":
-                        print("Result = \u001b[32m" + str(sum) + "\u001b[0m")
+                        print(f"Skipped memory addition.")
 
                     else:
                         print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
 
             elif math_command == "multi":
-                value_name = ""
                 value_namenum = 0
                 num = 0
+                sum = 0
 
                 try:
                     sum = int(input("Primary Value <> "))
@@ -795,20 +790,16 @@ while True:
                     print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
 
                 else:
-                    value_addtomem = input("\nAdd to / refresh memory? (Yes / No) <> ").lower().replace(" ", "")
+                    print(f"\nResult = \u001b[32m{sum}\u001b[0m")
+                    value_addtomem = input("Add to / refresh memory? (Yes / No) <> ").lower().replace(" ", "")
 
                     if value_addtomem == "yes":
-
-                        if math_mem == 0:
-                            math_mem += sum
-                            print("Memory = \u001b[32m" + str(math_mem) + "\u001b[0m [Added To Memory]")
-
-                        else:
-                            math_mem += sum
-                            print("Memory = \u001b[32m" + str(math_mem) + "\u001b[0m [Refreshed Memory]")
+                        math_mem += sum
+                        print("Result added to memory.")
+                        print(f"Memory = \u001b[33m{math_mem}\u001b[0m")
 
                     elif value_addtomem == "no":
-                        print("Result = \u001b[32m" + str(sum) + "\u001b[0m")
+                        print(f"Skipped memory addition.")
 
                     else:
                         print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
@@ -826,7 +817,7 @@ while True:
         print(date_time)
 
     elif user_command == "web":
-        print("\u001b[0mExecuted web console! Type 'help' to show executable commands.")
+        print("\u001b[0mWeb console enabled! Type 'help' to show executable commands.")
 
         while True:
             web_command = input("\nWeb> ").lower().replace(" ", "")
@@ -848,7 +839,7 @@ while True:
                 search_topic = input("Search <> ")
                 website = "https://www.google.com/search?q=" + search_topic
                 webbrowser.open(website, new=2)
-                print("Showing results found for \u001b[32m'" + search_topic + "'\u001b[0m.")
+                print(f"Showing results found for \u001b[32m'{search_topic}'\u001b[0m.")
                 break
 
             elif web_command == "exit":
@@ -858,7 +849,6 @@ while True:
                 windowcls()
 
             elif web_command == "sites":
-
                 print("\n\nEnter site name in-line to open.\n")
                 print("1  YouTube")
                 print("2  Facebook")
@@ -870,37 +860,37 @@ while True:
 
                 sites_execute = input("Site Name <> ").lower().replace(" ", "")
 
-                if sites_execute == "youtube":
+                if "youtube" in sites_execute:
                     webbrowser.open('www.youtube.com', new=2)
                     print("\u001b[32mWeb page opened successfully!\u001b[0m")
                     break
 
-                elif sites_execute == "facebook":
+                elif "facebook" in sites_execute:
                     webbrowser.open('www.facebook.com', new=2)
                     print("\u001b[32mWeb page opened successfully!\u001b[0m")
                     break
 
-                elif sites_execute == "wikipedia":
+                elif "wikipedia" in sites_execute:
                     webbrowser.open('www.wikipedia.org', new=2)
                     print("\u001b[32mWeb page opened successfully!\u001b[0m")
                     break
 
-                elif sites_execute == "google":
+                elif "google" in sites_execute:
                     webbrowser.open('www.google.com', new=2)
                     print("\u001b[32mWeb page opened successfully!\u001b[0m")
                     break
 
-                elif sites_execute == "linkedin":
+                elif "linkedin" in sites_execute:
                     webbrowser.open('www.linkedin.com', new=2)
                     print("\u001b[32mWeb page opened successfully!\u001b[0m")
                     break
 
-                elif sites_execute == "github":
+                elif "github" in sites_execute:
                     webbrowser.open('www.github.com', new=2)
                     print("\u001b[32mWeb page opened successfully!\u001b[0m")
                     break
 
-                elif sites_execute == "amazon":
+                elif "amazon" in sites_execute:
                     webbrowser.open('www.amazon.com', new=2)
                     print("\u001b[32mWeb page opened successfully!\u001b[0m")
                     break
@@ -967,10 +957,10 @@ while True:
                 print("\u001b[31mFile type / command not recognized! Type 'help' to show executable commands.\u001b[0m")
 
     elif user_command == "sys":
-        print("\u001b[0m\n\nDevice platform  : \u001b[32m" + device_platform + "\u001b[0m")
-        print("Chipset          : \u001b[32m" + processor + "\u001b[0m")
-        print("Operating system : \u001b[32m" + operating_system + "\u001b[0m")
-        print("Build            : \u001b[32m" + build + "\u001b[0m\n")
+        print(f"\u001b[0m\n\nDevice platform  : \u001b[32m{device_platform}\u001b[0m")
+        print(f"Chipset          : \u001b[32m{processor}\u001b[0m")
+        print(f"Operating system : \u001b[32m{operating_system}\u001b[0m")
+        print(f"Build            : \u001b[32m{build}\u001b[0m\n")
 
     elif user_command == "vdl":
 

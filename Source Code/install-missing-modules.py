@@ -24,6 +24,7 @@ while True:
                 subprocess.run("pip3 install playsound", shell=True, check=True)
                 subprocess.run("pip3 install youtube-dl", shell=True, check=True)
                 subprocess.run("pip3 install gTTS", shell=True, check=True)
+                subprocess.run("pip3 install pyfiglet", shell=True, check=True)
 
             else:
                 print("\nUpgrading PIP if available...")
@@ -33,6 +34,7 @@ while True:
                 subprocess.run("python -m pip install playsound", shell=True, check=True)
                 subprocess.run("python -m pip youtube-dl", shell=True, check=True)
                 subprocess.run("python -m pip install gTTS", shell=True, check=True)
+                subprocess.run("python -m pip install pyfiglet", shell=True, check=True)
 
         except:
             print("\u001b[31mUnexpected error occured during code execution...\u001b[0m")

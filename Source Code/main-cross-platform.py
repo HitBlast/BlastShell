@@ -3,7 +3,7 @@
 # Program authorship variables.
 __author__ = "Anindya Shiddhartha"
 __copyright__ = "Copyright 2020 Anindya Shiddhartha"
-__version__ = "1.1Pre1"
+__version__ = "1.1Pre2"
 __license__ = "MIT"
 
 # Mathematical memory variable.
@@ -40,10 +40,8 @@ import os
 dir_path = os.getcwd()
 
 def windowcls():
-
     if operating_system == "Linux":
         os.system('clear')
-
     else:
         os.system('cls')
 
@@ -82,10 +80,7 @@ while True:
 
     elif user_command == "help":
         print("\u001b[0m\n\nCLS        Refreshes the screen.")
-        print("CLOCK      Displays current date and time.")
         print("CRDIR      Creates a directory.")
-        print("CTEXT      Executes text file builder which enables user to create & modify")
-        print("           text files.")
         print("CHPATH     Displays current working directory and changes it.")
         print("DEL        Removes a file or directory.")
         print("EXIT       Terminates the shell.")
@@ -98,10 +93,12 @@ while True:
         print("SYS        Displays device specifications in detail.")
         print("SPEAK      Speaks a text given by user.")
         print("SHUTDOWN   Turns off device.")
+        print("TIME       Displays current date and time.")
+        print("TBUILD     Executes text file builder which enables user to create & modify")
+        print("           custom text files.")
         print("VDL        Downloads a specific video from YouTube as well as from")
         print("           other destinations when executed. (as video or audio)")
-        print("WEB        Enables console to enter specific or custom")
-        print("           websites.\n")
+        print("WEB        Enables console to enter specific or custom websites.")
 
     elif user_command == "exit":
         print("\u001b[0mClosing shell...")
@@ -139,7 +136,7 @@ while True:
             print("\u001b[32mRestart aborted!\u001b[0m")
 
         else:
-            print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
+            print("\u001b[31mCommand not found! Try either 'Yes' or 'No'.\u001b[0m")
 
     elif user_command == "path":
         print(f"\u001b[0mCurrent Path: \u001b[33m{dir_path}\u001b[0m")
@@ -171,11 +168,11 @@ while True:
             print(f"\u001b[0m\n\nHostname   : \u001b[32m{host_name}\u001b[0m") 
             print(f"IP Address : \u001b[32m{host_ip}\u001b[0m\n") 
 
-    elif user_command == "ctext":
+    elif user_command == "tbuild":
         print("\u001b[0mText file builder enabled! Type 'help' to show executable commands.")
 
         while True:
-            ctext_command = input("\nText Builder> ").lower().replace(" ", "")
+            ctext_command = input("\u001b[0m\nText Builder> ").lower().replace(" ", "")
 
             if ctext_command == "help":
                 print("\n\nCRT    Creates a text file in program directory.")
@@ -189,7 +186,7 @@ while True:
             elif ctext_command == "crt":
                 file_name_mainword = input("File Name <> ")
                 file_name = file_name_mainword + ".txt"
-                file_main = open(file_name,"w+")
+                file_main = open(file_name, "w+")
                 print("\u001b[32mSuccessfully created file.\u001b[0m")
                 break
 
@@ -199,9 +196,9 @@ while True:
                     file_name_mainword = input("File Name <> ")
                     file_name_extension = input("File Extension <> ")
                     file_name = file_name_mainword + "." + file_name_extension
-                    file_main = open(file_name,"w+")
+                    file_main = open(file_name, "w+")
                     file_main.write(input("Text <> "))
-                    file_main = open(file_name,"w+")
+                    file_main = open(file_name, "w+")
                     print("\u001b[32mSuccessfully created file with text in custom extension.\u001b[0m")
                     break
 
@@ -214,9 +211,9 @@ while True:
             elif ctext_command == "mod":
                 file_name_mainword = input("File Name <> ")
                 file_name = file_name_mainword + ".txt"
-                file_main = open(file_name,"w+")
+                file_main = open(file_name, "w+")
                 file_main.write(input("Text <> "))
-                file_main = open(file_name,"w+")
+                file_main = open(file_name, "w+")
                 print("\u001b[32mSuccessfully created file with text.\u001b[0m")
                 break
 
@@ -230,7 +227,7 @@ while True:
         print("\u001b[0mMathematics console enabled! Type 'help' to show executable commands.")
 
         while True:
-            math_command = input("\nMath> ").lower().replace(" ", "")
+            math_command = input("\u001b[0m\nMath> ").lower().replace(" ", "")
 
             if math_command == "help":
                 print("\n\nADD        Adds value(s) together.")
@@ -240,6 +237,7 @@ while True:
                 print("CUBE       Cubes a number.")
                 print("DIV        Divides value(s) with each other.")
                 print("EXIT       Quits mathematical console.")
+                print("FACTOR     Factorizes a given number.")
                 print("MEM        Shows values stored in math memory.")
                 print("MULTI      Multiplies value(s) with each other.")
                 print("MEMCLS     Clears application maemory.")
@@ -275,8 +273,17 @@ while True:
             elif math_command == "cls":
                 windowcls()
 
-            elif math_command == "numcent":
+            elif math_command == "factor":
+                num = int(input("Value <> "))
+                num_factors = []
 
+                for num_factored in range(1, num + 1):
+                    if num % num_factored == 0:
+                        num_factors.append(num_factored)
+
+                print("Factors of " + str(num) + " = \u001b[32m" + str(num_factors).replace("[", "").replace("]", "") + "\u001b[0m")
+
+            elif math_command == "numcent":
                 def numcent(num1, num2):
                     num1 = float(num1)
                     num2 = float(num2)
@@ -345,7 +352,7 @@ while True:
                         print("Result (Only Odd) = \u001b[32m" + str(only_odd).replace("[", "").replace("]", "") + "\u001b[0m")
 
                     else:
-                        print("\u001b[31mSort order invalid! Try either 'Ascending' or 'Descending'.")
+                        print("\u001b[31mSort order invalid! Try either 'Ascending' or 'Descending'.\u001b[0m")
 
             elif math_command == "ageconv":
         
@@ -394,7 +401,7 @@ while True:
                         print("Skipped memory addition.")
 
                     else:
-                        print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
+                        print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.\u001b[0m")
 
             elif math_command == "profloss":
 
@@ -439,7 +446,7 @@ while True:
                         print("Skipped memory addition.")
 
                     else:
-                        print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
+                        print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.\u001b[0m")
 
             elif math_command == "pi":
                 pi_value = 3.1415926535897932384626433832
@@ -457,7 +464,7 @@ while True:
                         print("Skipped memory addition.")
 
                     else:
-                        print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
+                        print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.\u001b[0m")
 
                 else:
                     print(f"Pi = \u001b[32m{pi_value}\u001b[0m")
@@ -485,7 +492,7 @@ while True:
                                 print("Skipped memory addition.")
 
                             else:
-                                print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
+                                print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.\u001b[0m")
 
                     elif pi_action == "sub":
                         
@@ -508,7 +515,7 @@ while True:
                                 print("Skipped memory addition.")
                                 
                             else:
-                                print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
+                                print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.\u001b[0m")
 
                     elif pi_action == "div":
                         
@@ -531,7 +538,7 @@ while True:
                                 print("Skipped memory addition.")
                                 
                             else:
-                                print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
+                                print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.\u001b[0m")
 
                     elif pi_action == "multi": 
                         
@@ -554,7 +561,7 @@ while True:
                                 print("Skipped memory addition.")
                                 
                             else:
-                                print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
+                                print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.\u001b[0m")
 
                     else:
                         print("\u001b[31mAction not found! Try something predefined.\u001b[0m")
@@ -574,7 +581,6 @@ while True:
                     print(f"Fraction = \u001b[32m{Fraction(convfraq_num)}\u001b[0m")
 
             elif math_command == "xq":
-
                 def xq(x, y):
                     return x ** y
                 
@@ -602,10 +608,9 @@ while True:
                         print(f"Skipped memory addition.")
 
                     else:
-                        print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
+                        print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.\u001b[0m")
 
             elif math_command == "cube":
-
                 def cube(x):
                     return x ** 3
                 
@@ -632,10 +637,9 @@ while True:
                         print(f"Skipped memory addition.")
 
                     else:
-                        print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
+                        print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.\u001b[0m")
 
             elif math_command == "sq":
-
                 def sq(x):
                     return x ** 2
                 
@@ -662,7 +666,7 @@ while True:
                         print(f"Skipped memory addition.")
 
                     else:
-                        print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
+                        print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.\u001b[0m")
 
             elif math_command == "add":
                 value_namenum = 0
@@ -697,7 +701,7 @@ while True:
                         print(f"Skipped memory addition.")
 
                     else:
-                        print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
+                        print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.\u001b[0m")
 
             elif math_command == "sub":
                 value_namenum = 0
@@ -732,7 +736,7 @@ while True:
                         print(f"Skipped memory addition.")
 
                     else:
-                        print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
+                        print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.\u001b[0m")
 
             elif math_command == "div":
                 value_namenum = 0
@@ -768,7 +772,7 @@ while True:
                         print(f"Skipped memory addition.")
 
                     else:
-                        print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
+                        print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.\u001b[0m")
 
             elif math_command == "multi":
                 value_namenum = 0
@@ -804,7 +808,7 @@ while True:
                         print(f"Skipped memory addition.")
 
                     else:
-                        print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.")
+                        print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.\u001b[0m")
 
             else:
                 print("\u001b[31mWhoa! Command not found. Type 'help' to show executable commands.\u001b[0m")
@@ -813,7 +817,7 @@ while True:
         speech_text = input("\u001b[0mText to speak <> ")
         speak(speech_text)
 
-    elif user_command == "clock":
+    elif user_command == "time":
         now = datetime.now()
         date_time = now.strftime("\u001b[0mDate: " + "%d/%m/%Y" + " | Time: " + "%H:%M:%S")
         print(date_time)
@@ -822,7 +826,7 @@ while True:
         print("\u001b[0mWeb console enabled! Type 'help' to show executable commands.")
 
         while True:
-            web_command = input("\nWeb> ").lower().replace(" ", "")
+            web_command = input("\u001b[0m\nWeb> ").lower().replace(" ", "")
 
             if web_command == "help":
                 print("\n\nCLS      Refreshes the screen.")

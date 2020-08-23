@@ -217,7 +217,7 @@ while True:
                 print("\u001b[32mSuccessfully created file with text.\u001b[0m")
                 break
 
-            elif user_command == "exit":
+            elif ctext_command == "exit":
                 break
 
             else:

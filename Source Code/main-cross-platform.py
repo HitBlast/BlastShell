@@ -3,7 +3,7 @@
 # Program authorship variables.
 __author__ = "Anindya Shiddhartha"
 __copyright__ = "Copyright 2020 Anindya Shiddhartha"
-__version__ = "1.1Pre2"
+__version__ = "1.1Pre3"
 __license__ = "MIT"
 
 # Mathematical memory variable.
@@ -79,7 +79,7 @@ while True:
         print("GitHub            [] www.github.com/shiddharth\n\n")
 
     elif user_command == "help":
-        print("\u001b[0m\n\nCLS        Refreshes the screen.")
+        print("\u001b[0m\n\nCLEAR      Refreshes the screen.")
         print("CRDIR      Creates a directory.")
         print("CHPATH     Displays current working directory and changes it.")
         print("DEL        Removes a file or directory.")
@@ -175,20 +175,20 @@ while True:
             ctext_command = input("\u001b[0m\nText Builder> ").lower().replace(" ", "")
 
             if ctext_command == "help":
-                print("\n\nCRT    Creates a text file in program directory.")
-                print("CLS    Refreshes the screen.")
-                print("CUST   Creates a text file with text in a custom")
-                print("       file extension.")
-                print("EXIT   Terminates text file builder.")
-                print("MOD    Created a text file with text in program") 
-                print("       directory.\n")
+                print("\n\nCRT      Creates a text file in program directory.")
+                print("CLS      Refreshes the screen.")
+                print("CUST     Creates a text file with text in a custom")
+                print("         file extension.")
+                print("CRTEXT   Creates a text file with text in program") 
+                print("         directory.\n")
+                print("EXIT     Terminates text file builder.")
+                print("READ     Reads a text file.")
 
             elif ctext_command == "crt":
                 file_name_mainword = input("File Name <> ")
                 file_name = file_name_mainword + ".txt"
                 file_main = open(file_name, "w+")
                 print("\u001b[32mSuccessfully created file.\u001b[0m")
-                break
 
             elif ctext_command == "cust":
 
@@ -200,7 +200,6 @@ while True:
                     file_main.write(input("Text <> "))
                     file_main = open(file_name, "w+")
                     print("\u001b[32mSuccessfully created file with text in custom extension.\u001b[0m")
-                    break
 
                 except:
                     print("\u001b[31mFile extension can't be empty!\u001b[0m")
@@ -208,14 +207,27 @@ while True:
             elif ctext_command == "cls":
                 windowcls()
 
-            elif ctext_command == "mod":
+            elif ctext_command == "crtext":
                 file_name_mainword = input("File Name <> ")
                 file_name = file_name_mainword + ".txt"
                 file_main = open(file_name, "w+")
                 file_main.write(input("Text <> "))
                 file_main = open(file_name, "w+")
                 print("\u001b[32mSuccessfully created file with text.\u001b[0m")
-                break
+
+            elif ctext_command == "read":
+
+                try:
+                    file_name = input("File Name / Path <> ")
+                    file = open(file_name, "r")
+                    file_contents = file.read()
+
+                except:
+                    print("\u001b[31mUnable to detect file, invalid name / path!\u001b[0m")
+
+                else:
+                    print(f"Viewing the contents of \u001b[33m{file_name}\u001b[0m")
+                    print(f"\n\n{file_contents}\n")
 
             elif ctext_command == "exit":
                 break
@@ -839,14 +851,12 @@ while True:
                 website = input("Website link / URL <> ")
                 webbrowser.open(website, new=2)
                 print("\u001b[32mWeb page opened successfully!\u001b[0m")
-                break
 
             elif web_command == "search":
                 search_topic = input("Search <> ")
                 website = "https://www.google.com/search?q=" + search_topic
                 webbrowser.open(website, new=2)
-                print(f"Showing results found for \u001b[32m'{search_topic}'\u001b[0m.")
-                break
+                print(f"Showing results found for \u001b[33m'{search_topic}'\u001b[0m.")
 
             elif web_command == "exit":
                 break
@@ -855,59 +865,61 @@ while True:
                 windowcls()
 
             elif web_command == "sites":
-                print("\n\nEnter site name in-line to open.\n")
-                print("1  YouTube")
-                print("2  Facebook")
-                print("3  Wikipedia")
-                print("4  Google")
-                print("5  LinkedIn")
-                print("6  GitHub\n\n")
-                print("7  Amazon")
 
-                sites_execute = input("Site Name <> ").lower().replace(" ", "")
+                while True:
+                    print("\n\nEnter site name in-line to open.\n")
+                    print("1  YouTube")
+                    print("2  Facebook")
+                    print("3  Wikipedia")
+                    print("4  Google")
+                    print("5  LinkedIn")
+                    print("6  GitHub\n\n")
+                    print("7  Amazon")
 
-                if "youtube" in sites_execute:
-                    webbrowser.open('www.youtube.com', new=2)
-                    print("\u001b[32mWeb page opened successfully!\u001b[0m")
-                    break
+                    sites_execute = input("Site Name <> ").lower().replace(" ", "")
 
-                elif "facebook" in sites_execute:
-                    webbrowser.open('www.facebook.com', new=2)
-                    print("\u001b[32mWeb page opened successfully!\u001b[0m")
-                    break
+                    if "youtube" in sites_execute:
+                        webbrowser.open('www.youtube.com', new=2)
+                        print("\u001b[32mWeb page opened successfully!\u001b[0m")
+                        break
 
-                elif "wikipedia" in sites_execute:
-                    webbrowser.open('www.wikipedia.org', new=2)
-                    print("\u001b[32mWeb page opened successfully!\u001b[0m")
-                    break
+                    elif "facebook" in sites_execute:
+                        webbrowser.open('www.facebook.com', new=2)
+                        print("\u001b[32mWeb page opened successfully!\u001b[0m")
+                        break
 
-                elif "google" in sites_execute:
-                    webbrowser.open('www.google.com', new=2)
-                    print("\u001b[32mWeb page opened successfully!\u001b[0m")
-                    break
+                    elif "wikipedia" in sites_execute:
+                        webbrowser.open('www.wikipedia.org', new=2)
+                        print("\u001b[32mWeb page opened successfully!\u001b[0m")
+                        break
 
-                elif "linkedin" in sites_execute:
-                    webbrowser.open('www.linkedin.com', new=2)
-                    print("\u001b[32mWeb page opened successfully!\u001b[0m")
-                    break
+                    elif "google" in sites_execute:
+                        webbrowser.open('www.google.com', new=2)
+                        print("\u001b[32mWeb page opened successfully!\u001b[0m")
+                        break
 
-                elif "github" in sites_execute:
-                    webbrowser.open('www.github.com', new=2)
-                    print("\u001b[32mWeb page opened successfully!\u001b[0m")
-                    break
+                    elif "linkedin" in sites_execute:
+                        webbrowser.open('www.linkedin.com', new=2)
+                        print("\u001b[32mWeb page opened successfully!\u001b[0m")
+                        break
 
-                elif "amazon" in sites_execute:
-                    webbrowser.open('www.amazon.com', new=2)
-                    print("\u001b[32mWeb page opened successfully!\u001b[0m")
-                    break
+                    elif "github" in sites_execute:
+                        webbrowser.open('www.github.com', new=2)
+                        print("\u001b[32mWeb page opened successfully!\u001b[0m")
+                        break
 
-                else:
-                    print("\u001b[31mWebsite didn't found in list, try again!\u001b[0m")
+                    elif "amazon" in sites_execute:
+                        webbrowser.open('www.amazon.com', new=2)
+                        print("\u001b[32mWeb page opened successfully!\u001b[0m")
+                        break
+
+                    else:
+                        print("\u001b[31mWebsite didn't found in list, try again!\u001b[0m")
 
             else:
                 print("\u001b[31mWhoa! Command not found. Type 'help' to show executable commands.\u001b[0m")
 
-    elif user_command == "cls":
+    elif user_command == "clear":
         windowcls()
 
     elif user_command == "crdir":

@@ -6,7 +6,7 @@ Copyright (c) Anindya Shiddhartha. Licensed under MIT License. For more informat
 
 ### **_Installation Instructions_**
 
-For Windows users:
+**For Windows users:**
 
  If only running the source code:
  1. Download BlastShell from [here](https://github.com/shiddharth/BlastShell/archive/master.zip) and then extract it in a folder.
@@ -21,8 +21,7 @@ For Windows users:
  3. Open the folder that you've just extracted, and then go to the **'Windows Executable (.exe)'** folder.
  4. Double-click on **'BlastShell.exe'** and enjoy!
 
-<br>
-For Linux users:
+**For Linux users:**
  1. Open up your terminal and type 'sudo apt-get update' to update repositories.
  2. Run 'sudo apt-get install git' if you haven't installed Git yet.
  3. Run 'sudo apt install ffmpeg' to install FFmpeg, because it's a dependency of the program.

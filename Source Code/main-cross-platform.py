@@ -26,12 +26,23 @@ operating_system = platform.system()
 build = platform.version()
 
 from gtts import gTTS
-def speak(text):
+def tts_action_start(text):
     tts_filename = "blastshell-speak-" + str(random.randint(1, 100)) + ".mp3"
     tts = gTTS(text)
-    tts.save(tts_filename)
-    playsound(tts_filename)
-    os.remove(tts_filename)
+    
+    speech_action = input("Action (Speak / Save) <> ").lower().replace(" ", "")
+
+    if speech_action == "speak":
+        tts.save(tts_filename)
+        playsound(tts_filename)
+        os.remove(tts_filename)
+
+    elif speech_action == "save":
+        tts.save(tts_filename)
+        print("\u001b[32mSuccessfully converted text to speech and saved in current directory.\u001b[0m")
+
+    else:
+       print("\u001b[31mUnknown action! Try typing either 'Speak' or 'Save'.\u001b[0m")
 
 import youtube_dl
 from playsound import playsound
@@ -827,7 +838,7 @@ while True:
 
     elif user_command == "speak":
         speech_text = input("\u001b[0mText to speak <> ")
-        speak(speech_text)
+        tts_action_start(speech_text)
 
     elif user_command == "time":
         now = datetime.now()

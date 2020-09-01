@@ -3,7 +3,7 @@
 # Program authorship variables.
 __author__ = "Anindya Shiddhartha"
 __copyright__ = "Copyright 2020 Anindya Shiddhartha"
-__version__ = "1.1Pre3"
+__version__ = "1.1"
 __license__ = "MIT"
 
 # Mathematical memory variable.
@@ -90,7 +90,8 @@ while True:
         print("GitHub            [] www.github.com/shiddharth\n\n")
 
     elif user_command == "help":
-        print("\u001b[0m\n\nCLEAR      Refreshes the screen.")
+        print("\u001b[0m\n\nBLAST      Starts a new instance of the BlastShell command line.")
+        print("CLEAR      Refreshes the screen.")
         print("CRDIR      Creates a directory.")
         print("CHPATH     Displays current working directory and changes it.")
         print("DEL        Removes a file or directory.")
@@ -110,6 +111,18 @@ while True:
         print("VDL        Downloads a specific video from YouTube as well as from")
         print("           other destinations when executed. (as video or audio)")
         print("WEB        Enables console to enter specific or custom websites.")
+
+    elif user_command == "blast":
+        math_mem = 0
+        windowcls()
+        print("\u001b[0m    ____  __           __  _____ __         ____")
+        print("   / __ )/ /___ ______/ /_/ ___// /_  ___  / / /")
+        print("  / __  / / __ `/ ___/ __/\__ \/ __ \/ _ \/ / / ")
+        print(" / /_/ / / /_/ (__  ) /_ ___/ / / / /  __/ / /  ")
+        print("/_____/_/\__,_/____/\__//____/_/ /_/\___/_/_/   \n\n")
+
+        print("Type 'help' or 'about' for more information.")
+        print(__copyright__)
 
     elif user_command == "exit":
         print("\u001b[0mClosing shell...")

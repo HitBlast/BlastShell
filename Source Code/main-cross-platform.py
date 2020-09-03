@@ -102,7 +102,7 @@ while True:
         print("PATH       Displays current working directory.")
         print("REPO       Opens the GitHub repository of BlastShell in a browser window.")
         print("RESTART    Restarts device.")
-        print("SYS        Displays device specifications in detail.")
+        print("SYS        Displays device specifications.")
         print("SPEAK      Speaks a text given by user.")
         print("SHUTDOWN   Turns off device.")
         print("TIME       Displays current date and time.")

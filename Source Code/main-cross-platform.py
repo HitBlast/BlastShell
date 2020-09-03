@@ -110,7 +110,7 @@ while True:
         print("           custom text files.")
         print("VDL        Downloads a specific video from YouTube as well as from")
         print("           other destinations when executed. (as video or audio)")
-        print("WEB        Enables console to enter specific or custom websites.")
+        print("WEB        Enables console to enter specific or custom websites.\n")
 
     elif user_command == "blast":
         math_mem = 0
@@ -200,7 +200,7 @@ while True:
 
             if ctext_command == "help":
                 print("\n\nCRT      Creates a text file in program directory.")
-                print("CLS      Refreshes the screen.")
+                print("CLEAR    Refreshes the screen.")
                 print("CUST     Creates a text file with text in a custom")
                 print("         file extension.")
                 print("CRTEXT   Creates a text file with text in program") 
@@ -228,7 +228,7 @@ while True:
                 except:
                     print("\u001b[31mFile extension can't be empty!\u001b[0m")
 
-            elif ctext_command == "cls":
+            elif ctext_command == "clear":
                 windowcls()
 
             elif ctext_command == "crtext":
@@ -269,8 +269,8 @@ while True:
                 print("\n\nADD        Adds value(s) together.")
                 print("AGECONV    Converts age from traditional 'years' format to days, hours and")
                 print("           minutes.")
-                print("CLS        Refreshes the screen.")
                 print("CUBE       Cubes a number.")
+                print("CLEAR      Refreshes the screen.")
                 print("DIV        Divides value(s) with each other.")
                 print("EXIT       Quits mathematical console.")
                 print("FACTOR     Factorizes a given number.")
@@ -306,7 +306,7 @@ while True:
                 math_mem -= math_mem
                 print("Cleared math memory!")
 
-            elif math_command == "cls":
+            elif math_command == "clear":
                 windowcls()
 
             elif math_command == "factor":
@@ -865,7 +865,7 @@ while True:
             web_command = input("\u001b[0m\nWeb> ").lower().replace(" ", "")
 
             if web_command == "help":
-                print("\n\nCLS      Refreshes the screen.")
+                print("\n\nCLEAR    Refreshes the screen.")
                 print("CSITE    Opens a custom webpage given by user.")
                 print("EXIT     Closes web console.")
                 print("SEARCH   Searches the web for a particular object given by user.")
@@ -962,10 +962,10 @@ while True:
             filetype = input("\u001b[0mFile Type ('help' to see filetypes) <> ").lower().replace(" ", "")
 
             if filetype == "help":
-                print("\n\nCLS    Refreshes the screen.")
-                print("DIR    Assigns file type as directory.")
-                print("DOC    Assigns file type as document.")
-                print("EXIT   Returns to home.\n\n")
+                print("CLEAR    Refreshes the screen.")
+                print("DIR      Assigns file type as directory.")
+                print("DOC      Assigns file type as document.")
+                print("EXIT     Returns to home.\n\n")
 
             elif filetype == "cls":
                 windowcls()

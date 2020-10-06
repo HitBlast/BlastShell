@@ -258,15 +258,12 @@ while True:
 
         elif user_command[0].lower() == "tbuild":
 
-            if argument_count == 3:
+            if argument_count == 2 and user_command[1].lower() == "docs":
+                print("\u001b[0mDocumentation for command: TBUILD\u001b[0m")
 
-                if user_command[1].lower() == "docs":
-                    print("\u001b[0mDocumentation for command: TBUILD\u001b[0m")
+            elif argument_count == 3:
 
-                elif user_command[1].lower() == "make":
-                    open(user_command[3], "w+")
-
-                elif user_command[1].lower() == "read":
+                if user_command[1].lower() == "read":
                     try:
                         file_name = user_command[2]
                         file = open(file_name, "r")
@@ -276,13 +273,14 @@ while True:
                         print("\u001b[31mUnable to detect file, invalid name / path!\u001b[0m")
 
                     else:
-                        print(f"Viewing the contents of \u001b[33m{file_name}\u001b[0m")
-                        print(f"\n\n{file_contents}\n")
+                        print(f"\u001b[0mViewing the contents of \u001b[33m{file_name}\u001b[0m")
+                        print(f"\n{file_contents}")
 
+                elif user_command[1].lower() == "make":
+                    file_text = input("\u001b[0mText <> ")
+                    with open(user_command[2], "w+") as file:
+                        file.write(file_text)
 
-                else:
-                    print("\u001b[31mInvalid argument(s)! Try typing 'tbuild docs' for it's usage information.\u001b[0m")    
-                
             else:
                 print("\u001b[31mInvalid argument(s)! Try typing 'tbuild docs' for it's usage information.\u001b[0m")    
 

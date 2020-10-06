@@ -165,42 +165,40 @@ while True:
 
         elif user_command[0].lower() == "shutdown":
 
-            if argument_count == 1:
-                shutdown_confirm = input("\u001b[0mConfirm device shutdown? (Yes / No) <> ").lower().replace(" ", "")
+            if argument_count == 2:
 
-                if shutdown_confirm == "yes":
+                if user_command[1].lower() == "docs":
+                    print("\u001b[0mDocumentation for command: SHUTDOWN\u001b[0m")
+
+                elif user_command[1].lower() == "yes":
                     print("\u001b[0mShutting down...\u001b[0m")
                     os.system("shutdown /s /t 1")
 
-                elif shutdown_confirm == "no":
+                elif user_command[1].lower() == "no":
                     print("\u001b[0mShutdown aborted!\u001b[0m")
 
                 else:
-                    print("\u001b[31mCommand not found! Try either 'Yes' or 'No'.\u001b[0m")
-
-            elif argument_count == 2 and user_command[1] == "docs":
-                print("\u001b[0mDocumentation for command: SHUTDOWN\u001b[0m")
+                    print("\u001b[31mInvalid argument(s)! Try typing 'shutdown docs' for it's usage information.\u001b[0m")
 
             else:
                 print("\u001b[31mInvalid argument(s)! Try typing 'shutdown docs' for it's usage information.\u001b[0m")
 
         elif user_command[0].lower() == "restart":
 
-            if argument_count == 1:
-                restart_confirm = input("\u001b[0mConfirm device restart? (Yes / No) <> ").lower().replace(" ", "")
+            if argument_count == 2:
 
-                if restart_confirm == "yes":
+                if user_command[1].lower() == "docs":
+                    print("\u001b[0mDocumentation for command: restart\u001b[0m")
+
+                elif user_command[1].lower() == "yes":
                     print("\u001b[0mRestarting...\u001b[0m")
                     os.system("shutdown /r /t 1")
 
-                elif restart_confirm == "no":
+                elif user_command[1].lower() == "no":
                     print("\u001b[0mRestart aborted!\u001b[0m")
 
                 else:
-                    print("\u001b[31mCommand not found! Try either 'Yes' or 'No'.\u001b[0m")
-
-            elif argument_count == 2 and user_command[1] == "docs":
-                print("\u001b[0mDocumentation for command: RESTART\u001b[0m")
+                    print("\u001b[31mInvalid argument(s)! Try typing 'restart docs' for it's usage information.\u001b[0m")
 
             else:
                 print("\u001b[31mInvalid argument(s)! Try typing 'restart docs' for it's usage information.\u001b[0m")

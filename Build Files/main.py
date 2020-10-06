@@ -116,7 +116,7 @@ while True:
                 print("Type 'help' or 'about' for more information.")
                 print(__copyright__)
 
-            elif argument_count == 2 and user_command[1] == "docs":
+            elif argument_count == 2 and user_command[1].lower() == "docs":
                 print("\u001b[0mDocumentation for command: BLAST\u001b[0m")
 
             else:
@@ -128,7 +128,7 @@ while True:
                 print("\u001b[0mClosing shell...")
                 break
 
-            elif argument_count == 2 and user_command[1] == "docs":
+            elif argument_count == 2 and user_command[1].lower() == "docs":
                 print("\u001b[0mDocumentation for command: EXIT\u001b[0m")
 
             else:
@@ -140,7 +140,7 @@ while True:
                 webbrowser.open('www.github.com/shiddharth/BlastShell', new=2)
                 print("\u001b[0mGitHub repository opened successfully!\u001b[0m")
 
-            elif argument_count == 2 and user_command[1] == "docs":
+            elif argument_count == 2 and user_command[1].lower() == "docs":
                 print("\u001b[0mDocumentation for command: REPO\u001b[0m")
 
             else:
@@ -157,7 +157,7 @@ while True:
 
                 print()
 
-            elif argument_count == 2 and user_command[1] == "docs":
+            elif argument_count == 2 and user_command[1].lower() == "docs":
                 print("\u001b[0mDocumentation for command: LS\u001b[0m")
 
             else:
@@ -208,7 +208,7 @@ while True:
             if argument_count == 1:
                 print(f"\u001b[0mCurrent Path: \u001b[33m{dir_path}\u001b[0m")
 
-            elif argument_count == 2 and user_command[1] == "docs":
+            elif argument_count == 2 and user_command[1].lower() == "docs":
                 print("\u001b[0mDocumentation for command: PATH\u001b[0m")
 
             else:
@@ -230,7 +230,7 @@ while True:
                 else:
                     print("\u001b[0mPath set as current working directory.\u001b[0m")
 
-            elif argument_count == 2 and user_command[1] == "docs":
+            elif argument_count == 2 and user_command[1].lower() == "docs":
                 print("\u001b[0mDocumentation for command: CHPATH\u001b[0m")
 
             else:
@@ -250,7 +250,7 @@ while True:
                     print(f"\u001b[0m\n\nHostname   : \u001b[32m{host_name}\u001b[0m") 
                     print(f"IP Address : \u001b[32m{host_ip}\u001b[0m\n") 
 
-            elif argument_count == 2 and user_command[1] == "docs":
+            elif argument_count == 2 and user_command[1].lower() == "docs":
                 print("\u001b[0mDocumentation for command: IPCONF\u001b[0m")
 
             else:
@@ -258,76 +258,31 @@ while True:
 
         elif user_command[0].lower() == "tbuild":
 
-            if argument_count == 1:
-                print("\u001b[0mText file builder enabled! Type 'help' to show executable commands.")
+            if argument_count == 3:
 
-                while True:
-                    ctext_command = input("\u001b[0m\nText Builder> ").lower().replace(" ", "")
+                if user_command[1].lower() == "docs":
+                    print("\u001b[0mDocumentation for command: TBUILD\u001b[0m")
 
-                    if ctext_command == "help":
-                        print("\n\nCRT      Creates a text file in program directory.")
-                        print("CLEAR    Refreshes the screen.")
-                        print("CUST     Creates a text file with text in a custom")
-                        print("         file extension.")
-                        print("CRTEXT   Creates a text file with text in program") 
-                        print("         directory.\n")
-                        print("EXIT     Terminates text file builder.")
-                        print("READ     Reads a text file.")
+                elif user_command[1].lower() == "make":
+                    open(user_command[3], "w+")
 
-                    elif ctext_command == "crt":
-                        file_name_mainword = input("File Name <> ")
-                        file_name = file_name_mainword + ".txt"
-                        file_main = open(file_name, "w+")
-                        print("\u001b[0mSuccessfully created file.\u001b[0m")
+                elif user_command[1].lower() == "read":
+                    try:
+                        file_name = user_command[2]
+                        file = open(file_name, "r")
+                        file_contents = file.read()
 
-                    elif ctext_command == "cust":
-
-                        try:
-                            file_name_mainword = input("File Name <> ")
-                            file_name_extension = input("File Extension <> ")
-                            file_name = file_name_mainword + "." + file_name_extension
-                            file_main = open(file_name, "w+")
-                            file_main.write(input("Text <> "))
-                            file_main = open(file_name, "w+")
-                            print("\u001b[0mSuccessfully created file with text in custom extension.\u001b[0m")
-
-                        except:
-                            print("\u001b[31mFile extension can't be empty!\u001b[0m")
-
-                    elif ctext_command == "clear":
-                        windowcls()
-
-                    elif ctext_command == "crtext":
-                        file_name_mainword = input("File Name <> ")
-                        file_name = file_name_mainword + ".txt"
-                        file_main = open(file_name, "w+")
-                        file_main.write(input("Text <> "))
-                        file_main = open(file_name, "w+")
-                        print("\u001b[0mSuccessfully created file with text.\u001b[0m")
-
-                    elif ctext_command == "read":
-
-                        try:
-                            file_name = input("File Name / Path <> ")
-                            file = open(file_name, "r")
-                            file_contents = file.read()
-
-                        except:
-                            print("\u001b[31mUnable to detect file, invalid name / path!\u001b[0m")
-
-                        else:
-                            print(f"Viewing the contents of \u001b[33m{file_name}\u001b[0m")
-                            print(f"\n\n{file_contents}\n")
-
-                    elif ctext_command == "exit":
-                        break
+                    except:
+                        print("\u001b[31mUnable to detect file, invalid name / path!\u001b[0m")
 
                     else:
-                        print("\u001b[31mWhoa! Command not found. Type 'help' to show executable commands.\u001b[0m")
+                        print(f"Viewing the contents of \u001b[33m{file_name}\u001b[0m")
+                        print(f"\n\n{file_contents}\n")
 
-            elif argument_count == 2 and user_command[1] == "docs":
-                print("\u001b[0mDocumentation for command: TBUILD\u001b[0m")
 
+                else:
+                    print("\u001b[31mInvalid argument(s)! Try typing 'tbuild docs' for it's usage information.\u001b[0m")    
+                
             else:
                 print("\u001b[31mInvalid argument(s)! Try typing 'tbuild docs' for it's usage information.\u001b[0m")    
 

@@ -3,7 +3,7 @@
 # Program authorship variables.
 __author__ = "Anindya Shiddhartha"
 __copyright__ = "Copyright 2020 Anindya Shiddhartha"
-__version__ = "1.11"
+__version__ = "1.12Pre1"
 __license__ = "MIT"
 
 # Mathematical memory variable.

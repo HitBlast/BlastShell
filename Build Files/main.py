@@ -6,9 +6,6 @@ __copyright__ = "Copyright 2020 Anindya Shiddhartha"
 __version__ = "1.12Pre1"
 __license__ = "MIT"
 
-# Mathematical memory variable.
-math_mem = 0
-
 # Modules to import.
 import socket
 host_name = socket.gethostname()
@@ -31,7 +28,6 @@ from playsound import playsound
 from gtts import gTTS
 
 import os
-dir_path = os.getcwd()
 
 # Defining common functions.
 def windowcls():
@@ -40,8 +36,15 @@ def windowcls():
     else:
         os.system('cls')
 
-def get_current_path():
-    os.getcwd()
+# Defining variables.
+dir_path = os.getcwd()
+math_mem = 0
+host_name = socket.gethostname()
+
+device_platform = platform.machine()
+processor = platform.processor()
+operating_system = platform.system()
+build = platform.version()
 
 
 # Main interface.
@@ -231,22 +234,23 @@ while True:
 
         elif user_command[0].lower() == "chpath":
 
-            if argument_count == 1:
-                print(f"\u001b[0mCurrent Path: \u001b[33m{dir_path}\u001b[0m")
-                dir_path = input("New Path <> ")
+            if argument_count == 2:
 
-                try:
-                    os.chdir(dir_path)
-
-                except:
-                    print("\u001b[31mPath not found! Reverting back to previous working directory.\u001b[0m")
-                    get_current_path()
+                if user_command[1].lower() == "docs":
+                    print("\u001b[0mDocumentation for command: CHPATH\u001b[0m")
 
                 else:
-                    print("\u001b[0mPath set as current working directory.\u001b[0m")
+                    new_dir_path = user_command[1].replace("-", " ")
+                    try:
+                        os.chdir(new_dir_path)
 
-            elif argument_count == 2 and user_command[1].lower() == "docs":
-                print("\u001b[0mDocumentation for command: CHPATH\u001b[0m")
+                    except:
+                        print("\u001b[31mPath not found! Reverting back to previous working directory.\u001b[0m")
+                        dir_path = os.getcwd()
+
+                    else:
+                        print("\u001b[0mPath set as current working directory.\u001b[0m")
+                        dir_path = os.getcwd()
 
             else:
                 print("\u001b[31mInvalid argument(s)! Try typing 'chpath docs' for it's usage information.\u001b[0m")

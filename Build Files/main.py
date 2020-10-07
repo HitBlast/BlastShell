@@ -242,6 +242,11 @@ while True:
 
             elif argument_count == 2 and user_command[1].lower() == "docs":
                 print("\u001b[0mDocumentation for command: PATH\u001b[0m")
+                print("\nDescription:")
+                print("    \u001b[33m?\u001b[0m This command is used to view the current directory")
+                print("    \u001b[33m?\u001b[0m the program is working on.")
+                print("\nUsage:")
+                print("    \u001b[32m>>>\u001b[0m path")
 
             else:
                 print("\u001b[31mInvalid argument(s)! Try typing 'path docs' for it's usage information.\u001b[0m")
@@ -252,6 +257,13 @@ while True:
 
                 if user_command[1].lower() == "docs":
                     print("\u001b[0mDocumentation for command: CHPATH\u001b[0m")
+                    print("\nDescription:")
+                    print("    \u001b[33m?\u001b[0m This command is used to change the current directory")
+                    print("    \u001b[33m?\u001b[0m the program is working on.")
+                    print("\nUsage:")
+                    print("    \u001b[32m>>>\u001b[0m chpath + <ENTER_NEW_PATH_HERE>")
+                    print("    \u001b[31m#\u001b[0m Make sure to fill the spaces of directory paths with")
+                    print("    \u001b[31m#\u001b[0m hyphens (-) or the program may return an error.")
 
                 else:
                     new_dir_path = user_command[1].replace("-", " ")
@@ -285,6 +297,11 @@ while True:
 
             elif argument_count == 2 and user_command[1].lower() == "docs":
                 print("\u001b[0mDocumentation for command: IPCONF\u001b[0m")
+                print("\nDescription:")
+                print("    \u001b[33m?\u001b[0m This command is used to view the hostname and the IP")
+                print("    \u001b[33m?\u001b[0m address of the device.")
+                print("\nUsage:")
+                print("    \u001b[32m>>>\u001b[0m ipconf")
 
             else:
                 print("\u001b[31mInvalid argument(s)! Try typing 'ipconf docs' for it's usage information.\u001b[0m")
@@ -310,9 +327,14 @@ while True:
                         print(f"\n{file_contents}")
 
                 elif user_command[1].lower() == "make":
-                    file_text = input("\u001b[0mText <> ")
-                    with open(user_command[2], "w+") as file:
-                        file.write(file_text)
+                    
+                    if os.path.isfile(user_command[2]):
+                        print("\u001b[31mFile already exists!\u001b[0m")
+                        
+                    else:
+                        with open(user_command[2], "w+") as file:
+                            file_text = input("\u001b[0mText <> ")
+                            file.write(file_text)
 
                 else:
                     print("\u001b[31mInvalid argument(s)! Try typing 'tbuild docs' for it's usage information.\u001b[0m")    

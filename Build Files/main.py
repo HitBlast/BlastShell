@@ -1084,10 +1084,18 @@ while True:
                 print("\u001b[31mInvalid argument(s)! Try typing 'del docs' for it's usage information.\u001b[0m")
    
         elif user_command[0].lower() == "sys":
-            print(f"\u001b[0m\n\nDevice platform  : \u001b[32m{device_platform}\u001b[0m")
-            print(f"Chipset          : \u001b[32m{processor}\u001b[0m")
-            print(f"Operating system : \u001b[32m{operating_system}\u001b[0m")
-            print(f"Build            : \u001b[32m{build}\u001b[0m\n")
+
+            if argument_count == 1:
+                print(f"\u001b[0m\n\nDevice platform  : \u001b[32m{device_platform}\u001b[0m")
+                print(f"Chipset          : \u001b[32m{processor}\u001b[0m")
+                print(f"Operating system : \u001b[32m{operating_system}\u001b[0m")
+                print(f"Build            : \u001b[32m{build}\u001b[0m\n")
+            
+            elif argument_count == 2 and user_command[1].lower() == "docs":
+                print("\u001b[0mDocumentation for command: SYS\u001b[0m")
+
+            else:
+                print("\u001b[31mInvalid argument(s)! Try typing 'sys docs' for it's usage information.\u001b[0m")
 
         elif user_command[0].lower() == "vdl":
 

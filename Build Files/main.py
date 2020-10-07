@@ -7,27 +7,19 @@ __version__ = "1.12Pre1"
 __license__ = "MIT"
 
 # Modules to import.
+import os
 import socket
-host_name = socket.gethostname()
-
 import random
 from datetime import datetime
 from fractions import Fraction
 import webbrowser
 import shutil
-
 import platform
-device_platform = platform.machine()
-processor = platform.processor()
-operating_system = platform.system()
-build = platform.version()
 
 import wget
 import youtube_dl
 from playsound import playsound
 from gtts import gTTS
-
-import os
 
 # Defining common functions.
 def windowcls():

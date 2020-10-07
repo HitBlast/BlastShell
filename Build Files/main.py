@@ -169,6 +169,11 @@ while True:
 
             elif argument_count == 2 and user_command[1].lower() == "docs":
                 print("\u001b[0mDocumentation for command: LS\u001b[0m")
+                print("\nDescription:")
+                print("    \u001b[33m?\u001b[0m This command is used to display the files and folders")
+                print("    \u001b[33m?\u001b[0m of current directory in a vertical list.")
+                print("\nUsage:")
+                print("    \u001b[32m>>>\u001b[0m ls")
 
             else:
                 print("\u001b[31mInvalid argument(s)! Try typing 'ls docs' for it's usage information.\u001b[0m")

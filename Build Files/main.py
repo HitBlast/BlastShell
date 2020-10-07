@@ -1050,13 +1050,19 @@ while True:
 
         elif user_command[0].lower() == "crdir":
 
-            try:
-                dir_name = input("\u001b[0mDirectory Name <> ")
-                os.mkdir(dir_name)
-                print("\u001b[0mDirectory created successfully!\u001b[0m")
+            if argument_count == 3:
 
-            except:
-                print("\u001b[31mDirectory name can't be empty!\u001b[0m")
+                if user_command[1].lower() == "make":
+                    os.mkdir(user_command[2])
+
+                elif user_command[1].lower() == "docs":
+                    print("\u001b[0mDocumentation for command: CRDIR\u001b[0m")
+
+                else:
+                    print("\u001b[31mInvalid argument(s)! Try typing 'crdir docs' for it's usage information.\u001b[0m")
+
+            else:
+                print("\u001b[31mInvalid argument(s)! Try typing 'crdir docs' for it's usage information.\u001b[0m")
 
         elif user_command[0].lower() == "del":
 

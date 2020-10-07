@@ -916,9 +916,17 @@ while True:
                 print("\u001b[31mInvalid argument(s)! Try typing 'speak docs' for it's usage information.\u001b[0m")
 
         elif user_command[0].lower() == "time":
-            now = datetime.now()
-            date_time = now.strftime("\u001b[0mDate: " + "%d/%m/%Y" + " | Time: " + "%H:%M:%S")
-            print(date_time)
+
+            if argument_count == 1:
+                now = datetime.now()
+                date_time = now.strftime("\u001b[0mDate: " + "%d/%m/%Y" + " | Time: " + "%H:%M:%S")
+                print(date_time)
+
+            elif argument_count == 2 and user_command[1].lower() == "docs":
+                print("\u001b[0mDocumentation for command: TIME\u001b[0m")
+
+            else:
+                print("\u001b[31mInvalid argument(s)! Try typing 'time docs' for it's usage information.\u001b[0m")
 
         elif user_command[0].lower() == "web":
             print("\u001b[0mWeb console enabled! Type 'help' to show executable commands.")

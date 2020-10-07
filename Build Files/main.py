@@ -1050,62 +1050,39 @@ while True:
 
         elif user_command[0].lower() == "crdir":
 
-            if argument_count == 3:
+            if argument_count == 3 and user_command[1].lower() == "make":
+                os.mkdir(user_command[2])
 
-                if user_command[1].lower() == "make":
-                    os.mkdir(user_command[2])
-
-                elif user_command[1].lower() == "docs":
-                    print("\u001b[0mDocumentation for command: CRDIR\u001b[0m")
-
-                else:
-                    print("\u001b[31mInvalid argument(s)! Try typing 'crdir docs' for it's usage information.\u001b[0m")
+            elif argument_count == 2 and user_command[1].lower() == "docs":
+                print("\u001b[0mDocumentation for command: CRDIR\u001b[0m")
 
             else:
                 print("\u001b[31mInvalid argument(s)! Try typing 'crdir docs' for it's usage information.\u001b[0m")
 
         elif user_command[0].lower() == "del":
 
-            while True:
-                filetype = input("\u001b[0mFile Type ('help' to see filetypes) <> ").lower().replace(" ", "")
+            if argument_count == 3:
 
-                if filetype == "help":
-                    print("CLEAR    Refreshes the screen.")
-                    print("DIR      Assigns file type as directory.")
-                    print("DOC      Assigns file type as document.")
-                    print("EXIT     Returns to home.\n\n")
-
-                elif filetype == "cls":
-                    windowcls()
-
-                elif filetype == "dir":
-                    mydir = input("Directory Path <> ")
-
+                if user_command[1].lower() == "fold":
                     try:
-                        shutil.rmtree(mydir)
-                        print("\u001b[0mDeleted directory successfully!\u001b[0m")
-                        break
+                        shutil.rmtree(user_command[2])
+                
+                    except:
+                        print("\u001b[31mDirectory not found, try again.\u001b[0m")
 
-                    except OSError:
-                        print("\u001b[31mDirectory not found, try again.\u001b[0m\n")
-
-                elif filetype == "doc":
-                    mydoc = input("File Path <> ")
-
-                    if os.path.isfile(mydoc):
-                        os.remove(mydoc)
-                        print("\u001b[0mDeleted file successfully!\u001b[0m")
-                        break
+                elif user_command[1].lower() == "file":
+                    if os.path.isfile(user_command[2]):
+                        os.remove(user_command[2])
 
                     else:
-                        print("\u001b[31mFile not found, try again.\u001b[0m\n")
+                        print("\u001b[31mFile not found, try again.\u001b[0m")
 
-                elif filetype == "exit":
-                    break
+            elif argument_count == 2 and user_command[1].lower() == "docs":
+                print("\u001b[0mDocumentation for command: DEL\u001b[0m")
 
-                else:
-                    print("\u001b[31mFile type / command not recognized! Type 'help' to show executable commands.\u001b[0m")
-
+            else:
+                print("\u001b[31mInvalid argument(s)! Try typing 'del docs' for it's usage information.\u001b[0m")
+   
         elif user_command[0].lower() == "sys":
             print(f"\u001b[0m\n\nDevice platform  : \u001b[32m{device_platform}\u001b[0m")
             print(f"Chipset          : \u001b[32m{processor}\u001b[0m")

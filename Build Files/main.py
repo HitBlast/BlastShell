@@ -1083,7 +1083,6 @@ while True:
             print("\u001b[0m")
 
             if argument_count == 3:
-
                 if user_command[1].lower() == "video":
                     try:
                         ydl_opts = {}
@@ -1116,7 +1115,7 @@ while True:
                         print("\u001b[0mVideo downloaded successfully!\u001b[0m")
 
                 else:
-                    print("\u001b[31mInvalid argument(s)! Try typing 'sys docs' for it's usage information.\u001b[0m")
+                    print("\u001b[31mInvalid argument(s)! Try typing 'vdl docs' for it's usage information.\u001b[0m")
 
         else:
             print("\u001b[31mWhoa! Command not found. Type 'help' to show executable commands.\u001b[0m")

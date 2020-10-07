@@ -130,6 +130,11 @@ while True:
 
             elif argument_count == 2 and user_command[1].lower() == "docs":
                 print("\u001b[0mDocumentation for command: EXIT\u001b[0m")
+                print("\nDescription:")
+                print("    \u001b[33m?\u001b[0m This command is used to exit the application or")
+                print("    \u001b[33m?\u001b[0m terminate it.")
+                print("\nUsage:")
+                print("    \u001b[32m>>>\u001b[0m exit")
 
             else:
                 print("\u001b[31mInvalid argument(s)! Try typing 'exit docs' for it's usage information.\u001b[0m")
@@ -142,6 +147,11 @@ while True:
 
             elif argument_count == 2 and user_command[1].lower() == "docs":
                 print("\u001b[0mDocumentation for command: REPO\u001b[0m")
+                print("\nDescription:")
+                print("    \u001b[33m?\u001b[0m This command is used to open the official GitHub")
+                print("    \u001b[33m?\u001b[0m repository of BlastShell.")
+                print("\nUsage:")
+                print("    \u001b[32m>>>\u001b[0m repo")
 
             else:
                 print("\u001b[31mInvalid argument(s)! Try typing 'repo docs' for it's usage information.\u001b[0m")
@@ -937,6 +947,9 @@ while True:
 
                 elif user_command[1].lower() == "open":
                     webbrowser.open(user_command[2], new=2)
+
+                else:
+                    print("\u001b[31mInvalid argument(s)! Try typing 'web docs' for it's usage information.\u001b[0m")
 
             elif argument_count == 4 and user_command[1].lower() == "dwl":
                 try:

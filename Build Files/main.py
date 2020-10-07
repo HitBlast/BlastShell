@@ -1043,6 +1043,8 @@ while True:
                     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
                         ydl.download([vidmain])
 
+            print("\u001b[0m")
+
             if argument_count == 3:
 
                 if user_command[1].lower() == "video":

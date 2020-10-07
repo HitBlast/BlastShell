@@ -1079,6 +1079,7 @@ while True:
                     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
                         ydl.download([vidmain])
 
+            vidmain = user_command[2]
             print("\u001b[0m")
 
             if argument_count == 3:
@@ -1086,7 +1087,6 @@ while True:
                 if user_command[1].lower() == "video":
                     try:
                         ydl_opts = {}
-                        vidmain = user_command[2]
                         dwl_vid()
 
                     except:
@@ -1106,7 +1106,6 @@ while True:
                                 'preferredquality': '192',
                             }],
                         }
-                        vidmain = user_command[2]
                         dwl_vid()
 
                     except:

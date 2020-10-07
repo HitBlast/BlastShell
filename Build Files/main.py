@@ -118,9 +118,15 @@ while True:
 
                 print("Type 'help' or 'about' for more information.")
                 print(__copyright__)
+                dir_path = os.getcwd()
 
             elif argument_count == 2 and user_command[1].lower() == "docs":
                 print("\u001b[0mDocumentation for command: BLAST\u001b[0m")
+                print("\nDescription:")
+                print("    \u001b[33m?\u001b[0m This command is used to start a new instance of BlastShell")
+                print("    \u001b[33m?\u001b[0m command line.")
+                print("\nUsage:")
+                print("    \u001b[32m>>>\u001b[0m blast")
 
             else:
                 print("\u001b[31mInvalid argument(s)! Try typing 'blast docs' for it's usage information.\u001b[0m")
@@ -187,6 +193,10 @@ while True:
 
                 if user_command[1].lower() == "docs":
                     print("\u001b[0mDocumentation for command: SHUTDOWN\u001b[0m")
+                    print("\nDescription:")
+                    print("    \u001b[33m?\u001b[0m This command is used to turn off the device.")
+                    print("\nUsage:")
+                    print("    \u001b[32m>>>\u001b[0m shutdown + <YES / NO>")
 
                 elif user_command[1].lower() == "yes":
                     print("\u001b[0mShutting down...\u001b[0m")
@@ -206,7 +216,11 @@ while True:
             if argument_count == 2:
 
                 if user_command[1].lower() == "docs":
-                    print("\u001b[0mDocumentation for command: restart\u001b[0m")
+                    print("\u001b[0mDocumentation for command: RESTART\u001b[0m")
+                    print("\nDescription:")
+                    print("    \u001b[33m?\u001b[0m This command is used to restart the device.")
+                    print("\nUsage:")
+                    print("    \u001b[32m>>>\u001b[0m restart + <YES / NO>")
 
                 elif user_command[1].lower() == "yes":
                     print("\u001b[0mRestarting...\u001b[0m")

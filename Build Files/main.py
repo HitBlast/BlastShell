@@ -1098,21 +1098,26 @@ while True:
                 print("\u001b[31mInvalid argument(s)! Try typing 'sys docs' for it's usage information.\u001b[0m")
 
         elif user_command[0].lower() == "vdl":
-
-            while True:
-                def dwl_vid():
+            def dwl_vid():
                     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
                         ydl.download([vidmain])
 
-                vidformat = input("\u001b[0mDownload As ('help' for commands) <> ").lower().replace(" ", "")
+            if argument_count == 3:
 
-                if vidformat == "help":
-                    print("AUDIO    Sets download format to audio.")
-                    print("EXIT     Returns to home.")
-                    print("VIDEO    Sets download format to video.")
+                if user_command[1].lower() == "video":
+                    try:
+                        ydl_opts = {}
+                        vidmain = user_command[2]
+                        dwl_vid()
 
-                elif vidformat == "audio":
+                    except:
+                        print("\u001b[31mUnexpected error occured! Try again after ensuring stable internet connection and a valid video link.\u001b[0m")
+                        break
 
+                    else:
+                        print("\u001b[0mVideo downloaded successfully!\u001b[0m")
+
+                elif user_command[1].lower() == "audio":
                     try:
                         ydl_opts = {
                             'format': 'bestaudio/best',
@@ -1122,37 +1127,7 @@ while True:
                                 'preferredquality': '192',
                             }],
                         }
-
-                        vidlink = input("Video link / URL <> ")
-                        vidmain = vidlink.strip()
-                        dwl_vid()
-                        
-                    except:
-                        print("\u001b[31mUnexpected error occured! Try again after ensuring stable internet connection and a valid video link.\u001b[0m")
-                        break
-
-                    else:
-                        print("\u001b[0mVideo successfully downloaded as audio.\u001b[0m")
-                        vdl_dwlagain = input("\nDownload another audio? (Yes / No) <> ").lower().replace(" ", "")
-
-                        if vdl_dwlagain == "yes":
-                            print("Looping again...")
-
-                        elif vdl_dwlagain == "no":
-                            break
-
-                        else:
-                            print("\u001b[31mUnknown action! Terminated process.\u001b[0m")
-
-                elif vidformat == "exit":
-                    break
-
-                elif vidformat == "video":
-
-                    try:
-                        ydl_opts = {}
-                        vidlink = input("Video link / URL <> ")
-                        vidmain = vidlink.strip()
+                        vidmain = user_command[2]
                         dwl_vid()
 
                     except:
@@ -1161,19 +1136,9 @@ while True:
 
                     else:
                         print("\u001b[0mVideo downloaded successfully!\u001b[0m")
-                        vdl_dwlagain = input("\nDownload another video? (Yes / No) <> ").lower().replace(" ", "")
-
-                        if vdl_dwlagain == "yes":
-                            print("Looping again...")
-
-                        elif vdl_dwlagain == "no":
-                            break
-
-                        else:
-                            print("\u001b[31mUnknown action! Terminated process.\u001b[0m")
 
                 else:
-                    print("\u001b[31mFormat not recognised! Type either video or audio for format selection.\u001b[0m\n")
+                    print("\u001b[31mInvalid argument(s)! Try typing 'sys docs' for it's usage information.\u001b[0m")
 
         else:
             print("\u001b[31mWhoa! Command not found. Type 'help' to show executable commands.\u001b[0m")

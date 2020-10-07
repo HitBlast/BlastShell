@@ -929,108 +929,124 @@ while True:
                 print("\u001b[31mInvalid argument(s)! Try typing 'time docs' for it's usage information.\u001b[0m")
 
         elif user_command[0].lower() == "web":
-            print("\u001b[0mWeb console enabled! Type 'help' to show executable commands.")
 
-            while True:
-                web_command = input("\u001b[0m\nWeb> ").lower().replace(" ", "")
+            if argument_count == 1:
+                print("\u001b[0mWeb console enabled! Type 'help' to show executable commands.")
 
-                if web_command == "help":
-                    print("\n\nCLEAR    Refreshes the screen.")
-                    print("CSITE    Opens a custom webpage given by user.")
-                    print("DWL      Downloads a file from a specific URL.")
-                    print("EXIT     Closes web console.")
-                    print("SEARCH   Searches the web for a particular object given by user.")
-                    print("SITES    Shows a list of popular sites to open.\n")
+                while True:
+                    web_command = input("\u001b[0m\nWeb> ").lower().replace(" ", "")
 
-                elif web_command == "dwl":
-                    dwl_url = input("File URL <> ")
-                    dwl_path = input("File Name <> ")
+                    if web_command == "help":
+                        print("\n\nCLEAR    Refreshes the screen.")
+                        print("CSITE    Opens a custom webpage given by user.")
+                        print("DWL      Downloads a file from a specific URL.")
+                        print("EXIT     Closes web console.")
+                        print("SEARCH   Searches the web for a particular object given by user.")
+                        print("SITES    Shows a list of popular sites to open.\n")
 
-                    try:
-                        print(f"\nPath: \u001b[33m{dir_path}\u001b[0m")
-                        print("Download started!\n")
-                        wget.download(dwl_url, dwl_path)
+                    elif web_command == "dwl":
+                        dwl_url = input("File URL <> ")
+                        dwl_path = input("File Name <> ")
 
-                    except:
-                        print("\u001b[31mUnexpected error occured! Please check if the link is valid and you have stable internet connection.\u001b[0m")
+                        try:
+                            print(f"\nPath: \u001b[33m{dir_path}\u001b[0m")
+                            print("Download started!\n")
+                            wget.download(dwl_url, dwl_path)
 
-                    else:
-                        print("\u001b[0mDownloaded file successfully!\u001b[0m")
-
-                elif web_command == "csite":
-                    website = input("Website Link / URL <> ")
-                    webbrowser.open(website, new=2)
-                    print("\u001b[0mWeb page opened successfully!\u001b[0m")
-
-                elif web_command == "search":
-                    search_topic = input("Search <> ")
-                    website = "https://www.google.com/search?q=" + search_topic
-                    webbrowser.open(website, new=2)
-                    print(f"Showing results found for \u001b[33m'{search_topic}'\u001b[0m.")
-
-                elif web_command == "exit":
-                    break
-
-                elif web_command == "cls":
-                    windowcls()
-
-                elif web_command == "sites":
-
-                    while True:
-                        print("\n\nEnter site name in-line to open.\n")
-                        print("1  YouTube")
-                        print("2  Facebook")
-                        print("3  Wikipedia")
-                        print("4  Google")
-                        print("5  LinkedIn")
-                        print("6  GitHub\n\n")
-                        print("7  Amazon")
-
-                        sites_execute = input("Site Name <> ").lower().replace(" ", "")
-
-                        if "youtube" in sites_execute:
-                            webbrowser.open('www.youtube.com', new=2)
-                            print("\u001b[0mWeb page opened successfully!\u001b[0m")
-                            break
-
-                        elif "facebook" in sites_execute:
-                            webbrowser.open('www.facebook.com', new=2)
-                            print("\u001b[0mWeb page opened successfully!\u001b[0m")
-                            break
-
-                        elif "wikipedia" in sites_execute:
-                            webbrowser.open('www.wikipedia.org', new=2)
-                            print("\u001b[0mWeb page opened successfully!\u001b[0m")
-                            break
-
-                        elif "google" in sites_execute:
-                            webbrowser.open('www.google.com', new=2)
-                            print("\u001b[0mWeb page opened successfully!\u001b[0m")
-                            break
-
-                        elif "linkedin" in sites_execute:
-                            webbrowser.open('www.linkedin.com', new=2)
-                            print("\u001b[0mWeb page opened successfully!\u001b[0m")
-                            break
-
-                        elif "github" in sites_execute:
-                            webbrowser.open('www.github.com', new=2)
-                            print("\u001b[0mWeb page opened successfully!\u001b[0m")
-                            break
-
-                        elif "amazon" in sites_execute:
-                            webbrowser.open('www.amazon.com', new=2)
-                            print("\u001b[0mWeb page opened successfully!\u001b[0m")
-                            break
+                        except:
+                            print("\u001b[31mUnexpected error occured! Please check if the link is valid and you have stable internet connection.\u001b[0m")
 
                         else:
-                            print("\u001b[31mWebsite didn't found in list, try again!\u001b[0m")
+                            print("\u001b[0mDownloaded file successfully!\u001b[0m")
 
-                else:
-                    print("\u001b[31mWhoa! Command not found. Type 'help' to show executable commands.\u001b[0m")
+                    elif web_command == "csite":
+                        website = input("Website Link / URL <> ")
+                        webbrowser.open(website, new=2)
+                        print("\u001b[0mWeb page opened successfully!\u001b[0m")
+
+                    elif web_command == "search":
+                        search_topic = input("Search <> ")
+                        website = "https://www.google.com/search?q=" + search_topic
+                        webbrowser.open(website, new=2)
+                        print(f"Showing results found for \u001b[33m'{search_topic}'\u001b[0m.")
+
+                    elif web_command == "exit":
+                        break
+
+                    elif web_command == "cls":
+                        windowcls()
+
+                    elif web_command == "sites":
+
+                        while True:
+                            print("\n\nEnter site name in-line to open.\n")
+                            print("1  YouTube")
+                            print("2  Facebook")
+                            print("3  Wikipedia")
+                            print("4  Google")
+                            print("5  LinkedIn")
+                            print("6  GitHub\n\n")
+                            print("7  Amazon")
+
+                            sites_execute = input("Site Name <> ").lower().replace(" ", "")
+
+                            if "youtube" in sites_execute:
+                                webbrowser.open('www.youtube.com', new=2)
+                                print("\u001b[0mWeb page opened successfully!\u001b[0m")
+                                break
+
+                            elif "facebook" in sites_execute:
+                                webbrowser.open('www.facebook.com', new=2)
+                                print("\u001b[0mWeb page opened successfully!\u001b[0m")
+                                break
+
+                            elif "wikipedia" in sites_execute:
+                                webbrowser.open('www.wikipedia.org', new=2)
+                                print("\u001b[0mWeb page opened successfully!\u001b[0m")
+                                break
+
+                            elif "google" in sites_execute:
+                                webbrowser.open('www.google.com', new=2)
+                                print("\u001b[0mWeb page opened successfully!\u001b[0m")
+                                break
+
+                            elif "linkedin" in sites_execute:
+                                webbrowser.open('www.linkedin.com', new=2)
+                                print("\u001b[0mWeb page opened successfully!\u001b[0m")
+                                break
+
+                            elif "github" in sites_execute:
+                                webbrowser.open('www.github.com', new=2)
+                                print("\u001b[0mWeb page opened successfully!\u001b[0m")
+                                break
+
+                            elif "amazon" in sites_execute:
+                                webbrowser.open('www.amazon.com', new=2)
+                                print("\u001b[0mWeb page opened successfully!\u001b[0m")
+                                break
+
+                            else:
+                                print("\u001b[31mWebsite didn't found in list, try again!\u001b[0m")
+
+                    else:
+                        print("\u001b[31mWhoa! Command not found. Type 'help' to show executable commands.\u001b[0m")
+
+            elif argument_count == 2 and user_command[1].lower() == "docs":
+                print("\u001b[0mDocumentation for command: WEB\u001b[0m")
+
+            else:
+                print("\u001b[31mInvalid argument(s)! Try typing 'web docs' for it's usage information.\u001b[0m")
 
         elif user_command[0].lower() == "clear":
-            windowcls()
+
+            if argument_count == 1:
+                windowcls()
+
+            elif argument_count == 2 and user_command[1].lower() == "docs":
+                print("\u001b[0mDocumentation for command: CLEAR\u001b[0m")
+
+            else:
+                print("\u001b[31mInvalid argument(s)! Try typing 'clear docs' for it's usage information.\u001b[0m")
 
         elif user_command[0].lower() == "crdir":
 

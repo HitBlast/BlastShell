@@ -1067,6 +1067,11 @@ while True:
 
             elif argument_count == 2 and user_command[1].lower() == "docs":
                 print("\u001b[0mDocumentation for command: CLEAR\u001b[0m")
+                print("\nDescription:")
+                print("    \u001b[33m?\u001b[0m This command is used to clear or refresh the program")
+                print("    \u001b[33m?\u001b[0m window.")
+                print("\nUsage:")
+                print("    \u001b[32m>>>\u001b[0m clear")
 
             else:
                 print("\u001b[31mInvalid argument(s)! Try typing 'clear docs' for it's usage information.\u001b[0m")

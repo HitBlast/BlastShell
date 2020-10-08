@@ -15,6 +15,7 @@ from fractions import Fraction
 import webbrowser
 import shutil
 import platform
+from gtts.tts import gTTSError
 
 import wget
 import youtube_dl
@@ -328,12 +329,13 @@ while True:
                         print(f"\n{file_contents}")
 
                 elif user_command[1].lower() == "make":
+                    file_name = user_command[2].replace("_", " ")
                     
-                    if os.path.isfile(user_command[2].replace("_", " ")):
+                    if os.path.isfile(file_name):
                         print("\u001b[31mFile already exists!\u001b[0m")
                         
                     else:
-                        with open(user_command[2].replace("_", " "), "w+") as file:
+                        with open(file_name, "w+") as file:
                             file_text = input("\u001b[0mText <> ")
                             file.write(file_text)
 
@@ -948,35 +950,49 @@ while True:
 
         elif user_command[0].lower() == "speak":
 
-            if argument_count == 3:
+            if argument_count >= 3 and argument_count <= 4:
                 def tts_action_start(text):
-                    tts_filename = "blastshell-speak-" + str(random.randint(1, 100)) + ".mp3"
                     tts = gTTS(text)
 
                     if user_command[1].lower() == "say":
-                        tts.save(tts_filename)
-                        playsound(tts_filename)
-                        os.remove(tts_filename)
+                        file_name = "blastshell-speak-" + str(random.randint(1, 100)) + ".mp3"
+                        tts.save(file_name)
+                        playsound(file_name)
+                        os.remove(file_name)
 
                     elif user_command[1].lower() == "save":
-                        tts.save(tts_filename)
-                        print("\u001b[0mSuccessfully converted text to speech and saved in current directory.\u001b[0m")
+                        file_name = user_command[3].replace("_", " ")
+                        try:
+                            tts.save(user_command[3])
+
+                        except FileExistsError:
+                            print("\u001b[31mFile already exists! Try again with a different file name.\u001b[0m")
+
+                        except IndexError:
+                            print("\u001b[31mInvalid argument(s)! Try typing 'speak docs' for it's usage information.\u001b[0m")
+                            
+                        else:
+                            print(f"\u001b[0mSuccessfully converted text to speech and saved as \u001b[33m{user_command[3]}\u001b[0m.")
 
                     else:
                         print("\u001b[31mInvalid argument(s)! Try typing 'speak docs' for it's usage information.\u001b[0m")
 
                 speech_text = user_command[2].replace("_", "")
-                tts_action_start(speech_text)
+                try:
+                    tts_action_start(speech_text)
+
+                except gTTSError:
+                    print("\u001b[31mUnexpected error occured during code execution! Make sure that you have stable internet connection and try again.\u001b[0m")
 
             elif argument_count == 2 and user_command[1].lower() == "docs":
                 print("\u001b[0mDocumentation for command: SPEAK\u001b[0m")
                 print("\nDescription:")
                 print("    \u001b[33m?\u001b[0m This command is used to convert text into speech.")
-                print("\nUsage:")
-                print("    \u001b[32m>>>\u001b[0m speak + <SAY / SAVE> + <ENTER_TEXT_HERE>")
-                print("    \u001b[31m#\u001b[0m Make sure to replace spaces in text with underscores (_),")
-                print("    \u001b[31m#\u001b[0m or the program may return an error.")
-
+                print("\nArguments and usage:")
+                print("    \u001b[33m$\u001b[0m SAY - Converts text to speech and starts speaking it.")
+                print("        \u001b[32m>>>\u001b[0m speak + say + [ENTER_TEXT_HERE]")
+                print("    \u001b[33m$\u001b[0m SAVE - Converts text to speech and saves it.")
+                print("        \u001b[32m>>>\u001b[0m speak + save + [ENTER_TEXT_HERE] + [ENTER_FILE_NAME_HERE]")
 
             else:
                 print("\u001b[31mInvalid argument(s)! Try typing 'speak docs' for it's usage information.\u001b[0m")
@@ -990,6 +1006,10 @@ while True:
 
             elif argument_count == 2 and user_command[1].lower() == "docs":
                 print("\u001b[0mDocumentation for command: TIME\u001b[0m")
+                print("\nDescription:")
+                print("    \u001b[33m?\u001b[0m This command is used to display current date and time.")
+                print("\nUsage:")
+                print("    \u001b[32m>>>\u001b[0m time")
 
             else:
                 print("\u001b[31mInvalid argument(s)! Try typing 'time docs' for it's usage information.\u001b[0m")
@@ -1021,7 +1041,19 @@ while True:
 
             elif argument_count == 2 and user_command[1].lower() == "docs":
                 print("\u001b[0mDocumentation for command: WEB\u001b[0m")
-
+                print("\nDescription:")
+                print("    \u001b[33m?\u001b[0m This command is used to execute web-based tasks from")
+                print("    \u001b[33m?\u001b[0m within the command line. It's a group of sub-commands.")
+                print("\nArguments and usage:")
+                print("    \u001b[33m$\u001b[0m DWL - Downloads files from the web.")
+                print("        \u001b[32m>>>\u001b[0m web + dwl + [ENTER_FILE_URL_HERE] + [ENTER_FILE_NAME_HERE]")
+                print("    \u001b[33m$\u001b[0m SEARCH - Searches the web for a particular topic.")
+                print("        \u001b[32m>>>\u001b[0m web + search + [ENTER_TOPIC_HERE]")
+                print("        \u001b[31m#\u001b[0m Make sure to replace spaces in search topics with underscores (_),")
+                print("        \u001b[31m#\u001b[0m or the program may return an error.")
+                print("    \u001b[33m$\u001b[0m OPEN - Opens a particular URL in a new browser window.")
+                print("        \u001b[32m>>>\u001b[0m web + open + [ENTER_URL_HERE]")
+                
             else:
                 print("\u001b[31mInvalid argument(s)! Try typing 'web docs' for it's usage information.\u001b[0m")
 

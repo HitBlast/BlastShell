@@ -1085,8 +1085,10 @@ while True:
                 print("\u001b[0mDocumentation for command: CRDIR\u001b[0m")
                 print("\nDescription:")
                 print("    \u001b[33m?\u001b[0m This command is used to create folders.")
+                print("\nArguments:")
+                print("    \u001b[33m$\u001b[0m MAKE - Creates folders.")
                 print("\nUsage:")
-                print("    \u001b[32m>>>\u001b[0m crdir + make + [ENTER_FOLDER_NAME_HERE]")
+                print("    \u001b[32m>>>\u001b[0m crdir + [ENTER_ARGUMENT_HERE] + [ENTER_FOLDER_NAME_HERE]")
 
             else:
                 print("\u001b[31mInvalid argument(s)! Try typing 'crdir docs' for it's usage information.\u001b[0m")

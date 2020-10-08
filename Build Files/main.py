@@ -256,7 +256,7 @@ while True:
                     print("    \u001b[33m?\u001b[0m This command is used to change the current directory")
                     print("    \u001b[33m?\u001b[0m the program is working on.")
                     print("\nUsage:")
-                    print("    \u001b[32m>>>\u001b[0m chpath + <ENTER_NEW_PATH_HERE>")
+                    print("    \u001b[32m>>>\u001b[0m chpath + [ENTER_NEW_PATH_HERE]")
                     print("    \u001b[31m#\u001b[0m Make sure to fill the spaces of directory paths with")
                     print("    \u001b[31m#\u001b[0m underscores (_) or the program may return an error.")
 
@@ -308,8 +308,11 @@ while True:
                 print("\nDescription:")
                 print("    \u001b[33m?\u001b[0m This command is used to create files with or without")
                 print("    \u001b[33m?\u001b[0m text inside them.")
+                print("\nArguments:")
+                print("    \u001b[33m$\u001b[0m READ - Reads a file.")
+                print("    \u001b[33m$\u001b[0m MAKE - Creates a file.")
                 print("\nUsage:")
-                print("    \u001b[32m>>>\u001b[0m tbuild + <READ / MAKE> + <ENTER_FILE_NAME_HERE>")
+                print("    \u001b[32m>>>\u001b[0m tbuild + [ENTER_ARGUMENT_HERE] + [ENTER_FILE_NAME_HERE]")
                 print("    \u001b[31m#\u001b[0m Make sure to replace spaces in file names with")
                 print("    \u001b[31m#\u001b[0m underscores (_), or the program may return an error.")
 

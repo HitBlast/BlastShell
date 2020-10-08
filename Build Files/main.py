@@ -75,7 +75,9 @@ while True:
             print("LinkedIn          [] www.linkedin.com/in/shiddharth-codes\n\n")
 
         elif user_command[0].lower() == "help":
-            print("\u001b[0m\n\nBLAST      Starts a new instance of the BlastShell command line.")
+            print("\u001b[33m\n\n?\u001b[0m Type '[YOUR_COMMAND] + docs' for more information about that particular")
+            print("\u001b[33m?\u001b[0m command.\n")
+            print("BLAST      Starts a new instance of the BlastShell command line.")
             print("CLEAR      Refreshes the screen.")
             print("CRDIR      Creates a directory.")
             print("CHPATH     Displays current working directory and changes it.")
@@ -308,7 +310,7 @@ while True:
                 print("\nUsage:")
                 print("    \u001b[32m>>>\u001b[0m tbuild + <READ / MAKE> + <ENTER_FILE_NAME_HERE>")
                 print("    \u001b[31m#\u001b[0m Make sure to replace spaces in file names with")
-                print("    \u001b[31m#\u001b[0m hyphens (-).")
+                print("    \u001b[31m#\u001b[0m hyphens (-), or the program may return an error.")
 
             elif argument_count == 3:
 

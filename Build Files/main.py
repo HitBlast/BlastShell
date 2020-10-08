@@ -1112,7 +1112,14 @@ while True:
                         print("\u001b[31mFile not found, try again.\u001b[0m")
 
             elif argument_count == 2 and user_command[1].lower() == "docs":
-                print("\u001b[0mDocumentation for command: DEL\u001b[0m")
+                print("\u001b[0mDocumentation for command: CLEAR\u001b[0m")
+                print("\nDescription:")
+                print("    \u001b[33m?\u001b[0m This command is used to delete files and folders.")
+                print("\nArguments:")
+                print("    \u001b[33m$\u001b[0m FILE - Assigns object as a file.")
+                print("    \u001b[33m$\u001b[0m FOLD - Assigns object as a folder.")
+                print("\nUsage:")
+                print("    \u001b[32m>>>\u001b[0m del + [ENTER_ARGUMENT_HERE] + [ENTER_FILE_NAME_HERE]")
 
             else:
                 print("\u001b[31mInvalid argument(s)! Try typing 'del docs' for it's usage information.\u001b[0m")
@@ -1127,6 +1134,10 @@ while True:
             
             elif argument_count == 2 and user_command[1].lower() == "docs":
                 print("\u001b[0mDocumentation for command: SYS\u001b[0m")
+                print("\nDescription:")
+                print("    \u001b[33m?\u001b[0m This command is used to display system configuration.")
+                print("\nUsage:")
+                print("    \u001b[32m>>>\u001b[0m sys")
 
             else:
                 print("\u001b[31mInvalid argument(s)! Try typing 'sys docs' for it's usage information.\u001b[0m")
@@ -1170,6 +1181,16 @@ while True:
 
                     else:
                         print("\u001b[0mVideo downloaded successfully!\u001b[0m")
+
+                elif argument_count == 2 and user_command[1].lower() == "docs":
+                    print("\u001b[0mDocumentation for command: VDL\u001b[0m")
+                    print("\nDescription:")
+                    print("    \u001b[33m?\u001b[0m This command is used to download videos from the web.")
+                    print("\nArguments:")
+                    print("    \u001b[33m$\u001b[0m VIDEO - Downloads object as video.")
+                    print("    \u001b[33m$\u001b[0m AUDIO - Downloads object as audio.")
+                    print("\nUsage:")
+                    print("    \u001b[32m>>>\u001b[0m vdl + [ENTER_ARGUMENT_HERE] + [ENTER_VIDEO_URL_HERE]")
 
                 else:
                     print("\u001b[31mInvalid argument(s)! Try typing 'vdl docs' for it's usage information.\u001b[0m")

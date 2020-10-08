@@ -937,7 +937,12 @@ while True:
 
             elif argument_count == 2 and user_command[1].lower() == "docs":
                 print("\u001b[0mDocumentation for command: MATH\u001b[0m")
-
+                print("\nDescription:")
+                print("    \u001b[33m?\u001b[0m This command is used to solve mathematical problems")
+                print("    \u001b[33m?\u001b[0m from within the command line.")
+                print("\nUsage:")
+                print("    \u001b[32m>>>\u001b[0m math + <HELP [TYPE_IT_TO_SEE_COMMANDS]>")
+                
             else:
                 print("\u001b[31mInvalid argument(s)! Try typing 'math docs' for it's usage information.\u001b[0m")
 

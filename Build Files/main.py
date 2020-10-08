@@ -15,12 +15,12 @@ from fractions import Fraction
 import webbrowser
 import shutil
 import platform
-from gtts.tts import gTTSError
 
 import wget
 import youtube_dl
 from playsound import playsound
 from gtts import gTTS
+from gtts.tts import gTTSError
 
 # Defining common functions.
 def windowcls():

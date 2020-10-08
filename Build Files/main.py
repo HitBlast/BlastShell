@@ -257,10 +257,10 @@ while True:
                     print("\nUsage:")
                     print("    \u001b[32m>>>\u001b[0m chpath + <ENTER_NEW_PATH_HERE>")
                     print("    \u001b[31m#\u001b[0m Make sure to fill the spaces of directory paths with")
-                    print("    \u001b[31m#\u001b[0m hyphens (-) or the program may return an error.")
+                    print("    \u001b[31m#\u001b[0m underscores (_) or the program may return an error.")
 
                 else:
-                    new_dir_path = user_command[1].replace("-", " ")
+                    new_dir_path = user_command[1].replace("_", " ")
                     try:
                         os.chdir(new_dir_path)
 
@@ -310,13 +310,13 @@ while True:
                 print("\nUsage:")
                 print("    \u001b[32m>>>\u001b[0m tbuild + <READ / MAKE> + <ENTER_FILE_NAME_HERE>")
                 print("    \u001b[31m#\u001b[0m Make sure to replace spaces in file names with")
-                print("    \u001b[31m#\u001b[0m hyphens (-), or the program may return an error.")
+                print("    \u001b[31m#\u001b[0m underscores (_), or the program may return an error.")
 
             elif argument_count == 3:
 
                 if user_command[1].lower() == "read":
                     try:
-                        file_name = user_command[2].replace("-", " ")
+                        file_name = user_command[2].replace("_", " ")
                         file = open(file_name, "r")
                         file_contents = file.read()
 
@@ -329,11 +329,11 @@ while True:
 
                 elif user_command[1].lower() == "make":
                     
-                    if os.path.isfile(user_command[2].replace("-", " ")):
+                    if os.path.isfile(user_command[2].replace("_", " ")):
                         print("\u001b[31mFile already exists!\u001b[0m")
                         
                     else:
-                        with open(user_command[2].replace("-", " "), "w+") as file:
+                        with open(user_command[2].replace("_", " "), "w+") as file:
                             file_text = input("\u001b[0mText <> ")
                             file.write(file_text)
 
@@ -948,30 +948,35 @@ while True:
 
         elif user_command[0].lower() == "speak":
 
-            if argument_count == 1:
+            if argument_count == 3:
                 def tts_action_start(text):
                     tts_filename = "blastshell-speak-" + str(random.randint(1, 100)) + ".mp3"
                     tts = gTTS(text)
-                    
-                    speech_action = input("Action (Speak / Save) <> ").lower().replace(" ", "")
 
-                    if speech_action == "speak":
+                    if user_command[1].lower() == "say":
                         tts.save(tts_filename)
                         playsound(tts_filename)
                         os.remove(tts_filename)
 
-                    elif speech_action == "save":
+                    elif user_command[1].lower() == "save":
                         tts.save(tts_filename)
                         print("\u001b[0mSuccessfully converted text to speech and saved in current directory.\u001b[0m")
 
                     else:
-                        print("\u001b[31mUnknown action! Try typing either 'Speak' or 'Save'.\u001b[0m")
+                        print("\u001b[31mInvalid argument(s)! Try typing 'speak docs' for it's usage information.\u001b[0m")
 
-                speech_text = input("\u001b[0mText to speak <> ")
+                speech_text = user_command[2].replace("_", "")
                 tts_action_start(speech_text)
 
             elif argument_count == 2 and user_command[1].lower() == "docs":
                 print("\u001b[0mDocumentation for command: SPEAK\u001b[0m")
+                print("\nDescription:")
+                print("    \u001b[33m?\u001b[0m This command is used to convert text into speech.")
+                print("\nUsage:")
+                print("    \u001b[32m>>>\u001b[0m speak + <SAY / SAVE> + <ENTER_TEXT_HERE>")
+                print("    \u001b[31m#\u001b[0m Make sure to replace spaces in text with underscores (_),")
+                print("    \u001b[31m#\u001b[0m or the program may return an error.")
+
 
             else:
                 print("\u001b[31mInvalid argument(s)! Try typing 'speak docs' for it's usage information.\u001b[0m")
@@ -993,7 +998,7 @@ while True:
 
             if argument_count == 3:
                 if user_command[1].lower() == "search":
-                    search_topic = user_command[2].replace("-", " ")
+                    search_topic = user_command[2].replace("_", " ")
                     webbrowser.open(("https://www.google.com/search?q=" + search_topic), new=2)
 
                 elif user_command[1].lower() == "open":

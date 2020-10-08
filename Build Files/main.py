@@ -191,7 +191,7 @@ while True:
                     print("\nDescription:")
                     print("    \u001b[33m?\u001b[0m This command is used to turn off the device.")
                     print("\nUsage:")
-                    print("    \u001b[32m>>>\u001b[0m shutdown + <YES / NO>")
+                    print("    \u001b[32m>>>\u001b[0m shutdown + <YES / NO [TYPE_THEM_TO_CONFIRM_OR_ABORT_SHUTDOWN]>")
 
                 elif user_command[1].lower() == "yes":
                     print("\u001b[0mShutting down...\u001b[0m")
@@ -215,7 +215,7 @@ while True:
                     print("\nDescription:")
                     print("    \u001b[33m?\u001b[0m This command is used to restart the device.")
                     print("\nUsage:")
-                    print("    \u001b[32m>>>\u001b[0m restart + <YES / NO>")
+                    print("    \u001b[32m>>>\u001b[0m restart + <YES / NO [TYPE_THEM_TO_CONFIRM_OR_ABORT_RESTART]>")
 
                 elif user_command[1].lower() == "yes":
                     print("\u001b[0mRestarting...\u001b[0m")
@@ -945,8 +945,11 @@ while True:
                 print("\nDescription:")
                 print("    \u001b[33m?\u001b[0m This command is used to solve mathematical problems")
                 print("    \u001b[33m?\u001b[0m from within the command line.")
+                print("\nArguments:")
+                print("    \u001b[33m$\u001b[0m HELP - Shows usable commands.")
                 print("\nUsage:")
-                print("    \u001b[32m>>>\u001b[0m math + <HELP [TYPE_IT_TO_SEE_COMMANDS]>")
+                print("    \u001b[32m>>>\u001b[0m math")
+                print("    Math\u001b[32m>\u001b[0m help [TYPE_IT_TO_SEE_COMMANDS]")
                 
             else:
                 print("\u001b[31mInvalid argument(s)! Try typing 'math docs' for it's usage information.\u001b[0m")
@@ -1116,8 +1119,8 @@ while True:
                 print("\nDescription:")
                 print("    \u001b[33m?\u001b[0m This command is used to delete files and folders.")
                 print("\nArguments:")
-                print("    \u001b[33m$\u001b[0m FILE - Assigns object as a file.")
-                print("    \u001b[33m$\u001b[0m FOLD - Assigns object as a folder.")
+                print("    \u001b[33m$\u001b[0m FILE - Assigns object as file.")
+                print("    \u001b[33m$\u001b[0m FOLD - Assigns object as folder.")
                 print("\nUsage:")
                 print("    \u001b[32m>>>\u001b[0m del + [ENTER_ARGUMENT_HERE] + [ENTER_FILE_NAME_HERE]")
 

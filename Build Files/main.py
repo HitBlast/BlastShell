@@ -302,12 +302,19 @@ while True:
 
             if argument_count == 2 and user_command[1].lower() == "docs":
                 print("\u001b[0mDocumentation for command: TBUILD\u001b[0m")
+                print("\nDescription:")
+                print("    \u001b[33m?\u001b[0m This command is used to create files with or without")
+                print("    \u001b[33m?\u001b[0m text inside them.")
+                print("\nUsage:")
+                print("    \u001b[32m>>>\u001b[0m tbuild + <READ / MAKE> + <ENTER_FILE_NAME_HERE>")
+                print("    \u001b[31m#\u001b[0m Make sure to replace spaces in file names with")
+                print("    \u001b[31m#\u001b[0m hyphens (-).")
 
             elif argument_count == 3:
 
                 if user_command[1].lower() == "read":
                     try:
-                        file_name = user_command[2]
+                        file_name = user_command[2].replace("-", " ")
                         file = open(file_name, "r")
                         file_contents = file.read()
 
@@ -320,11 +327,11 @@ while True:
 
                 elif user_command[1].lower() == "make":
                     
-                    if os.path.isfile(user_command[2]):
+                    if os.path.isfile(user_command[2].replace("-", " ")):
                         print("\u001b[31mFile already exists!\u001b[0m")
                         
                     else:
-                        with open(user_command[2], "w+") as file:
+                        with open(user_command[2].replace("-", " "), "w+") as file:
                             file_text = input("\u001b[0mText <> ")
                             file.write(file_text)
 

@@ -354,9 +354,9 @@ while True:
                 print("\u001b[0mMathematics console enabled! Type 'help' to show executable commands.")
 
                 while True:
-                    math_command = input("\u001b[0m\nMath> ").lower().replace(" ", "")
+                    math_command = input("\u001b[0m\nMath> ").split()
 
-                    if math_command == "help":
+                    if math_command[0].lower() == "help":
                         print("\n\nADD        Adds value(s) together.")
                         print("AGECONV    Converts age from traditional 'years' format to days, hours and")
                         print("           minutes.")
@@ -380,10 +380,10 @@ while True:
                         print("SUB        Subtracts value(s) from other one(s).")
                         print("XQ         Modify a number with a to-the-power value.\n")
 
-                    elif math_command == "exit":
+                    elif math_command[0].lower() == "exit":
                         break
 
-                    elif math_command == "mem":
+                    elif math_command[0].lower() == "mem":
                         
                         if math_mem == 0:
                             math_mem_status = "[Empty]"
@@ -393,14 +393,14 @@ while True:
 
                         print(f"Stored value = \u001b[33m{math_mem}\u001b[0m {math_mem_status}")
 
-                    elif math_command == "memcls":
+                    elif math_command[0].lower() == "memcls":
                         math_mem -= math_mem
                         print("Cleared math memory!")
 
-                    elif math_command == "clear":
+                    elif math_command[0].lower() == "clear":
                         windowcls()
 
-                    elif math_command == "factor":
+                    elif math_command[0].lower() == "factor":
                         num = int(input("Value <> "))
                         num_factors = []
 
@@ -410,7 +410,7 @@ while True:
 
                         print("Factors of " + str(num) + " = \u001b[32m" + str(num_factors).replace("[", "").replace("]", "") + "\u001b[0m")
 
-                    elif math_command == "numcent":
+                    elif math_command[0].lower() == "numcent":
                         def numcent(num1, num2):
                             num1 = float(num1)
                             num2 = float(num2)
@@ -431,7 +431,7 @@ while True:
                         else:
                             print(f"Result = \u001b[32m{sum}%\u001b[0m")
 
-                    elif math_command == "numsort":
+                    elif math_command[0].lower() == "numsort":
                         value_num = 0
                         list_num = [] 
 
@@ -481,7 +481,7 @@ while True:
                             else:
                                 print("\u001b[31mSort order invalid! Try either 'Ascending' or 'Descending'.\u001b[0m")
 
-                    elif math_command == "ageconv":
+                    elif math_command[0].lower() == "ageconv":
                 
                         try:
                             math_user_age_inyears = float(input("Age (In Years) <> "))
@@ -502,7 +502,7 @@ while True:
                             print(f"Hours   : \u001b[32m{math_user_age_inhours}\u001b[0m hours.")
                             print(f"Minutes : \u001b[32m{math_user_age_inminutes}\u001b[0m minutes.\n")
 
-                    elif math_command == "numgen":
+                    elif math_command[0].lower() == "numgen":
 
                         try:
                             gen_minvalue = float(input("Minimum Value <> "))
@@ -530,7 +530,7 @@ while True:
                             else:
                                 print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.\u001b[0m")
 
-                    elif math_command == "profloss":
+                    elif math_command[0].lower() == "profloss":
 
                         try:
                             buy_value = float(input("Purchase Value <> "))
@@ -575,7 +575,7 @@ while True:
                             else:
                                 print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.\u001b[0m")
 
-                    elif math_command == "pi":
+                    elif math_command[0].lower() == "pi":
                         pi_value = 3.1415926535897932384626433832
 
                         if math_mem == 0:
@@ -693,7 +693,7 @@ while True:
                             else:
                                 print("\u001b[31mAction not found! Try something predefined.\u001b[0m")
 
-                    elif math_command == "numfraq":
+                    elif math_command[0].lower() == "numfraq":
 
                         try:
                             convfraq_num = float(input("Value <> "))
@@ -707,7 +707,7 @@ while True:
                         else:
                             print(f"Fraction = \u001b[32m{Fraction(convfraq_num)}\u001b[0m")
 
-                    elif math_command == "xq":
+                    elif math_command[0].lower() == "xq":
                         def xq(x, y):
                             return x ** y
                         
@@ -737,7 +737,7 @@ while True:
                             else:
                                 print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.\u001b[0m")
 
-                    elif math_command == "cube":
+                    elif math_command[0].lower() == "cube":
                         def cube(x):
                             return x ** 3
                         
@@ -766,7 +766,7 @@ while True:
                             else:
                                 print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.\u001b[0m")
 
-                    elif math_command == "sq":
+                    elif math_command[0].lower() == "sq":
                         def sq(x):
                             return x ** 2
                         
@@ -795,7 +795,7 @@ while True:
                             else:
                                 print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.\u001b[0m")
 
-                    elif math_command == "add":
+                    elif math_command[0].lower() == "add":
                         value_namenum = 0
                         sum = 0
                         num = 0
@@ -830,7 +830,7 @@ while True:
                             else:
                                 print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.\u001b[0m")
 
-                    elif math_command == "sub":
+                    elif math_command[0].lower() == "sub":
                         value_namenum = 0
                         sum = 0
                         num = 0
@@ -865,7 +865,7 @@ while True:
                             else:
                                 print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.\u001b[0m")
 
-                    elif math_command == "div":
+                    elif math_command[0].lower() == "div":
                         value_namenum = 0
                         num = 0
                         sum = 0
@@ -901,7 +901,7 @@ while True:
                             else:
                                 print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.\u001b[0m")
 
-                    elif math_command == "multi":
+                    elif math_command[0].lower() == "multi":
                         value_namenum = 0
                         num = 0
                         sum = 0

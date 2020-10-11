@@ -1,5 +1,5 @@
 # **What's BlastShell?**
-BlastShell is an interactive command line interface developed not only to solve complex mathematical problems, but also to perform everyday tasks with ease.
+<blockquote>BlastShell is an interactive command line interface developed not only to solve complex mathematical problems, but also to perform everyday tasks with ease.</blockquote>
 <br><br>
 
 ### **_License_**
@@ -17,7 +17,8 @@ Copyright (c) Anindya Shiddhartha. Licensed under MIT License. For more informat
  1. Download BlastShell from [here](https://github.com/shiddharth/BlastShell/archive/master.zip) and then extract it in a folder.
  2. Open up a terminal window and type <br><code>sudo apt-get update && sudo apt-get install ffmpeg</code><br> to install FFmpeg on your desktop. After that, close it.
  3. Navigate to the extracted directory and go to the **Build Files** and run the following commands:<br>
- <code>python3 install-missing-modules.py<br><br>python3 main.py</code>
+ <code>python3 install-missing-modules.py</code><br>
+ <code>python3 main.py</code>
 
 That's it! You're ready to run BlastShell in any desired operating system.
 <br><br>

@@ -91,6 +91,7 @@ while True:
             print("REPO       Opens the GitHub repository of BlastShell in a browser window.")
             print("RESTART    Restarts device.")
             print("SYS        Displays device specifications.")
+            print("SHELL      Runs shell commands from within the program.")
             print("SPEAK      Speaks a text given by user.")
             print("SHUTDOWN   Turns off device.")
             print("TIME       Displays current date and time.")

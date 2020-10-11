@@ -1,6 +1,21 @@
+<style>
+    #cover-image {
+        border-radius: 1.3rem;
+        overflow: hidden;
+        transition: 0.3s;
+    }
+    #cover-image:hover {
+        transform: scale(1.1);
+    }
+</style>
+
+
 # **What's BlastShell?**
-<blockquote>BlastShell is an interactive command line interface developed not only to solve complex mathematical problems, but also to perform everyday tasks with ease.</blockquote>
-<br><br>
+BlastShell is an interactive command line interface developed not only to solve complex mathematical problems, but also to perform everyday tasks with ease.
+
+<br><img id="cover-image" src="cover-image.jpg" alt="cover-image"><br>
+
+<hr><br>
 
 ### **_License_**
 Copyright (c) Anindya Shiddhartha. Licensed under MIT License. For more information, please read the [LICENSE](LICENSE) file.

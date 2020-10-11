@@ -1,15 +1,3 @@
-<style>
-    #cover-image {
-        border-radius: 1.3rem;
-        overflow: hidden;
-        transition: 0.3s;
-    }
-    #cover-image:hover {
-        transform: scale(1.1);
-    }
-</style>
-
-
 # **What's BlastShell?**
 BlastShell is an interactive command line interface developed not only to solve complex mathematical problems, but also to perform everyday tasks with ease.
 

@@ -100,6 +100,24 @@ while True:
             print("           other destinations when executed. (as video or audio)")
             print("WEB        Enables console to enter specific or custom websites.\n")
 
+        elif user_command[0].lower() == "shell":
+            if argument_count == 1:
+                while True:
+                    shell_command = input("\u001b[0mShell>")
+                    os.system(shell_command)
+
+            elif argument_count == 2 and user_command[1].lower() == "docs":
+                print("\u001b[0mDocumentation for command: SHELL\u001b[0m")
+                print("\nDescription:")
+                print("    \u001b[33m?\u001b[0m This command is used to run shell commands from within")
+                print("    \u001b[33m?\u001b[0m BlastShell.")
+                print("\nUsage:")
+                print("    \u001b[32m>>>\u001b[0m shell")
+                print("    \u001b[32mShell>\u001b[0m [ENTER_COMMAND_HERE]")
+
+            else:
+                print("\u001b[31mInvalid argument(s)! Try typing 'shell docs' for it's usage information.\u001b[0m")
+
         elif user_command[0].lower() == "blast":
             
             if argument_count == 1:

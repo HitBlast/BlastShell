@@ -76,8 +76,7 @@ while True:
             print("LinkedIn          [] www.linkedin.com/in/shiddharth-codes\n\n")
 
         elif user_command[0].lower() == "help":
-            print("\u001b[33m\n\n?\u001b[0m Type '[YOUR_COMMAND] + docs' for more information about that particular")
-            print("\u001b[33m?\u001b[0m command.\n")
+            print("\u001b[33m\n\n?\u001b[0m Type '[YOUR_COMMAND] + docs' for more information about that particular command.\n")
             print("BLAST      Starts a new instance of the BlastShell command line.")
             print("CLEAR      Refreshes the screen.")
             print("CRDIR      Creates a directory.")

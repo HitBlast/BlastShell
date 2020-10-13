@@ -18,7 +18,7 @@ Copyright (c) Anindya Shiddhartha. Licensed under MIT License. For more informat
 
 **For Linux users:**
  1. Download BlastShell from [here](https://github.com/shiddharth/BlastShell/archive/master.zip) and then extract it in a folder.
- 2. Open up a terminal window and type <br><code>sudo apt-get update && sudo apt-get install ffmpeg</code><br> to install FFmpeg on your desktop. After that, close it.
+ 2. Download and install FFmpeg from [here](https://ffmpeg.org)
  3. Navigate to the extracted directory and go to the **Build Files** and run the following commands:<br>
  <code>python3 install-missing-modules.py</code><br>
  <code>python3 main.py</code>

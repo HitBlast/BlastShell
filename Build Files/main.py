@@ -31,7 +31,7 @@ def windowcls():
 
 # Defining variables.
 dir_path = os.getcwd()
-math_mem = 0
+math_mem = int()
 host_name = socket.gethostname()
 
 device_platform = platform.machine()
@@ -49,7 +49,7 @@ print(" / /_/ / / /_/ (__  ) /_ ___/ / / / /  __/ / /  ")
 print("/_____/_/\__,_/____/\__//____/_/ /_/\___/_/_/   \n\n")
 
 print("Type 'help' or 'about' for more information.")
-print(__copyright__)
+print(f"{__copyright__}.")
 
 while True:
     user_command = input(f"\u001b[0m\n{host_name} <--> \u001b[36m").split()
@@ -420,7 +420,7 @@ while True:
 
                     elif math_command[0].lower() == "factor":
                         num = int(input("Value <> "))
-                        num_factors = []
+                        num_factors = list()
 
                         for num_factored in range(1, num + 1):
                             if num % num_factored == 0:
@@ -451,7 +451,7 @@ while True:
 
                     elif math_command[0].lower() == "numsort":
                         value_num = 0
-                        list_num = [] 
+                        list_num = list() 
 
                         try:
                             value_qty = int(input("Value Quantity <> "))
@@ -479,7 +479,7 @@ while True:
                                 print("Result (Descending Order) = \u001b[32m" + str(list_res).replace("[", "").replace("]", "") + "\u001b[0m")
 
                             elif sort_type == "even":
-                                only_even = [] 
+                                only_even = list() 
 
                                 for num in list_num:
                                     if num % 2 == 0:  
@@ -488,7 +488,7 @@ while True:
                                 print("Result (Only Even) = \u001b[32m" + str(only_even).replace("[", "").replace("]", "") + "\u001b[0m")
 
                             elif sort_type == "odd":
-                                only_odd = []
+                                only_odd = list()
 
                                 for num in list_num:
                                     if num %2 != 0:
@@ -1169,7 +1169,7 @@ while True:
                         ydl.download([vidmain])
 
             vidmain = user_command[2]
-            print("\u001b[0m")
+            print(f"\u001b[0mAttempting to download {user_command[1].lower()} from the link: {vidmain}\u001b[0m")
 
             if argument_count == 3:
                 if user_command[1].lower() == "video":
@@ -1198,7 +1198,6 @@ while True:
 
                     except:
                         print("\u001b[31mUnexpected error occured! Try again after ensuring stable internet connection and a valid video link.\u001b[0m")
-                        break
 
                     else:
                         print("\u001b[0mVideo downloaded successfully!\u001b[0m")

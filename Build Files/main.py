@@ -7,20 +7,25 @@ __version__ = "1.12Pre1"
 __license__ = "MIT"
 
 # Modules to import.
-import os
-import socket
-import random
-from datetime import datetime
-from fractions import Fraction
-import webbrowser
-import shutil
-import platform
+try:
+    import os
+    import socket
+    import random
+    from datetime import datetime
+    from fractions import Fraction
+    import webbrowser
+    import shutil
+    import platform
 
-import wget
-import youtube_dl
-from playsound import playsound
-from gtts import gTTS
-from gtts.tts import gTTSError
+    import wget
+    import youtube_dl
+    from playsound import playsound
+    from gtts import gTTS
+    from gtts.tts import gTTSError
+
+except ModuleNotFoundError:
+    print("\u001b[31mUnexpected error occured while loading dependencies, closing application...\u001b[0m")
+    exit()
 
 # Defining common functions.
 def windowcls():

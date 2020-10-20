@@ -342,8 +342,9 @@ while True:
             elif argument_count == 3:
 
                 if user_command[1].lower() == "read":
+                    file_name = user_command[2].replace("_", " ")
+                    
                     try:
-                        file_name = user_command[2].replace("_", " ")
                         file = open(file_name, "r")
                         file_contents = file.read()
 

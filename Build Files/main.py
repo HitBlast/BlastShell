@@ -107,9 +107,8 @@ while True:
 
         elif user_command[0].lower() == "shell":
             if argument_count == 1:
-                while True:
-                    shell_command = input("\u001b[0mShell>")
-                    os.system(shell_command)
+                shell_command = input("\u001b[0mShell> ")
+                os.system(shell_command)
 
             elif argument_count == 2 and user_command[1].lower() == "docs":
                 print("\u001b[0mDocumentation for command: SHELL\u001b[0m")

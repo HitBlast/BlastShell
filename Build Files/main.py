@@ -7,6 +7,7 @@ __version__ = "1.12Pre1"
 __license__ = "MIT"
 
 # Modules to import.
+import time
 try:
     import os
     import socket
@@ -24,7 +25,8 @@ try:
     from gtts.tts import gTTSError
 
 except ModuleNotFoundError:
-    print("\u001b[31mUnexpected error occured while loading dependencies, closing application...\u001b[0m")
+    print("\u001b[31mUnexpected error occured while loading modules, closing application...\u001b[0m")
+    time.sleep(5)
     exit()
 
 # Defining common functions.

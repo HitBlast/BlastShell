@@ -13,14 +13,13 @@ Copyright (c) Anindya Shiddhartha. Licensed under MIT License. For more informat
 **For Windows users:**
  1. Download BlastShell from [here](https://github.com/shiddharth/BlastShell/archive/master.zip) and then extract it in a folder.
  2. Download FFmpeg from [here](https://ffmpeg.org/download.html) and install it.
- 3. Go to the **Executables** folder in the extracted directory. Then run **BlastShell.exe** and enjoy!
+ 3. Go to the **Executables** folder in the extracted directory. Then run **bs-win.exe** and enjoy!
 
 **For Linux users:**
  1. Download BlastShell from [here](https://github.com/shiddharth/BlastShell/archive/master.zip) and then extract it in a folder.
  2. Download and install FFmpeg from [here](https://ffmpeg.org).
- 3. Navigate to the extracted directory and go to the **Build Files** and run the following commands:<br>
- <code>python3 install-missing-modules.py</code><br>
- <code>python3 main.py</code>
+ 3. Navigate to the extracted directory, go to the **Executable** folder, open a terminal window and run the following command:<br>
+ <code>./bs-linux</code>
 
 That's it! You're ready to run BlastShell in any desired operating system.
 <br><br>

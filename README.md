@@ -4,8 +4,8 @@ BlastShell is an interactive command line interface developed not only to solve 
 <br><img id="cover-image" src="cover-image.jpg" alt="cover-image"><br>
 <hr><br>
 
-### **_License_**
-Copyright (c) Anindya Shiddhartha. Licensed under MIT License. For more information, please read the [LICENSE](LICENSE) file.
+![GitHub](https://img.shields.io/github/license/shiddharth/BlastShell?color=blue&style=for-the-badge)
+<br>Copyright (c) Anindya Shiddhartha. Licensed under MIT License. For more information, please read the [LICENSE](LICENSE) file.
 <br><br>
 
 ### **_Installation Instructions_**

@@ -18,7 +18,8 @@ Copyright (c) Anindya Shiddhartha. Licensed under MIT License. For more informat
 **For Linux users:**
  1. Download BlastShell from [here](https://github.com/shiddharth/BlastShell/archive/master.zip) and then extract it in a folder.
  2. Download and install FFmpeg from [here](https://ffmpeg.org).
- 3. Navigate to the extracted directory, go to the **Executable** folder, open a terminal window and run the following command:<br>
+ 3. Navigate to the extracted directory, go to the **Executable** folder and right click on **bs-linux**. Then click on 'Properties', go to the 'Permissions' tab and click on 'Allow executing file as program'.
+ 4. Open a terminal window in current folder and type:<br>
  <code>./bs-linux</code>
 
 That's it! You're ready to run BlastShell in any desired operating system.

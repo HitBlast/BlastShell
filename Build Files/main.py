@@ -31,7 +31,7 @@ except ModuleNotFoundError:
 
 # Defining common functions.
 def windowcls():
-    if operating_system == "Linux":
+    if "Linux" in operating_system:
         os.system('clear')
     else:
         os.system('cls')

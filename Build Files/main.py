@@ -3,24 +3,23 @@
 # Program authorship variables.
 __author__ = "Anindya Shiddhartha"
 __copyright__ = "Copyright 2020 Anindya Shiddhartha"
-__version__ = "1.12Pre1"
+__version__ = "1.12Pre2"
 __license__ = "MIT"
 
 # Modules to import.
 import time
 try:
-    import os
-    import socket
-    import random
+    from os import system, getcwd, listdir, chdir, mkdir, remove
+    from os.path import isfile
+    from socket import gethostname, gethostbyname
+    from random import randint
     from datetime import datetime
     from fractions import Fraction
     import webbrowser
     import shutil
     import platform
 
-    import wget
-    import youtube_dl
-    from playsound import playsound
+    from wget import download
     from gtts import gTTS
     from gtts.tts import gTTSError
 
@@ -32,14 +31,14 @@ except ModuleNotFoundError:
 # Defining common functions.
 def windowcls():
     if "Linux" in operating_system:
-        os.system('clear')
+        system('clear')
     else:
-        os.system('cls')
+        system('cls')
 
 # Defining variables.
-dir_path = os.getcwd()
+dir_path = getcwd()
 math_mem = int()
-host_name = socket.gethostname()
+host_name = gethostname()
 
 device_platform = platform.machine()
 processor = platform.processor()
@@ -110,7 +109,7 @@ while True:
         elif user_command[0].lower() == "shell":
             if argument_count == 1:
                 shell_command = input("\u001b[0mShell> ")
-                os.system(shell_command)
+                system(shell_command)
 
             elif argument_count == 2 and user_command[1].lower() == "docs":
                 print("\u001b[0mDocumentation for command: SHELL\u001b[0m")
@@ -125,7 +124,6 @@ while True:
                 print("\u001b[31mInvalid argument(s)! Try typing 'shell docs' for it's usage information.\u001b[0m")
 
         elif user_command[0].lower() == "blast":
-            
             if argument_count == 1:
                 math_mem = 0
                 windowcls()
@@ -137,7 +135,7 @@ while True:
 
                 print("Type 'help' or 'about' for more information.")
                 print(__copyright__)
-                dir_path = os.getcwd()
+                dir_path = getcwd()
 
             elif argument_count == 2 and user_command[1].lower() == "docs":
                 print("\u001b[0mDocumentation for command: BLAST\u001b[0m")
@@ -151,7 +149,6 @@ while True:
                 print("\u001b[31mInvalid argument(s)! Try typing 'blast docs' for it's usage information.\u001b[0m")
 
         elif user_command[0].lower() == "exit":
-
             if argument_count == 1:
                 print("\u001b[0mClosing shell...")
                 break
@@ -168,7 +165,6 @@ while True:
                 print("\u001b[31mInvalid argument(s)! Try typing 'exit docs' for it's usage information.\u001b[0m")
 
         elif user_command[0].lower() == "repo":
-
             if argument_count == 1:
                 webbrowser.open('www.github.com/shiddharth/BlastShell', new=2)
                 print("\u001b[0mGitHub repository opened successfully!\u001b[0m")
@@ -185,9 +181,8 @@ while True:
                 print("\u001b[31mInvalid argument(s)! Try typing 'repo docs' for it's usage information.\u001b[0m")
 
         elif user_command[0].lower() == "ls":
-
             if argument_count == 1:
-                list_dir = os.listdir()
+                list_dir = listdir()
                 print("\n\u001b[33m")
 
                 for dir in list_dir:
@@ -207,9 +202,7 @@ while True:
                 print("\u001b[31mInvalid argument(s)! Try typing 'ls docs' for it's usage information.\u001b[0m")
 
         elif user_command[0].lower() == "shutdown":
-
             if argument_count == 2:
-
                 if user_command[1].lower() == "docs":
                     print("\u001b[0mDocumentation for command: SHUTDOWN\u001b[0m")
                     print("\nDescription:")
@@ -219,7 +212,7 @@ while True:
 
                 elif user_command[1].lower() == "yes":
                     print("\u001b[0mShutting down...\u001b[0m")
-                    os.system("shutdown /s /t 1")
+                    system("shutdown /s /t 1")
 
                 elif user_command[1].lower() == "no":
                     print("\u001b[0mShutdown aborted!\u001b[0m")
@@ -231,9 +224,7 @@ while True:
                 print("\u001b[31mInvalid argument(s)! Try typing 'shutdown docs' for it's usage information.\u001b[0m")
 
         elif user_command[0].lower() == "restart":
-
             if argument_count == 2:
-
                 if user_command[1].lower() == "docs":
                     print("\u001b[0mDocumentation for command: RESTART\u001b[0m")
                     print("\nDescription:")
@@ -243,7 +234,7 @@ while True:
 
                 elif user_command[1].lower() == "yes":
                     print("\u001b[0mRestarting...\u001b[0m")
-                    os.system("shutdown /r /t 1")
+                    system("shutdown /r /t 1")
 
                 elif user_command[1].lower() == "no":
                     print("\u001b[0mRestart aborted!\u001b[0m")
@@ -255,7 +246,6 @@ while True:
                 print("\u001b[31mInvalid argument(s)! Try typing 'restart docs' for it's usage information.\u001b[0m")
 
         elif user_command[0].lower() == "path":
-
             if argument_count == 1:
                 print(f"\u001b[0mCurrent Path: \u001b[33m{dir_path}\u001b[0m")
 
@@ -271,9 +261,7 @@ while True:
                 print("\u001b[31mInvalid argument(s)! Try typing 'path docs' for it's usage information.\u001b[0m")
 
         elif user_command[0].lower() == "chpath":
-
             if argument_count == 2:
-
                 if user_command[1].lower() == "docs":
                     print("\u001b[0mDocumentation for command: CHPATH\u001b[0m")
                     print("\nDescription:")
@@ -287,25 +275,24 @@ while True:
                 else:
                     new_dir_path = user_command[1].replace("_", " ")
                     try:
-                        os.chdir(new_dir_path)
+                        chdir(new_dir_path)
 
                     except:
                         print("\u001b[31mPath not found! Reverting back to previous working directory.\u001b[0m")
-                        dir_path = os.getcwd()
+                        dir_path = getcwd()
 
                     else:
                         print("\u001b[0mPath set as current working directory.\u001b[0m")
-                        dir_path = os.getcwd()
+                        dir_path = getcwd()
 
             else:
                 print("\u001b[31mInvalid argument(s)! Try typing 'chpath docs' for it's usage information.\u001b[0m")
 
         elif user_command[0].lower() == "ipconf":
-
             if argument_count == 1:
                 try: 
-                    host_name = socket.gethostname() 
-                    host_ip = socket.gethostbyname(host_name) 
+                    host_name = gethostname() 
+                    host_ip = gethostbyname(host_name) 
 
                 except: 
                     print("\u001b[31mUnable to get hostname and IP address! Try again later.\u001b[0m")
@@ -326,7 +313,6 @@ while True:
                 print("\u001b[31mInvalid argument(s)! Try typing 'ipconf docs' for it's usage information.\u001b[0m")
 
         elif user_command[0].lower() == "tbuild":
-
             if argument_count == 2 and user_command[1].lower() == "docs":
                 print("\u001b[0mDocumentation for command: TBUILD\u001b[0m")
                 print("\nDescription:")
@@ -359,7 +345,7 @@ while True:
                 elif user_command[1].lower() == "make":
                     file_name = user_command[2].replace("_", " ")
                     
-                    if os.path.isfile(file_name):
+                    if isfile(file_name):
                         print("\u001b[31mFile already exists!\u001b[0m")
                         
                     else:
@@ -374,7 +360,6 @@ while True:
                 print("\u001b[31mInvalid argument(s)! Try typing 'tbuild docs' for it's usage information.\u001b[0m")    
 
         elif user_command[0].lower() == "math":
-
             if argument_count == 1:
                 print("\u001b[0mMathematics console enabled! Type 'help' to show executable commands.")
 
@@ -409,7 +394,6 @@ while True:
                         break
 
                     elif math_command[0].lower() == "mem":
-                        
                         if math_mem == 0:
                             math_mem_status = "[Empty]"
 
@@ -507,7 +491,6 @@ while True:
                                 print("\u001b[31mSort order invalid! Try either 'Ascending' or 'Descending'.\u001b[0m")
 
                     elif math_command[0].lower() == "ageconv":
-                
                         try:
                             math_user_age_inyears = float(input("Age (In Years) <> "))
 
@@ -528,11 +511,10 @@ while True:
                             print(f"Minutes : \u001b[32m{math_user_age_inminutes}\u001b[0m minutes.\n")
 
                     elif math_command[0].lower() == "numgen":
-
                         try:
                             gen_minvalue = float(input("Minimum Value <> "))
                             gen_maxvalue = float(input("Maximum Value <> "))
-                            gen_res = random.randint(gen_minvalue, gen_maxvalue)
+                            gen_res = randint(gen_minvalue, gen_maxvalue)
                         
                         except OverflowError:
                             print("\u001b[31mValue(s) too big to be calculated!\u001b[0m")
@@ -556,7 +538,6 @@ while True:
                                 print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.\u001b[0m")
 
                     elif math_command[0].lower() == "profloss":
-
                         try:
                             buy_value = float(input("Purchase Value <> "))
                             sell_value = float(input("Selling Value <> "))
@@ -624,7 +605,6 @@ while True:
                             pi_action = input("Action (add/sub/div/multi) <> ").lower().replace(" ", "")
 
                             if pi_action == "add":
-
                                 try:
                                     res = math_mem + pi_value
 
@@ -647,7 +627,6 @@ while True:
                                         print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.\u001b[0m")
 
                             elif pi_action == "sub":
-                                
                                 try:
                                     res = math_mem - pi_value
 
@@ -670,7 +649,6 @@ while True:
                                         print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.\u001b[0m")
 
                             elif pi_action == "div":
-                                
                                 try:
                                     res = math_mem / pi_value
 
@@ -693,7 +671,6 @@ while True:
                                         print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.\u001b[0m")
 
                             elif pi_action == "multi": 
-                                
                                 try:
                                     res = math_mem * pi_value
 
@@ -719,7 +696,6 @@ while True:
                                 print("\u001b[31mAction not found! Try something predefined.\u001b[0m")
 
                     elif math_command[0].lower() == "numfraq":
-
                         try:
                             convfraq_num = float(input("Value <> "))
 
@@ -980,35 +956,24 @@ while True:
                 print("\u001b[31mInvalid argument(s)! Try typing 'math docs' for it's usage information.\u001b[0m")
 
         elif user_command[0].lower() == "speak":
-
-            if argument_count >= 3 and argument_count <= 4:
+            if argument_count == 3:
                 def tts_action_start(text):
                     tts = gTTS(text)
 
-                    if user_command[1].lower() == "say":
-                        file_name = "blastshell-speak-" + str(random.randint(1, 100)) + ".mp3"
+                    file_name = user_command[2].replace("_", " ")
+                    try:
                         tts.save(file_name)
-                        playsound(file_name)
-                        os.remove(file_name)
 
-                    elif user_command[1].lower() == "save":
-                        file_name = user_command[3].replace("_", " ")
-                        try:
-                            tts.save(user_command[3])
+                    except FileExistsError:
+                        print("\u001b[31mFile already exists! Try again with a different file name.\u001b[0m")
 
-                        except FileExistsError:
-                            print("\u001b[31mFile already exists! Try again with a different file name.\u001b[0m")
-
-                        except IndexError:
-                            print("\u001b[31mInvalid argument(s)! Try typing 'speak docs' for it's usage information.\u001b[0m")
-                            
-                        else:
-                            print(f"\u001b[0mSuccessfully converted text to speech and saved as \u001b[33m{user_command[3]}\u001b[0m.")
-
-                    else:
+                    except IndexError:
                         print("\u001b[31mInvalid argument(s)! Try typing 'speak docs' for it's usage information.\u001b[0m")
+                        
+                    else:
+                        print(f"\u001b[0mSuccessfully converted text to speech and saved as \u001b[33m{user_command[2]}\u001b[0m.")
 
-                speech_text = user_command[2].replace("_", "")
+                speech_text = user_command[1].replace("_", "")
                 try:
                     tts_action_start(speech_text)
 
@@ -1020,16 +985,12 @@ while True:
                 print("\nDescription:")
                 print("    \u001b[33m?\u001b[0m This command is used to convert text into speech.")
                 print("\nArguments and usage:")
-                print("    \u001b[33m$\u001b[0m SAY - Converts text to speech and starts speaking it.")
-                print("        \u001b[32m>>>\u001b[0m speak + say + [ENTER_TEXT_HERE]")
-                print("    \u001b[33m$\u001b[0m SAVE - Converts text to speech and saves it.")
-                print("        \u001b[32m>>>\u001b[0m speak + save + [ENTER_TEXT_HERE] + [ENTER_FILE_NAME_HERE]")
+                print("        \u001b[32m>>>\u001b[0m speak + [ENTER_TEXT_HERE] + [ENTER_FILE_NAME_HERE]")
 
             else:
                 print("\u001b[31mInvalid argument(s)! Try typing 'speak docs' for it's usage information.\u001b[0m")
 
         elif user_command[0].lower() == "time":
-
             if argument_count == 1:
                 now = datetime.now()
                 date_time = now.strftime("\u001b[0mDate: " + "%d/%m/%Y" + " | Time: " + "%H:%M:%S")
@@ -1046,7 +1007,6 @@ while True:
                 print("\u001b[31mInvalid argument(s)! Try typing 'time docs' for it's usage information.\u001b[0m")
 
         elif user_command[0].lower() == "web":
-
             if argument_count == 3:
                 if user_command[1].lower() == "search":
                     search_topic = user_command[2].replace("_", " ")
@@ -1062,7 +1022,7 @@ while True:
                 try:
                     print(f"\u001b[0m\nPath: {dir_path}\u001b[0m")
                     print("\u001b[0mDownload started!\u001b[0m\n")
-                    wget.download(user_command[2], user_command[3])
+                    download(user_command[2], user_command[3])
 
                 except ValueError:
                     print("\u001b[31mUnexpected error occured! Make sure the link is valid before you continue.\u001b[0m")
@@ -1089,7 +1049,6 @@ while True:
                 print("\u001b[31mInvalid argument(s)! Try typing 'web docs' for it's usage information.\u001b[0m")
 
         elif user_command[0].lower() == "clear":
-
             if argument_count == 1:
                 windowcls()
 
@@ -1105,9 +1064,8 @@ while True:
                 print("\u001b[31mInvalid argument(s)! Try typing 'clear docs' for it's usage information.\u001b[0m")
 
         elif user_command[0].lower() == "crdir":
-
             if argument_count == 3 and user_command[1].lower() == "make":
-                os.mkdir(user_command[2])
+                mkdir(user_command[2])
 
             elif argument_count == 2 and user_command[1].lower() == "docs":
                 print("\u001b[0mDocumentation for command: CRDIR\u001b[0m")
@@ -1122,9 +1080,7 @@ while True:
                 print("\u001b[31mInvalid argument(s)! Try typing 'crdir docs' for it's usage information.\u001b[0m")
 
         elif user_command[0].lower() == "del":
-
             if argument_count == 3:
-
                 if user_command[1].lower() == "fold":
                     try:
                         shutil.rmtree(user_command[2])
@@ -1133,8 +1089,8 @@ while True:
                         print("\u001b[31mDirectory not found, try again.\u001b[0m")
 
                 elif user_command[1].lower() == "file":
-                    if os.path.isfile(user_command[2]):
-                        os.remove(user_command[2])
+                    if isfile(user_command[2]):
+                        remove(user_command[2])
 
                     else:
                         print("\u001b[31mFile not found, try again.\u001b[0m")
@@ -1153,7 +1109,6 @@ while True:
                 print("\u001b[31mInvalid argument(s)! Try typing 'del docs' for it's usage information.\u001b[0m")
    
         elif user_command[0].lower() == "sys":
-
             if argument_count == 1:
                 print(f"\u001b[0m\n\nDevice platform  : \u001b[32m{device_platform}\u001b[0m")
                 print(f"Chipset          : \u001b[32m{processor}\u001b[0m")

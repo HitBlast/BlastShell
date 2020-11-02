@@ -1170,57 +1170,5 @@ while True:
             else:
                 print("\u001b[31mInvalid argument(s)! Try typing 'sys docs' for it's usage information.\u001b[0m")
 
-        elif user_command[0].lower() == "vdl":
-            def dwl_vid():
-                    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-                        ydl.download([vidmain])
-
-            vidmain = user_command[2]
-            print(f"\u001b[0mAttempting to download {user_command[1].lower()} from the link: {vidmain}\u001b[0m")
-
-            if argument_count == 3:
-                if user_command[1].lower() == "video":
-                    try:
-                        ydl_opts = {}
-                        dwl_vid()
-
-                    except:
-                        print("\u001b[31mUnexpected error occured! Try again after ensuring stable internet connection and a valid video link.\u001b[0m")
-                        break
-
-                    else:
-                        print("\u001b[0mVideo downloaded successfully!\u001b[0m")
-
-                elif user_command[1].lower() == "audio":
-                    try:
-                        ydl_opts = {
-                            'format': 'bestaudio/best',
-                            'postprocessors': [{
-                                'key': 'FFmpegExtractAudio',
-                                'preferredcodec': 'mp3',
-                                'preferredquality': '192',
-                            }],
-                        }
-                        dwl_vid()
-
-                    except:
-                        print("\u001b[31mUnexpected error occured! Try again after ensuring stable internet connection and a valid video link.\u001b[0m")
-
-                    else:
-                        print("\u001b[0mVideo downloaded successfully!\u001b[0m")
-
-                elif argument_count == 2 and user_command[1].lower() == "docs":
-                    print("\u001b[0mDocumentation for command: VDL\u001b[0m")
-                    print("\nDescription:")
-                    print("    \u001b[33m?\u001b[0m This command is used to download videos from the web.")
-                    print("\nArguments:")
-                    print("    \u001b[33m$\u001b[0m VIDEO - Downloads object as video.")
-                    print("    \u001b[33m$\u001b[0m AUDIO - Downloads object as audio.")
-                    print("\nUsage:")
-                    print("    \u001b[32m>>>\u001b[0m vdl + [ENTER_ARGUMENT_HERE] + [ENTER_VIDEO_URL_HERE]")
-
-                else:
-                    print("\u001b[31mInvalid argument(s)! Try typing 'vdl docs' for it's usage information.\u001b[0m")
-
         else:
             print("\u001b[31mWhoa! Command not found. Type 'help' to show executable commands.\u001b[0m")

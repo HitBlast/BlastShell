@@ -7,7 +7,7 @@ __version__ = "1.12Pre2"
 __license__ = "MIT"
 
 # Modules to import.
-import time
+from time import sleep
 try:
     from os import system, getcwd, listdir, chdir, mkdir, remove
     from os.path import isfile
@@ -15,9 +15,9 @@ try:
     from random import randint
     from datetime import datetime
     from fractions import Fraction
-    import webbrowser
-    import shutil
-    import platform
+    from webbrowser import open
+    from shutil import rmtree
+    from platform import machine, processor, system, version
 
     from wget import download
     from gtts import gTTS
@@ -25,7 +25,7 @@ try:
 
 except ModuleNotFoundError:
     print("\u001b[31mUnexpected error occured while loading modules, closing application...\u001b[0m")
-    time.sleep(5)
+    sleep(5)
     exit()
 
 # Defining common functions.
@@ -40,10 +40,10 @@ dir_path = getcwd()
 math_mem = int()
 host_name = gethostname()
 
-device_platform = platform.machine()
-processor = platform.processor()
-operating_system = platform.system()
-build = platform.version()
+device_platform = machine()
+processor = processor()
+operating_system = system()
+build = version()
 
 
 # Main interface.
@@ -166,7 +166,7 @@ while True:
 
         elif user_command[0].lower() == "repo":
             if argument_count == 1:
-                webbrowser.open('www.github.com/shiddharth/BlastShell', new=2)
+                open('www.github.com/shiddharth/BlastShell', new=2)
                 print("\u001b[0mGitHub repository opened successfully!\u001b[0m")
 
             elif argument_count == 2 and user_command[1].lower() == "docs":
@@ -1010,10 +1010,10 @@ while True:
             if argument_count == 3:
                 if user_command[1].lower() == "search":
                     search_topic = user_command[2].replace("_", " ")
-                    webbrowser.open(("https://www.google.com/search?q=" + search_topic), new=2)
+                    open(("https://www.google.com/search?q=" + search_topic), new=2)
 
                 elif user_command[1].lower() == "open":
-                    webbrowser.open(user_command[2], new=2)
+                    open(user_command[2], new=2)
 
                 else:
                     print("\u001b[31mInvalid argument(s)! Try typing 'web docs' for it's usage information.\u001b[0m")
@@ -1083,7 +1083,7 @@ while True:
             if argument_count == 3:
                 if user_command[1].lower() == "fold":
                     try:
-                        shutil.rmtree(user_command[2])
+                        rmtree(user_command[2])
                 
                     except:
                         print("\u001b[31mDirectory not found, try again.\u001b[0m")

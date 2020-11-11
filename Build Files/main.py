@@ -9,8 +9,7 @@ __license__ = "MIT"
 # Modules to import.
 from time import sleep
 try:
-    from os import system, getcwd, listdir, chdir, mkdir, remove
-    from os.path import isfile
+    import os
     from socket import gethostname, gethostbyname
     from random import randint
     from datetime import datetime
@@ -31,12 +30,13 @@ except ModuleNotFoundError:
 # Defining common functions.
 def windowcls():
     if "Linux" in operating_system:
-        system('clear')
+        os.system('clear')
+
     else:
-        system('cls')
+        os.system('cls')
 
 # Defining variables.
-dir_path = getcwd()
+dir_path = os.getcwd()
 math_mem = int()
 host_name = gethostname()
 
@@ -102,8 +102,6 @@ while True:
             print("TIME       Displays current date and time.")
             print("TBUILD     Executes text file builder which enables user to create & modify")
             print("           custom text files.")
-            print("VDL        Downloads a specific video from YouTube as well as from")
-            print("           other destinations when executed. (as video or audio)")
             print("WEB        Enables console to enter specific or custom websites.\n")
 
         elif user_command[0].lower() == "shell":
@@ -135,7 +133,7 @@ while True:
 
                 print("Type 'help' or 'about' for more information.")
                 print(__copyright__)
-                dir_path = getcwd()
+                dir_path = os.getcwd()
 
             elif argument_count == 2 and user_command[1].lower() == "docs":
                 print("\u001b[0mDocumentation for command: BLAST\u001b[0m")
@@ -182,7 +180,7 @@ while True:
 
         elif user_command[0].lower() == "ls":
             if argument_count == 1:
-                list_dir = listdir()
+                list_dir = os.listdir()
                 print("\n\u001b[33m")
 
                 for dir in list_dir:
@@ -275,15 +273,15 @@ while True:
                 else:
                     new_dir_path = user_command[1].replace("_", " ")
                     try:
-                        chdir(new_dir_path)
+                        os.chdir(new_dir_path)
 
                     except:
                         print("\u001b[31mPath not found! Reverting back to previous working directory.\u001b[0m")
-                        dir_path = getcwd()
+                        dir_path = os.getcwd()
 
                     else:
                         print("\u001b[0mPath set as current working directory.\u001b[0m")
-                        dir_path = getcwd()
+                        dir_path = os.getcwd()
 
             else:
                 print("\u001b[31mInvalid argument(s)! Try typing 'chpath docs' for it's usage information.\u001b[0m")
@@ -345,7 +343,7 @@ while True:
                 elif user_command[1].lower() == "make":
                     file_name = user_command[2].replace("_", " ")
                     
-                    if isfile(file_name):
+                    if os.path.isfile(file_name):
                         print("\u001b[31mFile already exists!\u001b[0m")
                         
                     else:
@@ -1024,8 +1022,8 @@ while True:
                     print("\u001b[0mDownload started!\u001b[0m\n")
                     download(user_command[2], user_command[3])
 
-                except ValueError:
-                    print("\u001b[31mUnexpected error occured! Make sure the link is valid before you continue.\u001b[0m")
+                except:
+                    print("\u001b[31mUnexpected error occured! Make sure the link is valid and you have a stable internet connection before you continue.\u001b[0m")
                 
                 else:
                     print("\u001b[0mDownload finished!\u001b[0m")
@@ -1065,7 +1063,7 @@ while True:
 
         elif user_command[0].lower() == "crdir":
             if argument_count == 3 and user_command[1].lower() == "make":
-                mkdir(user_command[2])
+                os.mkdir(user_command[2])
 
             elif argument_count == 2 and user_command[1].lower() == "docs":
                 print("\u001b[0mDocumentation for command: CRDIR\u001b[0m")
@@ -1089,8 +1087,8 @@ while True:
                         print("\u001b[31mDirectory not found, try again.\u001b[0m")
 
                 elif user_command[1].lower() == "file":
-                    if isfile(user_command[2]):
-                        remove(user_command[2])
+                    if os.path.isfile(user_command[2]):
+                        os.remove(user_command[2])
 
                     else:
                         print("\u001b[31mFile not found, try again.\u001b[0m")

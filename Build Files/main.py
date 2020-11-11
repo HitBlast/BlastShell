@@ -975,15 +975,17 @@ while True:
                 try:
                     tts_action_start(speech_text)
 
-                except gTTSError:
-                    print("\u001b[31mUnexpected error occured during code execution! Make sure that you have stable internet connection and try again.\u001b[0m")
+                except:
+                    print("\u001b[31mUnexpected error occured while executing code! Make sure that you have stable internet connection and try again.\u001b[0m")
 
             elif argument_count == 2 and user_command[1].lower() == "docs":
                 print("\u001b[0mDocumentation for command: SPEAK\u001b[0m")
                 print("\nDescription:")
                 print("    \u001b[33m?\u001b[0m This command is used to convert text into speech.")
                 print("\nArguments and usage:")
-                print("        \u001b[32m>>>\u001b[0m speak + [ENTER_TEXT_HERE] + [ENTER_FILE_NAME_HERE]")
+                print("    \u001b[32m>>>\u001b[0m speak + [ENTER_TEXT_HERE] + [ENTER_FILE_NAME_HERE]")
+                print("    \u001b[31m#\u001b[0m Replace spaces in file name with underscores (_).")
+                print("    \u001b[31m#\u001b[0m The file name has to end with a playable media format (.mp3, .aac etc.).")
 
             else:
                 print("\u001b[31mInvalid argument(s)! Try typing 'speak docs' for it's usage information.\u001b[0m")

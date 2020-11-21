@@ -10,18 +10,17 @@ __license__ = "MIT"
 from time import sleep
 try:
     import os
-    from socket import gethostname, gethostbyname
-    from random import randint
-    from datetime import datetime
-    from fractions import Fraction
-    from webbrowser import open
-    from shutil import rmtree
-    from platform import machine, processor, system, version
+    import socket
+    import random
+    import datetime
+    import fractions
+    import webbrowser
+    import shutil
+    import platform
 
     import youtube_dl
-    from wget import download
+    import wget
     from gtts import gTTS
-    from gtts.tts import gTTSError
 
 except ModuleNotFoundError:
     print("\u001b[31mUnexpected error occured while loading modules, closing application...\u001b[0m")
@@ -39,12 +38,12 @@ def windowcls():
 # Defining variables.
 dir_path = os.getcwd()
 math_mem = int()
-host_name = gethostname()
+host_name = socket.gethostname()
 
-device_platform = machine()
-processor = processor()
-operating_system = system()
-build = version()
+device_platform = platform.machine()
+processor = platform.processor()
+operating_system = platform.system()
+build = platform.version()
 
 
 # Main interface.
@@ -80,7 +79,8 @@ while True:
             print("Facebook          [] www.facebook.com/shiddharth.codes")
             print("Twitter           [] www.twitter.com/shiddharthcodes")
             print("GitHub            [] www.github.com/shiddharth")
-            print("LinkedIn          [] www.linkedin.com/in/shiddharth-codes\n\n")
+            print("LinkedIn          [] www.linkedin.com/in/shiddharth-codes")
+            print("freeCodeCamp      [] www.freecodecamp.org/shiddharth\n\n")
 
         elif user_command[0].lower() == "help":
             print("\u001b[33m\n\n?\u001b[0m Type '[YOUR_COMMAND] + docs' for more information about that particular command.\n")
@@ -108,7 +108,7 @@ while True:
         elif user_command[0].lower() == "shell":
             if argument_count == 1:
                 shell_command = input("\u001b[0mShell> ")
-                system(shell_command)
+                os.system(shell_command)
 
             elif argument_count == 2 and user_command[1].lower() == "docs":
                 print("\u001b[0mDocumentation for command: SHELL\u001b[0m")
@@ -211,7 +211,7 @@ while True:
 
                 elif user_command[1].lower() == "yes":
                     print("\u001b[0mShutting down...\u001b[0m")
-                    system("shutdown /s /t 1")
+                    os.system("shutdown /s /t 1")
 
                 elif user_command[1].lower() == "no":
                     print("\u001b[0mShutdown aborted!\u001b[0m")
@@ -233,7 +233,7 @@ while True:
 
                 elif user_command[1].lower() == "yes":
                     print("\u001b[0mRestarting...\u001b[0m")
-                    system("shutdown /r /t 1")
+                    os.system("shutdown /r /t 1")
 
                 elif user_command[1].lower() == "no":
                     print("\u001b[0mRestart aborted!\u001b[0m")
@@ -290,8 +290,8 @@ while True:
         elif user_command[0].lower() == "ipconf":
             if argument_count == 1:
                 try: 
-                    host_name = gethostname() 
-                    host_ip = gethostbyname(host_name) 
+                    host_name = socket.gethostname() 
+                    host_ip = socket.gethostbyname(host_name) 
 
                 except: 
                     print("\u001b[31mUnable to get hostname and IP address! Try again later.\u001b[0m")
@@ -513,7 +513,7 @@ while True:
                         try:
                             gen_minvalue = float(input("Minimum Value <> "))
                             gen_maxvalue = float(input("Maximum Value <> "))
-                            gen_res = randint(gen_minvalue, gen_maxvalue)
+                            gen_res = random.randint(gen_minvalue, gen_maxvalue)
                         
                         except OverflowError:
                             print("\u001b[31mValue(s) too big to be calculated!\u001b[0m")
@@ -705,7 +705,7 @@ while True:
                             print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
 
                         else:
-                            print(f"Fraction = \u001b[32m{Fraction(convfraq_num)}\u001b[0m")
+                            print(f"Fraction = \u001b[32m{fractions.Fraction(convfraq_num)}\u001b[0m")
 
                     elif math_command[0].lower() == "xq":
                         def xq(x, y):
@@ -1011,10 +1011,10 @@ while True:
             if argument_count == 3:
                 if user_command[1].lower() == "search":
                     search_topic = user_command[2].replace("_", " ")
-                    open(("https://www.google.com/search?q=" + search_topic), new=2)
+                    webbrowser.open(("https://www.google.com/search?q=" + search_topic), new=2)
 
                 elif user_command[1].lower() == "open":
-                    open(user_command[2], new=2)
+                    webbrowser.open(user_command[2], new=2)
 
                 else:
                     print("\u001b[31mInvalid argument(s)! Try typing 'web docs' for it's usage information.\u001b[0m")
@@ -1023,7 +1023,7 @@ while True:
                 try:
                     print(f"\u001b[0m\nPath: {dir_path}\u001b[0m")
                     print("\u001b[0mDownload started!\u001b[0m\n")
-                    download(user_command[2], user_command[3])
+                    wget.download(user_command[2], user_command[3])
 
                 except:
                     print("\u001b[31mUnexpected error occured! Make sure the link is valid and you have a stable internet connection before you continue.\u001b[0m")
@@ -1084,7 +1084,7 @@ while True:
             if argument_count == 3:
                 if user_command[1].lower() == "fold":
                     try:
-                        rmtree(user_command[2])
+                        shutil.rmtree(user_command[2])
                 
                     except:
                         print("\u001b[31mDirectory not found, try again.\u001b[0m")
@@ -1131,10 +1131,11 @@ while True:
                     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
                         ydl.download([vidmain])
 
-            vidmain = user_command[2]
-            print(f"\u001b[0mAttempting to download {user_command[1].lower()} from the link: {vidmain}\u001b[0m")
+            print(f"\u001b[0mAttempting to download {user_command[1].lower()}...\u001b[0m")
 
             if argument_count == 3:
+                vidmain = user_command[2]
+
                 if user_command[1].lower() == "video":
                     try:
                         ydl_opts = {}

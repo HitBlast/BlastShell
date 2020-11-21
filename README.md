@@ -20,9 +20,11 @@ BlastShell is an interactive command line interface developed not only to solve 
 **For Linux users:**
  1. Download BlastShell from [here](https://github.com/shiddharth/BlastShell/archive/master.zip) and then extract it in a folder.
  2. Download and install FFmpeg from [here](https://ffmpeg.org).
- 3. Navigate to the extracted directory, go to the **Executable** folder and right click on **bs-linux**. Then click on 'Properties', go to the 'Permissions' tab and click on 'Allow executing file as program'.
- 4. Open a terminal window in current folder and type:<br>
+ 3. Navigate to the extracted directory, go to the **Executable** folder and open a terminal window. Then, type the following command:<br>
+ <code>chmod +x bs-linux</code><br>
+ This will give the program the permission to execute itself. Now to run BlastShell, just type in the following command:<br>
  <code>./bs-linux</code>
+
 
 That's it! You're ready to run BlastShell in any desired operating system.
 <br><br>

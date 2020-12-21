@@ -6,7 +6,11 @@ Please read README.md and LICENSE for more information.
 # Program authorship variables.
 __author__ = "Anindya Shiddhartha"
 __copyright__ = "Copyright 2020 Anindya Shiddhartha"
+<<<<<<< HEAD
 __version__ = "1.2Pre3"
+=======
+__version__ = "InTest"
+>>>>>>> e2b0e128d8364357445b3041e83c85852c1d0ff2
 __license__ = "MIT"
 
 

@@ -1,10 +1,14 @@
-# Please read README.md and LICENSE for more information.
+'''
+~ BlastShell (Source Code, Insider Branch) ~
+Please read README.md and LICENSE for more information.
+'''
 
 # Program authorship variables.
 __author__ = "Anindya Shiddhartha"
 __copyright__ = "Copyright 2020 Anindya Shiddhartha"
-__version__ = "1.12Pre2"
+__version__ = "1.2Pre3"
 __license__ = "MIT"
+
 
 # Modules to import.
 from time import sleep
@@ -27,39 +31,41 @@ except ModuleNotFoundError:
     sleep(5)
     exit()
 
-# Defining common functions.
-def windowcls():
-    if "Linux" in operating_system:
-        os.system('clear')
-
-    else:
-        os.system('cls')
 
 # Defining variables.
-dir_path = os.getcwd()
-math_mem = int()
 host_name = socket.gethostname()
-
 device_platform = platform.machine()
 processor = platform.processor()
 operating_system = platform.system()
 build = platform.version()
 
 
-# Main interface.
-windowcls()
-print("    ____  __           __  _____ __         ____")
-print("   / __ )/ /___ ______/ /_/ ___// /_  ___  / / /")
-print("  / __  / / __ `/ ___/ __/\__ \/ __ \/ _ \/ / / ")
-print(" / /_/ / / /_/ (__  ) /_ ___/ / / / /  __/ / /  ")
-print("/_____/_/\__,_/____/\__//____/_/ /_/\___/_/_/   \n\n")
+# The UI figlet function.
+def drawFiglet():
+    print("    ____  __           __  _____ __         ____")
+    print("   / __ )/ /___ ______/ /_/ ___// /_  ___  / / /")
+    print("  / __  / / __ `/ ___/ __/\__ \/ __ \/ _ \/ / / ")
+    print(" / /_/ / / /_/ (__  ) /_ ___/ / / / /  __/ / /  ")
+    print("/_____/_/\__,_/____/\__//____/_/ /_/\___/_/_/   \n\n")
 
-print("Type 'help' or 'about' for more information.")
-print(f"{__copyright__}.")
+    print("Type 'help' or 'about' for more information.")
+    print(f"{__copyright__}.")
 
-while True:
-    user_command = input(f"\u001b[0m\n{host_name} <--> \u001b[36m").split()
+
+# The function to clear/refresh window.
+def clearWindow():
+    if "Linux" in operating_system:
+        os.system('clear')
+
+    else:
+        os.system('cls')
+
+
+# The commands function.
+def executeCommand(user_command):
     argument_count = len(user_command)
+    dir_path = os.getcwd()
+    math_mem = int()
 
     if argument_count < 1:
         print("\u001b[31mCommand area can't be empty!\u001b[0m")
@@ -83,7 +89,8 @@ while True:
             print("freeCodeCamp      [] www.freecodecamp.org/shiddharth\n\n")
 
         elif user_command[0].lower() == "help":
-            print("\u001b[33m\n\n?\u001b[0m Type '[YOUR_COMMAND] + docs' for more information about that particular command.\n")
+            print("\u001b[33m\n\n?\u001b[0m Type '[YOUR_COMMAND] + docs' for more information about that particular command.")
+            print("\u001b[33m?\u001b[0m Split commands with '$$' to perform multiple commands at once.\n")
             print("BLAST      Starts a new instance of the BlastShell command line.")
             print("CLEAR      Refreshes the screen.")
             print("CRDIR      Creates a directory.")
@@ -99,6 +106,7 @@ while True:
             print("SYS        Displays device specifications.")
             print("SHELL      Runs shell commands from within the program.")
             print("SPEAK      Speaks a text given by user.")
+            print("SEARCH     Searches current path for a particular file.")
             print("SHUTDOWN   Turns off device.")
             print("TIME       Displays current date and time.")
             print("TBUILD     Executes text file builder which enables user to create & modify")
@@ -122,18 +130,41 @@ while True:
             else:
                 print("\u001b[31mInvalid argument(s)! Try typing 'shell docs' for it's usage information.\u001b[0m")
 
+        elif user_command[0].lower() == "search":
+            if argument_count == 2:
+                if user_command[1].lower() == "docs":
+                    print("\u001b[0mDocumentation for command: SEARCH\u001b[0m")
+                    print("\nDescription:")
+                    print("    \u001b[33m?\u001b[0m This command is used to search for a particular file")
+                    print("    \u001b[33m?\u001b[0m with the given file name in the current path.")
+                    print("\nUsage:")
+                    print("    \u001b[32m>>>\u001b[0m search + [FILE_NAME_TO_SEARCH_FOR]")
+
+                else:
+                    result = []
+                    file_name = user_command[1].replace("_", " ")
+
+                    for root, dir, files in os.walk(dir_path):
+                        if file_name in files:
+                            result.append(os.path.join(root, file_name))
+                    
+                    if result == []:
+                        print(f"\u001b[31mCouldn't find any files with the name {file_name}.\u001b[0m")
+
+                    else:
+                        print("\n")
+                        for result_item in result:
+                            print(f"\u001b[33m{result_item}\u001b[0m")
+                        print()
+
+            else:
+                print("\u001b[31mInvalid argument(s)! Try typing 'search docs' for it's usage information.\u001b[0m")
+        
         elif user_command[0].lower() == "blast":
             if argument_count == 1:
                 math_mem = 0
-                windowcls()
-                print("\u001b[0m    ____  __           __  _____ __         ____")
-                print("   / __ )/ /___ ______/ /_/ ___// /_  ___  / / /")
-                print("  / __  / / __ `/ ___/ __/\__ \/ __ \/ _ \/ / / ")
-                print(" / /_/ / / /_/ (__  ) /_ ___/ / / / /  __/ / /  ")
-                print("/_____/_/\__,_/____/\__//____/_/ /_/\___/_/_/   \n\n")
-
-                print("Type 'help' or 'about' for more information.")
-                print(__copyright__)
+                clearWindow()
+                drawFiglet()
                 dir_path = os.getcwd()
 
             elif argument_count == 2 and user_command[1].lower() == "docs":
@@ -150,7 +181,7 @@ while True:
         elif user_command[0].lower() == "exit":
             if argument_count == 1:
                 print("\u001b[0mClosing shell...")
-                break
+                exit()
 
             elif argument_count == 2 and user_command[1].lower() == "docs":
                 print("\u001b[0mDocumentation for command: EXIT\u001b[0m")
@@ -165,7 +196,7 @@ while True:
 
         elif user_command[0].lower() == "repo":
             if argument_count == 1:
-                open('www.github.com/shiddharth/BlastShell', new=2)
+                webbrowser.open('www.github.com/shiddharth/BlastShell', new=2)
                 print("\u001b[0mGitHub repository opened successfully!\u001b[0m")
 
             elif argument_count == 2 and user_command[1].lower() == "docs":
@@ -182,12 +213,11 @@ while True:
         elif user_command[0].lower() == "ls":
             if argument_count == 1:
                 list_dir = os.listdir()
-                print("\n\u001b[33m")
 
+                print("\n\u001b[33m")
                 for dir in list_dir:
                     print(dir)
-
-                print()
+                print("\u001b[0m")
 
             elif argument_count == 2 and user_command[1].lower() == "docs":
                 print("\u001b[0mDocumentation for command: LS\u001b[0m")
@@ -359,6 +389,32 @@ while True:
                 print("\u001b[31mInvalid argument(s)! Try typing 'tbuild docs' for it's usage information.\u001b[0m")    
 
         elif user_command[0].lower() == "math":
+
+            def addToMemory(math_mem, num_to_add):
+                value_addtomem = input("Add to memory? (Yes / No) <> ").lower().replace(" ", "")
+
+                if value_addtomem == "yes":
+                    return math_mem + num_to_add
+
+                elif value_addtomem == "no":
+                    print("Skipped memory addition.")
+
+                else:
+                    print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.\u001b[0m")
+
+            def refreshMemory(math_mem, num_to_refresh):
+                value_addtomem = input("Refresh memory? (Yes / No) <> ").lower().replace(" ", "")
+
+                if value_addtomem == "yes":
+                    math_mem -= math_mem
+                    return math_mem + num_to_refresh
+
+                elif value_addtomem == "no":
+                    print("Skipped memory refresh.")
+
+                else:
+                    print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.\u001b[0m")
+
             if argument_count == 1:
                 print("\u001b[0mMathematics console enabled! Type 'help' to show executable commands.")
 
@@ -390,6 +446,7 @@ while True:
                         print("XQ         Modify a number with a to-the-power value.\n")
 
                     elif math_command[0].lower() == "exit":
+                        print("\u001b[0mTerminated mathematics console.\u001b[0m")
                         break
 
                     elif math_command[0].lower() == "mem":
@@ -406,7 +463,7 @@ while True:
                         print("Cleared math memory!")
 
                     elif math_command[0].lower() == "clear":
-                        windowcls()
+                        clearWindow()
 
                     elif math_command[0].lower() == "factor":
                         num = int(input("Value <> "))
@@ -523,176 +580,42 @@ while True:
 
                         else:
                             print(f"\nGenerated Value = \u001b[32m{gen_res}\u001b[0m")
-                            value_addtomem = input("Add to memory? (Yes / No) <> ").lower().replace(" ", "")
-
-                            if value_addtomem == "yes":
-                                math_mem += gen_res
-                                print("Result added to memory.")
-                                print(f"Memory = \u001b[33m{math_mem}\u001b[0m")
-
-                            elif value_addtomem == "no":
-                                print("Skipped memory addition.")
-
-                            else:
-                                print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.\u001b[0m")
-
-                    elif math_command[0].lower() == "profloss":
-                        try:
-                            buy_value = float(input("Purchase Value <> "))
-                            sell_value = float(input("Selling Value <> "))
-
-                            if buy_value < sell_value:
-                                profloss_value_money = sell_value - buy_value
-                                sell_value -= buy_value
-                                profloss_value_percentage = sell_value / buy_value * 100
-                                output_type = ("Profit \u001b[32m")
-
-                            elif buy_value > sell_value:
-                                profloss_value_money = buy_value - sell_value
-                                buy_value -= sell_value
-                                profloss_value_percentage = buy_value / sell_value * 100
-                                output_type = ("Loss \u001b[31m")
-
-                            else:
-                                profloss_value_money = buy_value - sell_value
-                                buy_value -= sell_value
-                                profloss_value_percentage = buy_value / sell_value * 100
-                                output_type = ("None \u001b[32m")
-
-                        except ValueError:
-                            print("\u001b[31mInvalid value! Try again with a valid number.\u001b[0m")
-
-                        except OverflowError:
-                            print("\u001b[31mValue(s) too big to be calculated!\u001b[0m")
-
-                        else:
-                            print(f"\nResult = {output_type}({profloss_value_percentage}%) \u001b[0m| Money = \u001b[32m{profloss_value_money}\u001b[0m")
-                            value_addtomem = input("Add to memory? (Yes / No) <> ").lower().replace(" ", "")
-
-                            if value_addtomem == "yes":
-                                math_mem += profloss_value_money
-                                print("Result added to memory.")
-                                print(f"Memory = \u001b[33m{math_mem}\u001b[0m")
-
-                            elif value_addtomem == "no":
-                                print("Skipped memory addition.")
-
-                            else:
-                                print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.\u001b[0m")
+                            math_mem = addToMemory(math_mem, gen_res)
 
                     elif math_command[0].lower() == "pi":
                         pi_value = 3.1415926535897932384626433832
 
                         if math_mem == 0:
                             print(f"Pi = \u001b[32m{pi_value}\u001b[0m")
-                            value_addtomem = input("Add to / refresh memory? (Yes / No) <> ").lower().replace(" ", "")
-
-                            if value_addtomem == "yes":
-                                math_mem += pi_value
-                                print("Result added to memory.")
-                                print(f"Memory = \u001b[33m{math_mem}\u001b[0m")
-
-                            elif value_addtomem == "no":
-                                print("Skipped memory addition.")
-
-                            else:
-                                print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.\u001b[0m")
+                            math_mem = addToMemory(math_mem, pi_value)
 
                         else:
                             print(f"Pi = \u001b[32m{pi_value}\u001b[0m")
                             print("Using previous memory result for main value.")
                             pi_action = input("Action (add/sub/div/multi) <> ").lower().replace(" ", "")
 
-                            if pi_action == "add":
-                                try:
+                            res = int()
+                            try:
+                                if pi_action == "add":
                                     res = math_mem + pi_value
 
-                                except OverflowError:
-                                    print("\u001b[31mResult can't be added to memory, value overflow!\u001b[0m")
-
-                                else:
-                                    value_addtomem = input("\nAdd to / refresh memory? (Yes / No) <> ").lower().replace(" ", "")
-
-                                    if value_addtomem == "yes":
-                                        math_mem -= math_mem
-                                        math_mem += res
-                                        print("Result added to memory.")
-                                        print(f"Memory = \u001b[33m{math_mem}\u001b[0m")
-
-                                    elif value_addtomem == "no":
-                                        print("Skipped memory addition.")
-
-                                    else:
-                                        print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.\u001b[0m")
-
-                            elif pi_action == "sub":
-                                try:
+                                elif pi_action == "sub":
                                     res = math_mem - pi_value
 
-                                except OverflowError:
-                                    print("\u001b[31mResult can't be added to memory, value overflow!\u001b[0m")
-
-                                else:
-                                    value_addtomem = input("\nAdd to / refresh memory? (Yes / No) <> ").lower().replace(" ", "")
-
-                                    if value_addtomem == "yes":
-                                        math_mem -= math_mem
-                                        math_mem += res
-                                        print("Result added to memory.")
-                                        print(f"Memory = \u001b[33m{math_mem}\u001b[0m")
-
-                                    elif value_addtomem == "no":
-                                        print("Skipped memory addition.")
-                                        
-                                    else:
-                                        print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.\u001b[0m")
-
-                            elif pi_action == "div":
-                                try:
+                                elif pi_action == "div":
                                     res = math_mem / pi_value
 
-                                except OverflowError:
-                                    print("\u001b[31mResult can't be added to memory, value overflow!\u001b[0m")
-
-                                else:
-                                    value_addtomem = input("\nAdd to / refresh memory? (Yes / No) <> ").lower().replace(" ", "")
-
-                                    if value_addtomem == "yes":
-                                        math_mem -= math_mem
-                                        math_mem += res
-                                        print("Result added to memory.")
-                                        print(f"Memory = \u001b[33m{math_mem}\u001b[0m")
-
-                                    elif value_addtomem == "no":
-                                        print("Skipped memory addition.")
-                                        
-                                    else:
-                                        print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.\u001b[0m")
-
-                            elif pi_action == "multi": 
-                                try:
+                                elif pi_action == "mul":
                                     res = math_mem * pi_value
 
-                                except OverflowError:
-                                    print("\u001b[31mResult can't be added to memory, value overflow!\u001b[0m")
-
                                 else:
-                                    value_addtomem = input("\nAdd to / refresh memory? (Yes / No) <> ").lower().replace(" ", "")
+                                    print("\u001b[31mAction not found! Try something predefined.\u001b[0m")
 
-                                    if value_addtomem == "yes":
-                                        math_mem -= math_mem
-                                        math_mem += res
-                                        print("Result added to memory.")
-                                        print(f"Memory = \u001b[33m{math_mem}\u001b[0m")
-
-                                    elif value_addtomem == "no":
-                                        print("Skipped memory addition.")
-                                        
-                                    else:
-                                        print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.\u001b[0m")
+                            except OverflowError:
+                                print("\u001b[31mResult can't be added to memory, value overflow!\u001b[0m")
 
                             else:
-                                print("\u001b[31mAction not found! Try something predefined.\u001b[0m")
+                                math_mem = refreshMemory(math_mem, res)
 
                     elif math_command[0].lower() == "numfraq":
                         try:
@@ -724,18 +647,7 @@ while True:
 
                         else:
                             print(f"\nResult = \u001b[32m{res}\u001b[0m")
-                            value_addtomem = input("Add to / refresh memory? (Yes / No) <> ").lower().replace(" ", "")
-
-                            if value_addtomem == "yes":
-                                math_mem += res
-                                print("Result added to memory.")
-                                print(f"Memory = \u001b[33m{math_mem}\u001b[0m")
-
-                            elif value_addtomem == "no":
-                                print(f"Skipped memory addition.")
-
-                            else:
-                                print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.\u001b[0m")
+                            math_mem = addToMemory(math_mem, res)
 
                     elif math_command[0].lower() == "cube":
                         def cube(x):
@@ -753,18 +665,7 @@ while True:
 
                         else:
                             print(f"\nResult = \u001b[32m{res}\u001b[0m")
-                            value_addtomem = input("Add to / refresh memory? (Yes / No) <> ").lower().replace(" ", "")
-
-                            if value_addtomem == "yes":
-                                math_mem += res
-                                print("Result added to memory.")
-                                print(f"Memory = \u001b[33m{math_mem}\u001b[0m")
-
-                            elif value_addtomem == "no":
-                                print(f"Skipped memory addition.")
-
-                            else:
-                                print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.\u001b[0m")
+                            math_mem = addToMemory(math_mem, res)
 
                     elif math_command[0].lower() == "sq":
                         def sq(x):
@@ -782,18 +683,7 @@ while True:
 
                         else:
                             print(f"\nResult = \u001b[32m{res}\u001b[0m")
-                            value_addtomem = input("Add to / refresh memory? (Yes / No) <> ").lower().replace(" ", "")
-
-                            if value_addtomem == "yes":
-                                math_mem += res
-                                print("Result added to memory.")
-                                print(f"Memory = \u001b[33m{math_mem}\u001b[0m")
-
-                            elif value_addtomem == "no":
-                                print(f"Skipped memory addition.")
-
-                            else:
-                                print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.\u001b[0m")
+                            math_mem = addToMemory(math_mem, res)
 
                     elif math_command[0].lower() == "add":
                         value_namenum = 0
@@ -817,18 +707,7 @@ while True:
 
                         else:
                             print(f"\nResult = \u001b[32m{res}\u001b[0m")
-                            value_addtomem = input("Add to / refresh memory? (Yes / No) <> ").lower().replace(" ", "")
-
-                            if value_addtomem == "yes":
-                                math_mem += res
-                                print("Result added to memory.")
-                                print(f"Memory = \u001b[33m{math_mem}\u001b[0m")
-
-                            elif value_addtomem == "no":
-                                print(f"Skipped memory addition.")
-
-                            else:
-                                print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.\u001b[0m")
+                            math_mem = addToMemory(math_mem, res)
 
                     elif math_command[0].lower() == "sub":
                         value_namenum = 0
@@ -852,18 +731,7 @@ while True:
 
                         else:
                             print(f"\nResult = \u001b[32m{res}\u001b[0m")
-                            value_addtomem = input("Add to / refresh memory? (Yes / No) <> ").lower().replace(" ", "")
-
-                            if value_addtomem == "yes":
-                                math_mem += res
-                                print("Result added to memory.")
-                                print(f"Memory = \u001b[33m{math_mem}\u001b[0m")
-
-                            elif value_addtomem == "no":
-                                print(f"Skipped memory addition.")
-
-                            else:
-                                print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.\u001b[0m")
+                            math_mem = addToMemory(math_mem, res)
 
                     elif math_command[0].lower() == "div":
                         value_namenum = 0
@@ -888,18 +756,7 @@ while True:
 
                         else:
                             print(f"\nResult = \u001b[32m{res}\u001b[0m")
-                            value_addtomem = input("Add to / refresh memory? (Yes / No) <> ").lower().replace(" ", "")
-
-                            if value_addtomem == "yes":
-                                math_mem += res
-                                print("Result added to memory.")
-                                print(f"Memory = \u001b[33m{math_mem}\u001b[0m")
-
-                            elif value_addtomem == "no":
-                                print(f"Skipped memory addition.")
-
-                            else:
-                                print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.\u001b[0m")
+                            math_mem = addToMemory(math_mem, res)
 
                     elif math_command[0].lower() == "multi":
                         value_namenum = 0
@@ -924,18 +781,7 @@ while True:
 
                         else:
                             print(f"\nResult = \u001b[32m{res}\u001b[0m")
-                            value_addtomem = input("Add to / refresh memory? (Yes / No) <> ").lower().replace(" ", "")
-
-                            if value_addtomem == "yes":
-                                math_mem += res
-                                print("Result added to memory.")
-                                print(f"Memory = \u001b[33m{math_mem}\u001b[0m")
-
-                            elif value_addtomem == "no":
-                                print(f"Skipped memory addition.")
-
-                            else:
-                                print("\u001b[31mUnknown action! Try typing either 'Yes' or 'No'.\u001b[0m")
+                            math_mem = addToMemory(math_mem, res)
 
                     else:
                         print("\u001b[31mWhoa! Command not found. Type 'help' to show executable commands.\u001b[0m")
@@ -1051,7 +897,7 @@ while True:
 
         elif user_command[0].lower() == "clear":
             if argument_count == 1:
-                windowcls()
+                clearWindow()
 
             elif argument_count == 2 and user_command[1].lower() == "docs":
                 print("\u001b[0mDocumentation for command: CLEAR\u001b[0m")
@@ -1065,17 +911,16 @@ while True:
                 print("\u001b[31mInvalid argument(s)! Try typing 'clear docs' for it's usage information.\u001b[0m")
 
         elif user_command[0].lower() == "crdir":
-            if argument_count == 3 and user_command[1].lower() == "make":
-                os.mkdir(user_command[2])
+            if argument_count == 2:
+                if user_command[1] == "docs":
+                    print("\u001b[0mDocumentation for command: CRDIR\u001b[0m")
+                    print("\nDescription:")
+                    print("    \u001b[33m?\u001b[0m This command is used to create folders.")
+                    print("\nUsage:")
+                    print("    \u001b[32m>>>\u001b[0m crdir + [ENTER_FOLDER_NAME_HERE]")
 
-            elif argument_count == 2 and user_command[1].lower() == "docs":
-                print("\u001b[0mDocumentation for command: CRDIR\u001b[0m")
-                print("\nDescription:")
-                print("    \u001b[33m?\u001b[0m This command is used to create folders.")
-                print("\nArguments:")
-                print("    \u001b[33m$\u001b[0m MAKE - Creates folders.")
-                print("\nUsage:")
-                print("    \u001b[32m>>>\u001b[0m crdir + [ENTER_ARGUMENT_HERE] + [ENTER_FOLDER_NAME_HERE]")
+                else:
+                    os.mkdir(user_command[2])
 
             else:
                 print("\u001b[31mInvalid argument(s)! Try typing 'crdir docs' for it's usage information.\u001b[0m")
@@ -1128,28 +973,20 @@ while True:
 
         elif user_command[0].lower() == "vdl":
             def dwl_vid():
-                    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-                        ydl.download([vidmain])
+                with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+                    ydl.download([vidmain])
 
             print(f"\u001b[0mAttempting to download {user_command[1].lower()}...\u001b[0m")
 
             if argument_count == 3:
                 vidmain = user_command[2]
 
-                if user_command[1].lower() == "video":
-                    try:
+                try:
+                    if user_command[1].lower() == "video":
                         ydl_opts = {}
                         dwl_vid()
 
-                    except:
-                        print("\u001b[31mUnexpected error occured! Try again after ensuring stable internet connection and a valid video link.\u001b[0m")
-                        break
-
-                    else:
-                        print("\u001b[0mVideo downloaded successfully!\u001b[0m")
-
-                elif user_command[1].lower() == "audio":
-                    try:
+                    elif user_command[1].lower() == "audio":
                         ydl_opts = {
                             'format': 'bestaudio/best',
                             'postprocessors': [{
@@ -1160,11 +997,18 @@ while True:
                         }
                         dwl_vid()
 
-                    except:
-                        print("\u001b[31mUnexpected error occured! Try again after ensuring stable internet connection and a valid video link.\u001b[0m")
-
                     else:
+                        print("\u001b[31mInvalid argument(s)! Try typing 'vdl docs' for it's usage information.\u001b[0m")
+
+                except:
+                    print("\u001b[31mUnexpected error occured! Try again after ensuring stable internet connection and a valid video link.\u001b[0m")
+
+                else:
+                    if user_command[1].lower() == "video":
                         print("\u001b[0mVideo downloaded successfully!\u001b[0m")
+
+                    elif user_command[1].lower() == "audio":
+                        print("\u001b[0mSuccessfully downloaded video as audio.\u001b[0m")
 
             elif argument_count == 2 and user_command[1].lower() == "docs":
                 print("\u001b[0mDocumentation for command: VDL\u001b[0m")
@@ -1181,3 +1025,16 @@ while True:
 
         else:
             print("\u001b[31mWhoa! Command not found. Type 'help' to show executable commands.\u001b[0m")
+
+
+# The main command page. This is where all the actions start.
+clearWindow()
+drawFiglet()
+while True:
+    dir_path = os.getcwd()
+    rawUserInput = input(f"\u001b[0m\n{dir_path} [{__version__}@{host_name}] <--> ")
+    rawCommands = rawUserInput.split('$$')
+    
+    for user_command in rawCommands:
+        user_command = user_command.split()
+        executeCommand(user_command)

@@ -145,7 +145,7 @@ def executeCommand(user_command):
                     file_name = user_command[1].replace("_", " ")
 
                     for root, dir, files in os.walk(dir_path):
-                        if file_name in files:
+                        if (file_name in files or file_name in dir):
                             result.append(os.path.join(root, file_name))
                     
                     if result == []:

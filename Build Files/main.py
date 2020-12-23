@@ -839,7 +839,7 @@ def executeCommand(user_command):
 
         elif user_command[0].lower() == "time":
             if argument_count == 1:
-                now = datetime.now()
+                now = datetime.datetime.now()
                 date_time = now.strftime("\u001b[0mDate: " + "%d/%m/%Y" + " | Time: " + "%H:%M:%S")
                 print(date_time)
 

@@ -212,10 +212,8 @@ def executeCommand(user_command):
 
         elif user_command[0].lower() == "ls":
             if argument_count == 1:
-                list_dir = os.listdir()
-
                 print("\n\u001b[33m")
-                for dir in list_dir:
+                for dir in os.listdir():
                     print(dir)
                 print("\u001b[0m")
 
@@ -361,8 +359,8 @@ def executeCommand(user_command):
                     file_name = user_command[2].replace("_", " ")
                     
                     try:
-                        file = open(file_name, "r")
-                        file_contents = file.read()
+                        with open(file_name, 'r') as file:
+                            file_contents = file.read()
 
                     except:
                         print("\u001b[31mUnable to detect file, invalid name / path!\u001b[0m")
